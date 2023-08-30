@@ -1,0 +1,18 @@
+.App {
+    .frame {
+        background-color: #ffffff;
+        opacity: 1;
+        background-image: linear-gradient(rgba(68, 76, 247, 0.1) 1.2000000000000002px, transparent 1.2000000000000002px), linear-gradient(to right, rgba(68, 76, 247, 0.1) 1.2000000000000002px, #ffffff 1.2000000000000002px);
+        background-size: 24px 24px;
+        width: 100%;
+        min-height: 100vh;
+        height: 100%;
+    }
+
+    .cards {
+        display: flex;
+        overflow: scroll;
+        gap: 15px;
+        padding: 20px;
+    }
+}

@@ -1,13 +1,32 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: max;
+  src: url("../public/fonts/MAX-Regular.woff");
+  font-weight: normal;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: max;
+  src: url("../public/fonts/MAX-Medium.woff");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: max;
+  src: url("../public/fonts/MAX-Bold.woff");
+  font-weight: bold;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'max', 'assistant', 'Roboto', sans-serif;
+  direction: rtl;
+}
+
+
+/* GLOBAL FONTS */
+h1 {
+  font-size: 60px;
+  text-align: center;
 }
