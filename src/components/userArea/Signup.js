@@ -1,54 +1,88 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import joi, { func } from 'joi';
+import { JOI_HEBREW } from "../../joi-hebrew"
 
 export default function Signup() {
 
+    const [IsValid, setIsValid] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [formData, setFormData] = useState([]);
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*\d.*\d.*\d)(?=.*[!@#$%^&*-_*])/;
+
+
+    const SignupSchema = joi.object({
+        firstName: joi.string().min(3).max(12).required(),
+        middleName: joi.string().min(3).max(12),
+        lastName: joi.string().alphanum().min(3).max(20).required(),
+        phone: joi.string().alphanum().min(5).max(30).required(),
+        email: joi.string().alphanum().min(5).max(30).required(),
+        password: joi.string().pattern(passwordRegex).messages({
+            'string.pattern.base': 'הסיסמה חייבת לכלול לפחות אות אחת גדולה, אות אחת קטנה באנגלית, לפחות 4 מספרים, וסימן מיוחד מתוך !@, ולהיות לפחות באורך של 8 תווים.',
+        }).min(8).max(30).required(),
+        imgUrl: joi.string().alphanum(),
+        imgAlt: joi.string().alphanum(),
+        state: joi.string().alphanum().min(3).max(10),
+        country: joi.string().alphanum().min(3).max(10),
+        city: joi.string().alphanum().min(3).max(10),
+        street: joi.string().alphanum().min(3).max(10),
+        houseNumber: joi.string().alphanum().min(5).max(30),
+        zip: joi.string().alphanum(),
+        business: joi.boolean(),
+    })
+
+    const Navigate = useNavigate();
     const structure = [
-        { id: "firstName", type: "text", label: "firstName", placeholder: "firstName" },
-        { id: "middleName", type: "text", label: "middleName", placeholder: "middleName" },
-        { id: "lastName", type: "text", label: "lastName", placeholder: "lastName" },
-        { id: "phone", type: "text", label: "phone", placeholder: "phone" },
-        { id: "email", type: "text", label: "email", placeholder: "email" },
-        { id: "password", type: "text", label: "password", placeholder: "password" },
-        { id: "imgUrl", type: "text", label: "imgUrl", placeholder: "imgUrl" },
+        { id: "firstName", type: "text", label: "שם פרטי", placeholder: "שם פרטי" },
+        { id: "middleName", type: "text", label: "שם אמצעי", placeholder: "שם אמצעי" },
+        { id: "lastName", type: "text", label: "שם משפחה", placeholder: "שם משפחה" },
+        { id: "phone", type: "tel", label: "טלפון", placeholder: "טלפון" },
+        { id: "email", type: "text", label: "אימייל", placeholder: "אימייל" },
+        { id: "password", type: "text", label: "סיסמה", placeholder: "סיסמה" },
+        { id: "imgUrl", type: "text", label: "תמונה", placeholder: "תמונה" },
         { id: "imgAlt", type: "text", label: "imgAlt", placeholder: "imgAlt" },
-        { id: "state", type: "text", label: "state", placeholder: "state" },
-        { id: "country", type: "text", label: "country", placeholder: "country" },
-        { id: "city", type: "text", label: "city", placeholder: "city" },
-        { id: "street", type: "text", label: "street", placeholder: "street" },
-        { id: "houseNumber", type: "number", label: "houseNumber", placeholder: "houseNumber" },
-        { id: "zip", type: "number", label: "zip", placeholder: "zip" },
-        { id: "business", type: "text", label: "business", placeholder: "business" },
+        { id: "state", type: "text", label: "מחוז", placeholder: "מחוז" },
+        { id: "country", type: "text", label: "מדינה", placeholder: "מדינה" },
+        { id: "city", type: "text", label: "עיר", placeholder: "עיר" },
+        { id: "street", type: "text", label: "רחוב", placeholder: "רחוב" },
+        { id: "houseNumber", type: "number", label: "בית", placeholder: "בית" },
+        { id: "zip", type: "number", label: "מיקוד", placeholder: "מיקוד" },
+        { id: "business", type: "checkbox", label: "עסקי", },
     ]
 
-    const [formData, setFormData] = useState({
-        "firstName": "",
-        "middleName": "",
-        "lastName": "",
-        "phone": "",
-        "email": "",
-        "password": "",
-        "imgUrl": "",
-        "imgAlt": "",
-        "state": "",
-        "country": "",
-        "city": "",
-        "street": "",
-        "houseNumber": 0,
-        "zip": 0,
-        "business": false
-    });
 
     function HandleInput(ev) {
-        const { id, value } = ev.target;
 
-        setFormData({
+        const { id, value, type, checked } = ev.target;
+        const newValue = type === "checkbox" ? checked : value;
+
+        //create a new variable to live render a Joi validation
+        const newFormData = {
             ...formData,
-            [id]: value
-        })
-
+            [id]: newValue
+        }
+        setFormData(newFormData)
         console.log(formData);
+
+        const schema = SignupSchema.validate(newFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
+        const errors = {};
+        if (schema.error) {
+
+            for (const e of schema.error.details) {
+                errors[e.context.key] = e.message;
+            };
+            setIsValid(false)
+
+
+        } else {
+            setIsValid(true)
+        }
+        setErrors(errors)
+        // console.log(formData);
     }
+
+
     function signup(ev) {
         ev.preventDefault();
 
@@ -73,28 +107,55 @@ export default function Signup() {
             .catch(err => {
                 console.log(err.message);
             });
+        Navigate("/login")
+
     }
 
+
     return (
-        <div>
+        <div className='signup'>
             {/* {isLogged && */}
-            <h2>הרשמה</h2>
             <form onSubmit={signup}>
-                {structure.map(s => {
+                <h2>הרשמה</h2>
+                {structure.map((s, i) => {
                     return (
-                        <div key={s.id}>
-                            <label>{s.label}: </label>
-                            <input id={s.id} type={s.type} placeholder={s.placeholder} onChange={HandleInput} />
-                        </div>
+                        <>
+
+
+                            <div key={s.id} className={s.type === "checkbox" ? "inputField form-control" : "inputField"}>
+                                <label>{s.label}: </label>
+                                <input id={s.id} type={s.type} placeholder={s.placeholder} onChange={HandleInput} />
+                                <p className={'validationError'}>{errors ? errors[s.id] : ""}</p>
+
+                            </div>
+
+                        </>
                     )
                 })}
                 <button>הירשם</button>
-
-                {/* <p style={{ textAlign: "center" }} className={'validationError'}>{loginError ? loginError : ""}</p> */}
-
                 <Link to={"/login"}>נרשמת? לחץ כאן</Link>
             </form>
             {/* } */}
 
         </div>)
 }
+
+
+
+// {
+//     "firstName": "",
+//     "middleName": "",
+//     "lastName": "",
+//     "phone": "",
+//     "email": "",
+//     "password": "",
+//     "imgUrl": "",
+//     "imgAlt": "",
+//     "state": "",
+//     "country": "",
+//     "city": "",
+//     "street": "",
+//     "houseNumber": 0,
+//     "zip": 0,
+//     "business": false
+// }

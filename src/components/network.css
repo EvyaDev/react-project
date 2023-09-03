@@ -1,0 +1,16 @@
+.network {
+    background-color: black;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+}
+
+.network p.online {
+    color: rgb(16, 204, 16);
+}
+
+.network p.offline {
+    color: red;
+
+}

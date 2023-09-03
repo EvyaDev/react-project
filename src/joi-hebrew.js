@@ -29,5 +29,5 @@ export const JOI_HEBREW = {
     'string.uri': 'חייב להיות Uri חוקי',
     'string.uriCustomScheme': 'חייב להיות URI חוקי עם סכימה התואמת לתבנית {{#scheme}}',
     'string.uriRelativeOnly': 'חייב להיות Uri יחסי חוקי',
-    'string.uppercase': 'חייב להכיל רק תווים רישיות'
+    'string.uppercase': 'חייב להכיל רק תווים רישיות',
 };

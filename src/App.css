@@ -1,8 +1,11 @@
+.App {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .App .frame {
-  background-color: #ffffff;
+  padding-top: 80px;
   opacity: 1;
-  background-image: linear-gradient(rgba(68, 76, 247, 0.1) 1.2px, transparent 1.2px), linear-gradient(to right, rgba(68, 76, 247, 0.1) 1.2px, #ffffff 1.2px);
-  background-size: 24px 24px;
   width: 100%;
   min-height: 100vh;
   height: 100%;

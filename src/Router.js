@@ -1,23 +1,23 @@
 import React from 'react'
 import { Route, Routes } from "react-router-dom"
-import App from './App'
 import ErrorPage from "./ErrorPage"
 import AddCard from './components/card/addCard'
 import Signup from './components/userArea/Signup'
-import LoginClient from './components/userArea/LoginClient'
-// import Clients from './components/userArea/Clients'
+import Login from './components/userArea/Login'
 import Cards from './components/card/Cards'
+import Home from './components/Home'
+import Logout from './components/userArea/Logout'
 
 export default function Router() {
     return (
         <Routes>
-            <Route path="*" element={<ErrorPage />} ></Route>
-            <Route path="/" element={<App />} ></Route>
-            <Route path="/login" element={<LoginClient />} ></Route>
-            <Route path="/signup" element={<Signup />} ></Route>
-            <Route path="/addCard" element={<AddCard />} ></Route>
-            {/* <Route path="/clients" element={<Clients />} ></Route> */}
-            <Route path="/cards" element={<Cards />} ></Route>
+            <Route path="*" element={<ErrorPage />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/addCard" element={<AddCard />} />
+            <Route path="/cards" element={<Cards />} />
         </Routes>
     )
 }

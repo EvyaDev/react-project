@@ -1,0 +1,51 @@
+.Card {
+    background-size: cover;
+    border-radius: 15px;
+    width: 250px;
+    min-height: 400px;
+    box-shadow: 0 0 30px -20px black;
+    background-color: #fff;
+
+    .cardFrame {
+        background-image: linear-gradient(#ffffff00, #000);
+        border-radius: 15px;
+        padding: 25px;
+        backdrop-filter: brightness(.9);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        overflow: scroll;
+    }
+
+
+    h2 {
+        color: rgb(255, 255, 255);
+    }
+
+    p {
+        color: #fff;
+    }
+
+    .heart {
+        color: #fff;
+        font-size: 20px;
+
+    }
+
+}
+
+.Cards {
+
+    .addCard {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        stroke: none;
+        border: none;
+        font-size: 50px;
+        background-color: green;
+        color: white;
+        line-height: 0;
+    }
+}

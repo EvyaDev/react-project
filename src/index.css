@@ -1,18 +1,24 @@
 @font-face {
-  font-family: max;
-  src: url("../public/fonts/MAX-Regular.woff");
+  font-family: ploni;
+  src: url("../public/fonts/ploni-light-aaa.ttf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: ploni;
+  src: url("../public/fonts/ploni-regular-aaa.woff2");
   font-weight: normal;
 }
 
 @font-face {
-  font-family: max;
-  src: url("../public/fonts/MAX-Medium.woff");
+  font-family: ploni;
+  src: url("../public/fonts/ploni-medium-aaa.ttf");
   font-weight: 500;
 }
 
 @font-face {
-  font-family: max;
-  src: url("../public/fonts/MAX-Bold.woff");
+  font-family: ploni;
+  src: url("../public/fonts/ploni-bold-aaa.ttf");
   font-weight: bold;
 }
 
@@ -20,7 +26,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'max', 'assistant', 'Roboto', sans-serif;
+  font-family: 'ploni', 'assistant', 'Roboto', sans-serif;
   direction: rtl;
 }
 

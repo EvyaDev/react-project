@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "./RecipesCard.css"
+import "./Card.css"
 import { useNavigate } from "react-router-dom";
 
 export default function AddCard() {
@@ -43,7 +43,6 @@ export default function AddCard() {
             body: JSON.stringify(formData),
         })
             .then(data => {
-                console.log(data);
                 Navigate("/");
             });
     }

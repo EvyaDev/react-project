@@ -1,0 +1,124 @@
+nav {
+    height: fit-content;
+    max-height: 70px;
+    width: 100%;
+    position: fixed;
+    background-color: #ffffff6f;
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    box-shadow: 0 0 30px -10px black;
+    z-index: 999;
+
+    .btnMode {
+        background-color: #9397a9;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+    }
+
+    .img-avatar {
+        width: inherit;
+        height: inherit;
+    }
+
+    .userArea {
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: cadetblue;
+        }
+
+    }
+
+    .profile-open {
+        width: 300px;
+        height: fit-content;
+        padding: 20px;
+        position: absolute;
+        top: 8px;
+        border-radius: 20px;
+        box-shadow: 0 0 50px -30px black;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        transition: 1s;
+
+        a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        ul {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            a {
+                background-color: #e9e4ff39;
+                width: inherit;
+                border-radius: 5px;
+                padding: 5px 15px;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                color: inherit;
+                transition: .2s ease-in;
+            }
+
+            .logoutBtn {
+                background-color: #b717177e;
+            }
+
+            .logoutBtn:hover {
+                background-color: #b71717c9;
+            }
+
+            a:hover {
+                background-color: #e9e4ff86;
+            }
+        }
+
+    }
+
+
+
+    .navigator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    ul {
+        display: flex;
+        list-style: none;
+        gap: 8px;
+
+        li {
+            display: inline;
+
+            a {
+                background-color: rgba(154, 154, 154, 0.288);
+                border-radius: 8px;
+                text-decoration: none;
+                padding: 2px 8px;
+            }
+        }
+    }
+
+}

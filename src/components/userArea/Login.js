@@ -2,45 +2,44 @@ import './user.css';
 import joi from 'joi';
 import { JOI_HEBREW } from "../../joi-hebrew"
 import React, { useContext, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { userContext } from '../../App';
-// import Signup from './Signup';
 
 
-
-//main function
 export default function LoginClient() {
 
     const Navigate = useNavigate();
-    const { isLogged, setIsLogged } = useContext(userContext);
-    const [loginError, setLoginError] = useState();
-    const [IsValid, setIsValid] = useState();
+    const { isLogged, setUser, setIsLogged } = useContext(userContext);
+    const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState([]);
 
     const LoginSchema = joi.object({
-        email: joi.string().min(5).max(30).required(),
+        email: joi.string().email({ minDomainSegments: 2, tlds: { allow: false } }),
         password: joi.string().alphanum().min(5).max(30).required(),
     })
 
 
     function HandleInput(ev) {
+
         const { id, value } = ev.target;
 
-        setFormData({
+        //create a new variable to live render a Joi validation
+        const newFormData = {
             ...formData,
             [id]: value
-        })
+        }
+        setFormData(newFormData)
 
-        console.log(formData);
-        const schema = LoginSchema.validate(formData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
+        const schema = LoginSchema.validate(newFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
         const errors = {};
-
+        console.log(formData);
         if (schema.error) {
             for (const e of schema.error.details) {
                 errors[e.context.key] = e.message;
             };
             setIsValid(false)
+
         } else {
             setIsValid(true)
         }
@@ -68,6 +67,8 @@ export default function LoginClient() {
                 }
             })
             .then(data => {
+                Navigate(-1)
+                setUser(data)
             })
             .catch(err => {
                 console.log(err.message);
@@ -76,20 +77,25 @@ export default function LoginClient() {
 
     return (
 
-        <div>
-            {/* {isLogged && */}
-            <h2> התחברות לקוח</h2>
+        <div className='login'>
             <form onSubmit={login}>
+                <h2> התחברות לקוח</h2>
+                <div className='inputField'>
+                    <label>אימייל</label>
+                    <input id="email" type="email" placeholder='אימייל' onChange={HandleInput} />
+                    <p style={{ textAlign: "center" }} className={'validationError'}>{errors ? errors.email : ""}</p>
+                </div>
+                <div className='inputField'>
+                    <label>סיסמה</label>
+                    <input id="password" type="password" placeholder='סיסמה' onChange={HandleInput} />
+                    <p style={{ textAlign: "center" }} className={'validationError'}>{errors ? errors.password : ""}</p>
+                </div>
 
-                <input id="email" type="text" placeholder='אימייל' onChange={HandleInput} />
-                <input id="password" type="text" placeholder='סיסמה' onChange={HandleInput} />
-                <button> התחבר </button>
+                <button disabled={!IsValid}> התחבר </button>
 
-                {/* <p style={{ textAlign: "center" }} className={'validationError'}>{loginError ? loginError : ""}</p> */}
 
                 <Link to={"/signup"}>להרשמה לחץ כאן</Link>
             </form>
-            {/* } */}
 
         </div>
     );
