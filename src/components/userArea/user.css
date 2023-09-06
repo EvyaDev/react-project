@@ -19,41 +19,6 @@
   position: relative;
 }
 
-.login form .inputField input,
-.signup form .inputField input {
-  border: 1px solid gray;
-  border-radius: 6px;
-  position: relative;
-  line-height: 6ex;
-  width: 100%;
-  padding: 0 10px;
-}
-
-.login form .inputField .checkbox,
-.signup form .inputField .checkbox {
-  font-size: 90px;
-}
-
-.login form .inputField ::-webkit-input-placeholder,
-.signup form .inputField ::-webkit-input-placeholder {
-  color: #78787880;
-}
-
-.login form .inputField :-ms-input-placeholder,
-.signup form .inputField :-ms-input-placeholder {
-  color: #78787880;
-}
-
-.login form .inputField ::-ms-input-placeholder,
-.signup form .inputField ::-ms-input-placeholder {
-  color: #78787880;
-}
-
-.login form .inputField ::placeholder,
-.signup form .inputField ::placeholder {
-  color: #78787880;
-}
-
 .login form .inputField label,
 .signup form .inputField label {
   font-size: 12px;
@@ -67,15 +32,52 @@
   padding: 0 5px;
 }
 
+.login form .inputField input,
+.signup form .inputField input {
+  border: 1px solid gray;
+  border-radius: 6px;
+  position: relative;
+  line-height: 6ex;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.login form .inputField input ::-webkit-input-placeholder,
+.signup form .inputField input ::-webkit-input-placeholder {
+  color: #78787880;
+}
+
+.login form .inputField input :-ms-input-placeholder,
+.signup form .inputField input :-ms-input-placeholder {
+  color: #78787880;
+}
+
+.login form .inputField input ::-ms-input-placeholder,
+.signup form .inputField input ::-ms-input-placeholder {
+  color: #78787880;
+}
+
+.login form .inputField input ::placeholder,
+.signup form .inputField input ::placeholder {
+  color: #78787880;
+}
+
+.login form .inputField .checkbox,
+.signup form .inputField .checkbox {
+  -webkit-transform: scale(150%);
+          transform: scale(150%);
+}
+
 .login form button,
 .signup form button {
-  background-color: rgba(208, 224, 253, 0.192);
+  background-color: rgba(208, 224, 253, 0.602);
   border-radius: 10px;
   padding: 10px;
   stroke: none;
   border: rgba(255, 255, 255, 0.137) 1px solid;
   outline: none;
   width: 100%;
+  cursor: pointer;
 }
 
 .login form .validationError,
@@ -83,17 +85,5 @@
   color: red;
   text-align: right;
   font-size: 14px;
-}
-
-.inputField.form-control {
-  font-family: system-ui, sans-serif;
-  font-size: 2rem;
-  font-weight: bold;
-  line-height: 1.1;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1em auto;
-      grid-template-columns: 1em auto;
-  gap: 0.5em;
 }
 /*# sourceMappingURL=user.css.map */

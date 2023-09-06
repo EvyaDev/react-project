@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import joi, { func } from 'joi';
 import { JOI_HEBREW } from "../../joi-hebrew"
+import { token } from '../../App';
 
 export default function Signup() {
 
@@ -15,19 +16,19 @@ export default function Signup() {
     const SignupSchema = joi.object({
         firstName: joi.string().min(3).max(12).required(),
         middleName: joi.string().min(3).max(12),
-        lastName: joi.string().alphanum().min(3).max(20).required(),
+        lastName: joi.string().min(3).max(20).required(),
         phone: joi.string().alphanum().min(5).max(30).required(),
-        email: joi.string().alphanum().min(5).max(30).required(),
+        email: joi.string().min(5).max(30).required(),
         password: joi.string().pattern(passwordRegex).messages({
             'string.pattern.base': 'הסיסמה חייבת לכלול לפחות אות אחת גדולה, אות אחת קטנה באנגלית, לפחות 4 מספרים, וסימן מיוחד מתוך !@, ולהיות לפחות באורך של 8 תווים.',
         }).min(8).max(30).required(),
-        imgUrl: joi.string().alphanum(),
-        imgAlt: joi.string().alphanum(),
-        state: joi.string().alphanum().min(3).max(10),
-        country: joi.string().alphanum().min(3).max(10),
-        city: joi.string().alphanum().min(3).max(10),
-        street: joi.string().alphanum().min(3).max(10),
-        houseNumber: joi.string().alphanum().min(5).max(30),
+        imgUrl: joi.string(),
+        imgAlt: joi.string(),
+        state: joi.string().min(3).max(10),
+        country: joi.string().min(3).max(10),
+        city: joi.string().max(10),
+        street: joi.string().min(3).max(10),
+        houseNumber: joi.string().alphanum(),
         zip: joi.string().alphanum(),
         business: joi.boolean(),
     })
@@ -48,7 +49,7 @@ export default function Signup() {
         { id: "street", type: "text", label: "רחוב", placeholder: "רחוב" },
         { id: "houseNumber", type: "number", label: "בית", placeholder: "בית" },
         { id: "zip", type: "number", label: "מיקוד", placeholder: "מיקוד" },
-        { id: "business", type: "checkbox", label: "עסקי", },
+        { id: "business", type: "checkbox", label: " לקוח עסקי? ", },
     ]
 
 
@@ -86,7 +87,7 @@ export default function Signup() {
     function signup(ev) {
         ev.preventDefault();
 
-        fetch(`https://api.shipap.co.il/clients/signup?token=3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0`, {
+        fetch(`https://api.shipap.co.il/clients/signup?token=${token}`, {
             credentials: 'include',
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
@@ -116,19 +117,20 @@ export default function Signup() {
         <div className='signup'>
             {/* {isLogged && */}
             <form onSubmit={signup}>
+                <a href="mailto:7655714@gmail.com?subject=Hi%20%3A)&body=Nice%20to%20meet%20you.">Send Mail</a>
+
                 <h2>הרשמה</h2>
                 {structure.map((s, i) => {
                     return (
                         <>
 
 
-                            <div key={s.id} className={s.type === "checkbox" ? "inputField form-control" : "inputField"}>
-                                <label>{s.label}: </label>
-                                <input id={s.id} type={s.type} placeholder={s.placeholder} onChange={HandleInput} />
+                            <div key={s.id} className={"inputField"} >
+                                {s.type != "checkbox" && <label >{s.label}: </label>}
+                                {s.type === "checkbox" && <p>{s.label}</p>}
+                                <input className={s.type === "checkbox" && "checkbox"} id={s.id} type={s.type} placeholder={s.placeholder} onChange={HandleInput} />
                                 <p className={'validationError'}>{errors ? errors[s.id] : ""}</p>
-
                             </div>
-
                         </>
                     )
                 })}

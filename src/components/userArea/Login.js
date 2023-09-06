@@ -3,17 +3,16 @@ import joi from 'joi';
 import { JOI_HEBREW } from "../../joi-hebrew"
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { userContext } from '../../App';
-
+import { token, userContext } from '../../App';
+import { RoleTypes } from '../../App';
 
 export default function LoginClient() {
 
     const Navigate = useNavigate();
-    const { isLogged, setUser, setIsLogged } = useContext(userContext);
+    const { permission, setPermission, isLogged, setUser, setIsLogged } = useContext(userContext);
     const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState([]);
-
     const LoginSchema = joi.object({
         email: joi.string().email({ minDomainSegments: 2, tlds: { allow: false } }),
         password: joi.string().alphanum().min(5).max(30).required(),
@@ -33,7 +32,7 @@ export default function LoginClient() {
 
         const schema = LoginSchema.validate(newFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
         const errors = {};
-        console.log(formData);
+
         if (schema.error) {
             for (const e of schema.error.details) {
                 errors[e.context.key] = e.message;
@@ -51,7 +50,7 @@ export default function LoginClient() {
     function login(ev) {
         ev.preventDefault();
 
-        fetch(`https://api.shipap.co.il/clients/login?token=3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0`, {
+        fetch(`https://api.shipap.co.il/clients/login?token=${token}`, {
             credentials: 'include',
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
@@ -67,11 +66,15 @@ export default function LoginClient() {
                 }
             })
             .then(data => {
-                Navigate(-1)
                 setUser(data)
+                setIsLogged(true)
+                if (data.admin) { setPermission(RoleTypes.admin) }
+                Navigate(-1)
             })
             .catch(err => {
                 console.log(err.message);
+                setIsLogged(false)
+
             });
     }
 

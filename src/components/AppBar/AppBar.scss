@@ -3,7 +3,8 @@ nav {
     max-height: 70px;
     width: 100%;
     position: fixed;
-    background-color: #ffffff6f;
+    top: 0;
+    background-color: #d7deff6f;
     backdrop-filter: blur(15px);
     display: flex;
     flex-direction: row;
@@ -14,7 +15,7 @@ nav {
     z-index: 999;
 
     .btnMode {
-        background-color: #9397a9;
+        background-color: #afb7d8;
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -22,6 +23,7 @@ nav {
         justify-content: center;
         align-items: center;
         padding: 0px;
+        border: none;
     }
 
     .img-avatar {
@@ -37,7 +39,7 @@ nav {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: cadetblue;
+            background-color: rgba(95, 158, 160, 0.589);
         }
 
     }
@@ -60,6 +62,14 @@ nav {
             display: flex;
             flex-direction: column;
             align-items: center;
+
+
+            .permissionTag {
+                background-color: rgba(120, 120, 120, 0.365);
+                font-size: 13px;
+                border-radius: 5px;
+                padding: 3px 8px;
+            }
         }
 
 
@@ -92,7 +102,9 @@ nav {
             a:hover {
                 background-color: #e9e4ff86;
             }
+
         }
+
 
     }
 

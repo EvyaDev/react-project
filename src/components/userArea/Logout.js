@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { userContext } from '../../App';
+import { RoleTypes, userContext } from '../../App';
 
 export default function Logout() {
-    const { setUser, isLogged, setIsLogged } = useContext(userContext)
+    const { setUser, isLogged, setPermission, setIsLogged } = useContext(userContext)
     const Navigate = useNavigate();
 
     useEffect(() => {
@@ -12,12 +12,13 @@ export default function Logout() {
             return;
         }
 
-        fetch(`https://api.shipap.co.il/logout`, {
+        fetch(`https://api.shipap.co.il/clients/logout`, {
             credentials: 'include',
         })
             .then(() => {
                 setIsLogged(false)
                 setUser("")
+                setPermission(RoleTypes.none)
             })
 
         Navigate(-1)

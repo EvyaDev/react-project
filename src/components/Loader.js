@@ -15,5 +15,6 @@ export default function Loader({ color }) {
                 ariaLabel="rings-loading"
             />
         </div>
+
     )
 }

@@ -22,7 +22,7 @@ export const Theme = createGlobalStyle`
 body {
   background-color: ${(props) => (props.darkMode ? colors.dark.bgc : colors.light.bgc)};
   color: ${(props) => (props.darkMode ? colors.dark.color : colors.light.color)};
-  input{
+  input,textarea{
     background-color:${(props) => (props.darkMode ? 'rgb(49, 49, 49)' : colors.light.bgc)};
     color: ${(props) => (props.darkMode ? colors.dark.color : colors.light.color)};
   }

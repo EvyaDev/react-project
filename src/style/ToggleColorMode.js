@@ -16,7 +16,6 @@ export default function ToggleColorMode() {
         const newMode = darkMode ? false : true;
         setDarkMode(newMode);
         localStorage.setItem("darkMode", JSON.stringify(newMode))
-        console.log(darkMode);
     };
 
 

@@ -5,7 +5,8 @@ nav {
   max-height: 70px;
   width: 100%;
   position: fixed;
-  background-color: #ffffff6f;
+  top: 0;
+  background-color: #d7deff6f;
   -webkit-backdrop-filter: blur(15px);
           backdrop-filter: blur(15px);
   display: -webkit-box;
@@ -28,7 +29,7 @@ nav {
 }
 
 nav .btnMode {
-  background-color: #9397a9;
+  background-color: #afb7d8;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -42,6 +43,7 @@ nav .btnMode {
       -ms-flex-align: center;
           align-items: center;
   padding: 0px;
+  border: none;
 }
 
 nav .img-avatar {
@@ -62,7 +64,7 @@ nav .userArea .avatar {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: cadetblue;
+  background-color: rgba(95, 158, 160, 0.589);
 }
 
 nav .profile-open {
@@ -102,6 +104,13 @@ nav .profile-open a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+nav .profile-open a .permissionTag {
+  background-color: rgba(120, 120, 120, 0.365);
+  font-size: 13px;
+  border-radius: 5px;
+  padding: 3px 8px;
 }
 
 nav .profile-open ul {

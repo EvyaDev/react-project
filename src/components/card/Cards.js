@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Card from './card';
 import Loader from '../Loader';
 import "./Card.css"
+import { Link } from 'react-router-dom';
+import { token } from '../../App';
 
 export default function Cards() {
 
@@ -10,32 +12,28 @@ export default function Cards() {
     //get all cards
     useEffect(() => {
 
-        fetch(`https://api.shipap.co.il/cards?token=3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0`)
+        fetch(`https://api.shipap.co.il/cards?token=${token}`)
             .then(res => res.json())
             .then(data => {
                 setCards(data)
             })
             .catch(err => console.log(err));
-    }, [])
+    }, [cards.length])
+
     return (
         <div className='Cards'>
+
             <h1>הכרטיסים שלי</h1>
-            <button className='addCard'>+</button>
-            <section className='cards'>
+            <Link to={"/addcard"}><button className='addCardBtn'>+</button></Link>
+
+            <section className='cardsList'>
                 {cards.length ? cards.map(x => {
                     return (
                         <Card key={x.id} cardData={x} title={x.title} />
                     )
                 }) : <Loader color={"gray"} />}
             </section>
-            <section className='cards'>
 
-                {cards.map(x => {
-                    return (
-                        <Card key={x.id} cardData={x} title={x.title} />
-                    )
-                })}
-            </section>
         </div>
     )
 }

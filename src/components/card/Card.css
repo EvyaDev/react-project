@@ -1,11 +1,13 @@
 .Card {
   background-size: cover;
   border-radius: 15px;
+  min-width: 250px;
   width: 250px;
   min-height: 400px;
   -webkit-box-shadow: 0 0 30px -20px black;
           box-shadow: 0 0 30px -20px black;
   background-color: #fff;
+  background-position: center;
 }
 
 .Card .cardFrame {
@@ -29,8 +31,32 @@
   overflow: scroll;
 }
 
+.Card .cardFrame h2 {
+  font-size: 1.3em;
+}
+
+.Card .cardFrame p {
+  font-size: .8em;
+}
+
+.Card .actions {
+  margin-top: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 15px;
+}
+
 .Card h2 {
   color: white;
+  line-height: 1em;
 }
 
 .Card p {
@@ -42,7 +68,16 @@
   font-size: 20px;
 }
 
-.Cards .addCard {
+.Cards .cardsList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: scroll;
+  gap: 15px;
+  padding: 20px;
+}
+
+.Cards .addCardBtn {
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -52,5 +87,221 @@
   background-color: green;
   color: white;
   line-height: 0;
+}
+
+.addCard,
+.editCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 100vh;
+  width: 100%;
+}
+
+.addCard .display,
+.editCard .display {
+  background-image: radial-gradient(#7c7c7c4d 1.8px, #ffffff00 1.8px);
+  background-size: 36px 36px;
+  height: inherit;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 40px;
+  border-right: solid 1px #999999;
+}
+
+.addCard .form,
+.editCard .form {
+  width: 70%;
+}
+
+.addCard .form h2,
+.editCard .form h2 {
+  display: block;
+}
+
+.addCard .form form,
+.editCard .form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 30px;
+}
+
+.addCard .form form label,
+.editCard .form form label {
+  font-size: 14px;
+  padding: 0 5px;
+  margin-top: 10px;
+}
+
+.addCard .form form input,
+.addCard .form form textarea,
+.editCard .form form input,
+.editCard .form form textarea {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  border: 1px solid gray;
+  border-radius: 6px;
+  position: relative;
+  line-height: 5ex;
+  padding: 0 10px;
+  width: 100%;
+  resize: none;
+}
+
+.addCard .form form input ::-webkit-input-placeholder,
+.addCard .form form textarea ::-webkit-input-placeholder,
+.editCard .form form input ::-webkit-input-placeholder,
+.editCard .form form textarea ::-webkit-input-placeholder {
+  color: #78787880;
+}
+
+.addCard .form form input :-ms-input-placeholder,
+.addCard .form form textarea :-ms-input-placeholder,
+.editCard .form form input :-ms-input-placeholder,
+.editCard .form form textarea :-ms-input-placeholder {
+  color: #78787880;
+}
+
+.addCard .form form input ::-ms-input-placeholder,
+.addCard .form form textarea ::-ms-input-placeholder,
+.editCard .form form input ::-ms-input-placeholder,
+.editCard .form form textarea ::-ms-input-placeholder {
+  color: #78787880;
+}
+
+.addCard .form form input ::placeholder,
+.addCard .form form textarea ::placeholder,
+.editCard .form form input ::placeholder,
+.editCard .form form textarea ::placeholder {
+  color: #78787880;
+}
+
+.addCard .form form textarea,
+.editCard .form form textarea {
+  line-height: 3ex;
+  padding: 10px;
+}
+
+.addCard .form form .checkbox,
+.editCard .form form .checkbox {
+  -webkit-transform: scale(150%);
+          transform: scale(150%);
+}
+
+.addCard .form button,
+.editCard .form button {
+  margin-top: 15px;
+  background-color: rgba(208, 224, 253, 0.602);
+  border-radius: 10px;
+  padding: 10px;
+  stroke: none;
+  border: rgba(255, 255, 255, 0.137) 1px solid;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.addCard .form .validationError,
+.editCard .form .validationError {
+  color: red;
+  text-align: right;
+  font-size: 14px;
+}
+
+.CardPage .frmae {
+  width: 100%;
+  min-height: 50vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.CardPage .frmae .options {
+  height: 50px;
+  width: 50px;
+  background-color: #a5a5a5a2;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+}
+
+.CardPage .frmae .textHeader {
+  background-color: rgba(118, 118, 118, 0.433);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  padding: 30px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.CardPage .frmae .textHeader hr {
+  margin: 20px 0 20px 0;
+}
+
+.CardPage .frmae .textHeader h1 {
+  line-height: 1em;
+}
+
+@media (max-width: 900px) {
+  .addCard,
+  .editCard {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .addCard .display,
+  .editCard .display {
+    width: 100%;
+  }
+  .addCard .form,
+  .editCard .form {
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=Card.css.map */

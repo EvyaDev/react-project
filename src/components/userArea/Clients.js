@@ -6,10 +6,10 @@ export default function Clients() {
 
     useEffect(() => {
 
-        fetch(`https://api.shipap.co.il/cards?token=3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0`)
+        fetch(`https://api.shipap.co.il/admin/clients?token=3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0`)
             .then(res => res.json())
             .then(data => {
-
+                setClients(data)
             });
 
     }, [])
