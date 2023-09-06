@@ -12,20 +12,19 @@ export default function AddCard() {
     const Navigate = useNavigate()
     const [formData, setFormData] = useState({
         "title": "כותרת לדוגמה",
-        "imgUrl": "https://theme-assets.getbento.com/sensei/a42cf8c.sensei/assets/images/catering-item-placeholder-704x520.png",
         "subtitle": "כותרת משנה לדוגמה",
         "description": "",
-        "phone": "String",
-        "email": "String",
-        "web": "String",
-        "imgUrl": "String",
-        "imgAlt": "String",
-        "state": "String",
-        "country": "String",
-        "city": "String",
-        "street": "String",
-        "houseNumber": "Number",
-        "zip": "String"
+        "phone": "",
+        "email": "",
+        "web": "",
+        "imgUrl": "https://theme-assets.getbento.com/sensei/a42cf8c.sensei/assets/images/catering-item-placeholder-704x520.png",
+        "imgAlt": "",
+        "state": "",
+        "country": "",
+        "city": "",
+        "street": "",
+        "houseNumber": null,
+        "zip": ""
     })
 
     function handleInput(ev) {
@@ -82,7 +81,7 @@ export default function AddCard() {
             <div className="display" >
 
                 <p>תצוגה מקדימה</p>
-                <div className="Card" style={{ backgroundImage: `url(${formData && formData.imgUrl}||"")` }}>
+                <div className="Card" style={{ backgroundImage: `url(${formData.imgUrl && formData.imgUrl})` }}>
                     <div className="cardFrame" >
                         <h2>{formData.title}</h2>
                         <p>{formData && formData.subtitle.slice(0, 70)}...</p>
