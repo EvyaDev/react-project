@@ -2,6 +2,7 @@ nav {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  height: 50px;
   max-height: 70px;
   width: 100%;
   position: fixed;

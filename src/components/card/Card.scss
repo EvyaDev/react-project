@@ -19,12 +19,36 @@
         justify-content: end;
         overflow: scroll;
 
-        h2 {
-            font-size: 1.3em;
+        .options {
+            height: 30px;
+            width: 30px;
+            background-color: #cdcdcd62;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 1em;
+
+            :hover {
+                text-decoration: underline;
+            }
         }
 
         p {
             font-size: .8em;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
         }
     }
 
@@ -171,6 +195,7 @@
         min-height: 50vh;
         background-position: center;
         background-repeat: no-repeat;
+        background-attachment: fixed;
         background-size: cover;
         display: flex;
         flex-direction: column;
@@ -178,24 +203,11 @@
         align-items: center;
         position: relative;
 
-        .options {
-            height: 50px;
-            width: 50px;
-            background-color: #a5a5a5a2;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-        }
-
         .textHeader {
             background-color: rgba(118, 118, 118, 0.433);
             backdrop-filter: blur(10px);
             padding: 30px;
-            max-width: 500px;
+            max-width: 80%;
             text-align: center;
 
             hr {
@@ -205,9 +217,18 @@
             h1 {
                 line-height: 1em;
             }
+
+
         }
     }
 
+    .content {
+        padding: 20px 20%;
+
+        p {
+            white-space: break-spaces;
+        }
+    }
 }
 
 

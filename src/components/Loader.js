@@ -1,16 +1,17 @@
 import React from 'react'
-import { Rings } from "react-loader-spinner"
+import { Oval } from "react-loader-spinner"
 import "./loader.css"
-export default function Loader({ color }) {
+export default function Loader({ color, secondaryColor, width }) {
     return (
         <div className='loader'>
-            <Rings
-                height="80"
-                width="80"
+            <Oval
+                height={width || "80"}
+                width={width || "80"}
                 color={color}
                 radius="6"
                 wrapperStyle={{}}
                 wrapperClass=""
+                secondaryColor={secondaryColor}
                 visible={true}
                 ariaLabel="rings-loading"
             />

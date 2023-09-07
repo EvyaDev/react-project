@@ -27,9 +27,9 @@ export default function Cards() {
             <Link to={"/addcard"}><button className='addCardBtn'>+</button></Link>
 
             <section className='cardsList'>
-                {cards.length ? cards.map(x => {
+                {cards.length ? cards.map(c => {
                     return (
-                        <Card key={x.id} cardData={x} title={x.title} />
+                        <Card key={c.id} cardData={c} title={c.title} />
                     )
                 }) : <Loader color={"gray"} />}
             </section>

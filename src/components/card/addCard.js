@@ -14,17 +14,17 @@ export default function AddCard() {
         "title": "כותרת לדוגמה",
         "subtitle": "כותרת משנה לדוגמה",
         "description": "",
-        "phone": "",
-        "email": "",
-        "web": "",
+        "phone": "undefined",
+        "email": "undefined",
+        "web": "undefined",
         "imgUrl": "https://theme-assets.getbento.com/sensei/a42cf8c.sensei/assets/images/catering-item-placeholder-704x520.png",
-        "imgAlt": "",
-        "state": "",
-        "country": "",
-        "city": "",
-        "street": "",
-        "houseNumber": null,
-        "zip": ""
+        "imgAlt": "undefined",
+        "state": "undefined",
+        "country": "undefined",
+        "city": "undefined",
+        "street": "undefined",
+        "houseNumber": "null",
+        "zip": "undefined"
     })
 
     function handleInput(ev) {

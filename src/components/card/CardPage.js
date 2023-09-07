@@ -5,6 +5,7 @@ import Loader from '../Loader';
 import Skeleton from '@mui/material/Skeleton';
 
 import { SlOptions } from "react-icons/sl"
+import { blue, red } from '@mui/material/colors';
 export default function CardPage({ cardData }) {
     const { id } = useParams("");
     const [item, setItem] = useState({});
@@ -25,19 +26,18 @@ export default function CardPage({ cardData }) {
 
     }, [item.length])
 
-    const { title, description, subtitle, imgUrl } = item;
+    const { title, description, subtitle, imgUrl, clientId } = item;
 
     return (
         <div className='CardPage' >
 
-            {loading ? <Loader /> :
+            {loading ? <Loader color={"white"} /> :
                 <>
                     <div className='frmae' style={{ backgroundImage: `linear-gradient(#ffffff00, #000), url(${imgUrl})` }}>
-                        <div className='options'>
-                            <SlOptions />
-                        </div>
+
                         <div className='textHeader'>
                             <h1>{title}</h1>
+                            <p>מאת: {clientId}</p>
                             <hr />
                             <p>{subtitle}</p>
                         </div>

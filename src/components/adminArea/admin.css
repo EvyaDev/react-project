@@ -1,0 +1,41 @@
+.CardsList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: scroll;
+}
+
+.CardsList table {
+  border-collapse: collapse;
+  max-width: 90%;
+}
+
+.CardsList td,
+.CardsList th {
+  border: solid 1px #84848497;
+  padding: 5px;
+  overflow: auto;
+  white-space: pre-wrap;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.CardsList tr:nth-child(even) {
+  background-color: #6b789055;
+}
+
+.CardsList td {
+  font-size: .8em;
+}
+/*# sourceMappingURL=admin.css.map */

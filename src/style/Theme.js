@@ -40,6 +40,11 @@ body {
     }
 }
 
+.CardPage{
+    .textHeader{
+        color:white;
+    }
+}
 
 .btnMode{
   color: ${(props) => (props.darkMode ? '#fff' : '#333')};

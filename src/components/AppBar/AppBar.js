@@ -8,14 +8,12 @@ import { required } from "joi";
 export default function AppBar({ handleLogout }) {
     const Navigate = useNavigate()
 
-
-
     const { permission, user, isLogged } = useContext(userContext)
     const [profileOpen, setProfileOpen] = useState(false);
     const linkStructure = [
         { title: "בית", route: "/", permission: Object.values(RoleTypes) },
         { title: "כרטיסים", route: "/cards", permission: [RoleTypes.admin] },
-        { title: "מועדפים", route: "/", },
+        { title: "ניהול כרטיסים", route: "/cardlist", },
     ];
 
     function open() {
@@ -40,14 +38,16 @@ export default function AppBar({ handleLogout }) {
                                 {user ? user.fullName.slice(0, 1) : <img alt="avatar" className="img-avatar" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />}
                             </div>
                             <div>{user ? user.fullName : "אינך מחובר"}</div>
-                            {user && <span className="permissionTag"><b>הרשאות:</b> {user.admin ? "מנהל" : user.business ? "עסקי" : "אין"}</span>}
+                            {user && <span className="permissionTag"> {user.admin ? "מנהל" : user.business ? "לקוח עסקי" : "אין"}</span>}
                         </a>
 
-                        {!isLogged &&
-                            <ul>
-                                <Link to={"/login"}><li> כניסה </li></Link>
-                                <Link to={"/signup"}><li> הרשמה </li></Link>
-                            </ul>}
+
+                        <ul>
+                            {!isLogged && <Link to={"/login"}><li> כניסה </li></Link>}
+                            {!isLogged && <Link to={"/signup"}><li> הרשמה </li></Link>}
+
+                        </ul>
+
                         {isLogged && <ul>
                             <li onClick={() => Navigate("/logout")}> <a className="logoutBtn" >
                                 התנתק
@@ -73,4 +73,3 @@ export default function AppBar({ handleLogout }) {
         </nav>
     );
 }
-

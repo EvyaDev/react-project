@@ -1,0 +1,38 @@
+.CardsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+
+    table {
+        border-collapse: collapse;
+        max-width: 90%;
+    }
+
+    td,
+    th {
+        border: solid 1px #84848497;
+        padding: 5px;
+        // width: 100px;
+        overflow: auto;
+        white-space: pre-wrap;
+        text-align: center;
+
+        text-overflow: ellipsis;
+        overflow: hidden;
+        // display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    tr:nth-child(even) {
+        background-color: #6b789055;
+    }
+
+    td {
+        font-size: .8em;
+    }
+
+
+}

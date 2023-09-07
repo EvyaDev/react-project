@@ -31,12 +31,42 @@
   overflow: scroll;
 }
 
-.Card .cardFrame h2 {
-  font-size: 1.3em;
+.Card .cardFrame .options {
+  height: 30px;
+  width: 30px;
+  background-color: #cdcdcd62;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+}
+
+.Card .cardFrame a {
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.Card .cardFrame a :hover {
+  text-decoration: underline;
 }
 
 .Card .cardFrame p {
   font-size: .8em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .Card .actions {
@@ -234,6 +264,7 @@
   min-height: 50vh;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -251,31 +282,12 @@
   position: relative;
 }
 
-.CardPage .frmae .options {
-  height: 50px;
-  width: 50px;
-  background-color: #a5a5a5a2;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-radius: 10px;
-}
-
 .CardPage .frmae .textHeader {
   background-color: rgba(118, 118, 118, 0.433);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   padding: 30px;
-  max-width: 500px;
+  max-width: 80%;
   text-align: center;
 }
 
@@ -285,6 +297,14 @@
 
 .CardPage .frmae .textHeader h1 {
   line-height: 1em;
+}
+
+.CardPage .content {
+  padding: 20px 20%;
+}
+
+.CardPage .content p {
+  white-space: break-spaces;
 }
 
 @media (max-width: 900px) {
