@@ -21,7 +21,7 @@ export default function Cards() {
                 setCards(data)
                 setLoading(false)
             })
-            .catch(err => console.log(err));
+            .catch(err => console.error(err));
 
     }, [cards.length])
 
@@ -30,16 +30,21 @@ export default function Cards() {
 
             <h1>הכרטיסים שלי</h1>
 
-            {(isLogged && [RoleTypes.BUSINESS, RoleTypes.ADMIN].includes(userRole)) &&
-                <Link to={"/addcard/"}>
+            {
+                [RoleTypes.BUSINESS, RoleTypes.ADMIN].includes(userRole) &&
+                <Link to={"/addcard"}>
                     <button className='addCardBtn'> <MdOutlineAddCircleOutline /> מתכון חדש</button>
-                </Link>}
+                </Link>
+            }
+
             <section className='cardsList'>
-                {cards.length ? cards.map(c => {
-                    return (
-                        <Card key={c.id} cardData={c} title={c.title} />
-                    )
-                }) : loading ? <Loader color={"gray"} /> : <p>אין נתונים</p>}
+                {
+                    cards.length ? cards.map(c => {
+                        return (
+                            <Card key={c.id} cardData={c} title={c.title} />
+                        )
+                    }) : loading ? <Loader color={"gray"} /> : <p>אין נתונים</p>
+                }
             </section>
 
         </div>
