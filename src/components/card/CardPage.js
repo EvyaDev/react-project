@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { token, userContext } from '../../App';
+import { RoleTypes, token, userContext } from '../../App';
 import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader';
 import { ImWhatsapp, ImPrinter } from 'react-icons/im';
@@ -9,6 +9,7 @@ export default function CardPage({ cardData }) {
     const { id } = useParams("");
     const [item, setItem] = useState({});
     const [loading, setLoading] = useState(false)
+    const { userRole, user } = useContext(userContext)
 
     //get my cards
     useEffect(() => {
@@ -45,9 +46,12 @@ export default function CardPage({ cardData }) {
 
                         <div className='contentHeader'>
 
-                            <Link to={`/editCard/${id}`}>
-                                <button> <FiEdit /> עריכת מתכון זה </button>
-                            </Link>
+                            {
+                                ((userRole === RoleTypes.ADMIN && item.clientId === 0) || user.id === item.clientId) &&
+                                <Link Link to={`/editCard/${id}`}>
+                                    <button> <FiEdit /> עריכת מתכון זה </button>
+                                </Link>
+                            }
 
                             <div className='share'>
                                 <p> שיתוף:  </p>
@@ -62,6 +66,6 @@ export default function CardPage({ cardData }) {
                     </div>
                 </>
             }
-        </div>
+        </div >
     )
 }

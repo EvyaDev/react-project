@@ -117,8 +117,8 @@ export default function Card({ title, cardData }) {
 
                     {/* UN/LIKE btn */}
                     {like ?
-                        <AiFillHeart onClick={() => unlikeCard(cardData.id)} className='heart' /> :
-                        <AiOutlineHeart onClick={() => likeCard(cardData.id)} className='heart' />
+                        <a><AiFillHeart onClick={() => unlikeCard(cardData.id)} className='heart' /></a> :
+                        <a><AiOutlineHeart onClick={() => likeCard(cardData.id)} className='heart' /></a>
                     }
 
                     {/* EDIT btn */}
@@ -127,7 +127,7 @@ export default function Card({ title, cardData }) {
 
                     {/* DELETE btn */}
                     {(userRole === RoleTypes.ADMIN || user.id === cardData.clientId) &&
-                        <BsTrash3 onClick={() => remove(cardData.id)} className='heart' />}
+                        <a><BsTrash3 onClick={() => remove(cardData.id)} className='heart' /></a>}
                 </div>
             </div>
         </div>
