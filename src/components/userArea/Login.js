@@ -9,10 +9,11 @@ import { RoleTypes } from '../../App';
 export default function LoginClient() {
 
     const Navigate = useNavigate();
-    const { permission, setPermission, isLogged, setUser, setIsLogged } = useContext(userContext);
+    const { userRole, setUserRole, isLogged, setUser, setIsLogged } = useContext(userContext);
     const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState([]);
+
     const LoginSchema = joi.object({
         email: joi.string().email({ minDomainSegments: 2, tlds: { allow: false } }),
         password: joi.string().alphanum().min(5).max(30).required(),
@@ -68,12 +69,20 @@ export default function LoginClient() {
             .then(data => {
                 setUser(data)
                 setIsLogged(true)
-                if (data.admin) { setPermission(RoleTypes.admin) }
-                Navigate(-1)
+                if (data.admin) {
+                    setUserRole(RoleTypes.ADMIN)
+                } else if (data.business) {
+                    setUserRole(RoleTypes.BUSINESS)
+                } else {
+                    setUserRole(RoleTypes.USER)
+                }
+
+                Navigate("/")
             })
             .catch(err => {
-                console.log(err.message);
+                // console.log(err.message);
                 setIsLogged(false)
+                setUserRole(RoleTypes.NONE)
 
             });
     }

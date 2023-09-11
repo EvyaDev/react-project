@@ -6,8 +6,8 @@ import './App.css';
 export const userContext = React.createContext("")
 export const token = "3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0"
 
-export function checkPermission(perm, role) {
-  return perm.includes(role);
+export function checkPermission(roles, role) {
+  return roles.includes(role);
 }
 export const RoleTypes = {
   ADMIN: "admin",
@@ -18,12 +18,10 @@ export const RoleTypes = {
 
 export default function App() {
 
-
   const [isLogged, setIsLogged] = useState();
   const [user, setUser] = useState("");
-  // const [permission, setPermission] = useState(RoleTypes.none);
   const [userRole, setUserRole] = useState(RoleTypes.NONE);
-
+  // const [permission, setPermission] = useState(RoleTypes.NONE);
 
 
   //check login status
@@ -50,10 +48,10 @@ export default function App() {
       });
   }, [])
 
-
+  console.log(userRole);
   return (
 
-    <userContext.Provider value={{ userRole, user, setUser, isLogged, setIsLogged }}>
+    <userContext.Provider value={{ userRole, setUserRole, user, setUser, isLogged, setIsLogged }}>
       <div className="App">
         <AppBar />
         <div className="frame">

@@ -13,17 +13,19 @@ export const avatarImage = "https://cdn-icons-png.flaticon.com/512/149/149071.pn
 export default function AppBar({ handleLogout }) {
     const Navigate = useNavigate()
 
-    const { userRole, user, isLogged } = useContext(userContext)
+    const { userRole, user, setUser, isLogged } = useContext(userContext)
     const [profileOpen, setProfileOpen] = useState(false);
     const linkStructure = [
-        { title: "בית", route: "/", permission: Object.values(RoleTypes) },
-        { title: "כרטיסים", route: "/cards", permission: [RoleTypes.ADMIN] },
-        { title: "מועדפים", route: "/my-favorite", permission: Object.values(RoleTypes) },
+        { title: "בית", route: "/", rolesAllow: Object.values(RoleTypes) },
+        { title: "כרטיסים", route: "/cards", rolesAllow: [RoleTypes.ADMIN, RoleTypes.BUSINESS] },
+        { title: "מועדפים", route: "/my-favorite", rolesAllow: Object.values(RoleTypes) },
     ];
+
 
     function open() {
         setProfileOpen(true)
     }
+
     function close() {
         setProfileOpen(false)
     }
@@ -52,22 +54,24 @@ export default function AppBar({ handleLogout }) {
                             {!isLogged && <Link to={"/signup"}><li> הרשמה </li></Link>}
                             {isLogged && <Link to={"/edituser"}><RiUserSettingsLine /><li> הגדרות חשבון</li></Link>}
                             {isLogged && <Link to={"/cardlist"}><BiFoodMenu /><li>  ניהול מתכונים</li></Link>}
-                            {(isLogged && userRole === RoleTypes.ADMIN) && <Link to={"/clients"}><LuUsers />  עריכת משתמשים </Link>}
+                            {(isLogged && userRole === RoleTypes.NONE) && <Link to={"/clients"}><LuUsers />  עריכת משתמשים </Link>}
 
                         </ul>
 
-                        {isLogged && <ul>
-                            <li onClick={() => Navigate("/logout")}>
-                                <a className="logoutBtn" > התנתק </a>
-                            </li>
-                        </ul>}
+                        {isLogged &&
+                            <ul>
+                                <li onClick={() => Navigate("/logout")}>
+                                    <a className="logoutBtn" > התנתק </a>
+                                </li>
+                            </ul>
+                        }
                     </div>
                 }
             </div>
 
             <div className="navigator">
                 <ul>
-                    {linkStructure.filter(l => !l.permission || checkPermission(l.permission, permission)).map(l => {
+                    {linkStructure.filter(l => !l.rolesAllow || checkPermission(l.rolesAllow, userRole)).map(l => {
                         return (
                             <li key={l.title}>
                                 <Link to={l.route}>{l.title}</Link>

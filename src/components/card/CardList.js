@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Loader from '../Loader';
-import "../adminArea/admin.css"
 import { Link } from 'react-router-dom';
 import { token, userContext } from '../../App';
 import { BsTrash3 } from 'react-icons/bs';
+import "../adminArea/admin.css"
 
 export default function Cards() {
 
@@ -45,7 +45,7 @@ export default function Cards() {
                     <tr>
                         <th></th>
                         <th>ID</th>
-                        <th>מזהה לקוח</th>
+                        <th>מזהה משתמש</th>
                         <th>כותרת</th>
                         <th>כותרת משנה</th>
                         <th>תוכן</th>
@@ -61,7 +61,7 @@ export default function Cards() {
                                 <tr key={c.id}>
                                     <td> <p>{i + 1}</p> </td>
                                     <td> <p>{c.id}</p> </td>
-                                    <td> <p>{c.clientId}</p> </td>
+                                    <td> <p>#{c.clientId}</p> </td>
                                     <td> <p>{c.title}</p> </td>
                                     <td> <p>{c.subtitle.slice(0, 30)}...</p> </td>
                                     <td> <p>{c.description.slice(0, 50)}...</p> </td>

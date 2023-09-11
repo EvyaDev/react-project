@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { RoleTypes, userContext } from '../../App';
 
 export default function Logout() {
-    const { setUser, isLogged, setPermission, setIsLogged } = useContext(userContext)
+    const { setUser, isLogged, setUserRole, setIsLogged } = useContext(userContext)
     const Navigate = useNavigate();
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export default function Logout() {
             .then(() => {
                 setIsLogged(false)
                 setUser("")
-                setPermission(RoleTypes.none)
+                setUserRole(RoleTypes.NONE)
             })
 
         Navigate(-1)

@@ -3,13 +3,13 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
 import { FiEdit } from "react-icons/fi"
 import { BsTrash3 } from "react-icons/bs"
 import { Link } from 'react-router-dom';
-import { token, userContext } from '../../App';
+import { RoleTypes, token, userContext } from '../../App';
 import "./Card.css"
 
 
 export default function Card({ title, cardData }) {
 
-    const { user, permission, isLogged } = useContext(userContext)
+    const { userRole, user, permission, isLogged } = useContext(userContext)
     const [favoriteList, setFavoriteList] = useState([])
     const [like, setLike] = useState()
 
@@ -115,18 +115,18 @@ export default function Card({ title, cardData }) {
 
                 <div className="actions" >
 
-                    {/* LIKE btn */}
+                    {/* UN/LIKE btn */}
                     {like ?
                         <AiFillHeart onClick={() => unlikeCard(cardData.id)} className='heart' /> :
                         <AiOutlineHeart onClick={() => likeCard(cardData.id)} className='heart' />
                     }
 
                     {/* EDIT btn */}
-                    {((permission === 3 && cardData.clientId === 0) || user.id === cardData.clientId) &&
+                    {((userRole === RoleTypes.ADMIN && cardData.clientId === 0) || user.id === cardData.clientId) &&
                         <Link to={`/editCard/${cardData.id}`}><FiEdit className='edit' /></Link>}
 
                     {/* DELETE btn */}
-                    {(permission === 3 || user.id === cardData.clientId) &&
+                    {(userRole === RoleTypes.ADMIN || user.id === cardData.clientId) &&
                         <BsTrash3 onClick={() => remove(cardData.id)} className='heart' />}
                 </div>
             </div>

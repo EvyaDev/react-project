@@ -35,6 +35,7 @@
   border-bottom-right-radius: 12px;
   text-align: right;
   padding: 10px;
+  background-color: #ffffff0b;
 }
 
 .CardsList table tbody tr td:last-child {

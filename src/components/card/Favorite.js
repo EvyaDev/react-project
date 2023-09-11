@@ -12,25 +12,25 @@ export default function Favorite() {
 
     //get all cards
     useEffect(() => {
-        if (!isLogged) {
-            const list = localStorage.getItem("cardLike")
-            fetch(`https://api.shipap.co.il/cards?token=${token}`)
-                .then(res => res.json())
-                .then(data => {
-                    setCards(data.filter(x => list.includes(x.id)))
-                })
+        // if (!isLogged) {
+        //     const list = localStorage.getItem("cardLike")
+        //     fetch(`https://api.shipap.co.il/cards?token=${token}`)
+        //         .then(res => res.json())
+        //         .then(data => {
+        //             setCards(data.filter(x => list.includes(x.id)))
+        //         })
 
-        } else {
-            fetch(`https://api.shipap.co.il/cards/favorite?token=${token}`, {
+        // } else {
+        fetch(`https://api.shipap.co.il/cards/favorite?token=${token}`, {
 
-                credentials: "include",
+            credentials: "include",
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCards(data)
             })
-                .then(res => res.json())
-                .then(data => {
-                    setCards(data)
-                })
-                .catch(err => console.log(err));
-        }
+            .catch(err => console.log(err));
+        // }
     }, [cards])
 
     return (
@@ -45,7 +45,7 @@ export default function Favorite() {
                     )
                 }) : loading ?
                     <Loader color={"gray"} /> :
-                    <p>לא שמרת כלום כאן עדיין</p>
+                    <p>{isLogged ? "לא שמרת כלום כאן עדיין" : "אינך מחובר, התחבר על מנת לצפות בכרטיסיות המועדפות שלך"}</p>
                 }
             </section>
 

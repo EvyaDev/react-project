@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { token, userContext } from '../../App'
+import { useNavigate } from 'react-router-dom'
 
 export default function EditUser() {
     const { isLogged, user, setUser } = useContext(userContext)
     const [formData, setFormData] = useState({})
+    const Navigate = useNavigate()
 
     useEffect(() => {
         setFormData({ ...user })
@@ -38,7 +40,6 @@ export default function EditUser() {
 
     function update(ev) {
         ev.preventDefault();
-        // setUser(formData)
 
         fetch(`https://api.shipap.co.il/clients/update?token=${token}`, {
             credentials: 'include',
@@ -47,6 +48,8 @@ export default function EditUser() {
             body: JSON.stringify(formData),
         })
             .then(() => {
+                setUser(formData)
+                Navigate(-1)
             });
     }
 
