@@ -19,19 +19,6 @@
         justify-content: end;
         overflow: scroll;
 
-        .options {
-            height: 30px;
-            width: 30px;
-            background-color: #cdcdcd62;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 10px;
-        }
-
         a {
             text-decoration: none;
             font-size: 1em;
@@ -85,16 +72,23 @@
         padding: 20px;
     }
 
+    a {
+        text-decoration: none;
+    }
+
     .addCardBtn {
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        stroke: none;
+        padding: 5px 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 5px;
         border: none;
-        font-size: 50px;
-        background-color: green;
-        color: white;
-        line-height: 0;
+        font-size: 16px;
+
+        &:hover {
+            background-color: #00d78f;
+            cursor: pointer;
+        }
     }
 }
 
@@ -203,14 +197,16 @@
         align-items: center;
         position: relative;
 
+
         .textHeader {
             background-color: rgba(118, 118, 118, 0.433);
             backdrop-filter: blur(10px);
             padding: 30px;
-            max-width: 80%;
+            max-width: 70%;
             text-align: center;
+            border-radius: 10px;
 
-            hr {
+            b hr {
                 margin: 20px 0 20px 0;
             }
 
@@ -225,9 +221,53 @@
     .content {
         padding: 20px 20%;
 
-        p {
-            white-space: break-spaces;
+        .contentHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: #78787815;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 35px;
+            border-radius: 5px;
+
+            a {
+                text-decoration: none;
+
+            }
+
+            button {
+                padding: 2px 15px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                border-radius: 5px;
+                border: none;
+                font-size: 14px;
+
+                &:hover {
+                    background-color: #00d78f;
+                    cursor: pointer;
+                }
+            }
+
+            .share {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                justify-content: end;
+                align-items: center;
+            }
         }
+
+        .contentBody {
+
+            p {
+                white-space: break-spaces;
+            }
+        }
+
     }
 }
 

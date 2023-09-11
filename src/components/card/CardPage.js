@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { token } from '../../App';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'
+import { token, userContext } from '../../App';
+import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader';
-import Skeleton from '@mui/material/Skeleton';
+import { ImWhatsapp, ImPrinter } from 'react-icons/im';
+import { FiEdit } from 'react-icons/fi';
 
-import { SlOptions } from "react-icons/sl"
-import { blue, red } from '@mui/material/colors';
 export default function CardPage({ cardData }) {
     const { id } = useParams("");
     const [item, setItem] = useState({});
@@ -37,17 +36,32 @@ export default function CardPage({ cardData }) {
 
                         <div className='textHeader'>
                             <h1>{title}</h1>
-                            <p>מאת: {clientId}</p>
                             <hr />
                             <p>{subtitle}</p>
                         </div>
 
                     </div>
                     <div className='content'>
-                        <p>{description}</p>
-                    </div> </>
 
+                        <div className='contentHeader'>
+
+                            <Link to={`/editCard/${id}`}>
+                                <button> <FiEdit /> עריכת מתכון זה </button>
+                            </Link>
+
+                            <div className='share'>
+                                <p> שיתוף:  </p>
+                                <Link to={`https://api.whatsapp.com/send?text=${window.location.href}`}> <ImWhatsapp /></Link>
+                                <a><ImPrinter onClick={() => window.print()} /></a>
+                            </div>
+                        </div>
+
+                        <div className='contentBody'>
+                            <p>{description}</p>
+                        </div>
+                    </div>
+                </>
             }
-        </div >
+        </div>
     )
 }

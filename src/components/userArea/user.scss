@@ -59,7 +59,82 @@
             text-align: right;
             font-size: 14px;
         }
+    }
+}
 
+.EditUser {
+    padding: 30px;
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 30px;
+        gap: 10px;
+
+        .inputField {
+            position: relative;
+
+            label {
+                font-size: 12px;
+                position: absolute;
+                top: -0.8ex;
+                right: 5ex;
+                z-index: 1;
+                background-color: rgba(255, 255, 255, 0);
+                backdrop-filter: blur(5px);
+                padding: 0 5px;
+            }
+
+            input {
+                border: 1px solid gray;
+                border-radius: 6px;
+                position: relative;
+                line-height: 6ex;
+                width: 100%;
+                padding: 0 10px;
+
+                ::placeholder {
+                    color: #78787880;
+                }
+            }
+
+            .checkbox {
+                transform: scale(150%);
+            }
+        }
+
+        button {
+            background-color: rgba(208, 224, 253, 0.602);
+            border-radius: 10px;
+            padding: 10px;
+            stroke: none;
+            border: rgba(255, 255, 255, 0.137) 1px solid;
+            outline: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .validationError {
+            color: red;
+            text-align: right;
+            font-size: 14px;
+        }
+    }
 }

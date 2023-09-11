@@ -5,22 +5,26 @@ import './App.css';
 
 export const userContext = React.createContext("")
 export const token = "3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0"
-export const RoleTypes = {
-  none: 0,
-  user: 1,
-  business: 2,
-  admin: 3,
-}
 
 export function checkPermission(perm, role) {
   return perm.includes(role);
 }
+export const RoleTypes = {
+  ADMIN: "admin",
+  USER: "user",
+  BUSINESS: "business",
+  NONE: "none",
+}
 
 export default function App() {
 
+
   const [isLogged, setIsLogged] = useState();
   const [user, setUser] = useState("");
-  const [permission, setPermission] = useState(RoleTypes.none);
+  // const [permission, setPermission] = useState(RoleTypes.none);
+  const [userRole, setUserRole] = useState(RoleTypes.NONE);
+
+
 
   //check login status
   useEffect(() => {
@@ -39,7 +43,7 @@ export default function App() {
       .then(data => {
         setIsLogged(true)
         setUser(data)
-        setPermission(data.admin ? RoleTypes.admin : data.business ? RoleTypes.business : RoleTypes.user)
+        setUserRole(data.admin ? RoleTypes.ADMIN : data.business ? RoleTypes.BUSINESS : RoleTypes.USER)
       })
       .catch(err => {
 
@@ -49,7 +53,7 @@ export default function App() {
 
   return (
 
-    <userContext.Provider value={{ permission, setPermission, user, setUser, isLogged, setIsLogged }}>
+    <userContext.Provider value={{ userRole, user, setUser, isLogged, setIsLogged }}>
       <div className="App">
         <AppBar />
         <div className="frame">

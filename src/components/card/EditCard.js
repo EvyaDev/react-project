@@ -7,8 +7,8 @@ import "./Card.css"
 
 export default function EditCard() {
 
-    const { user } = useContext(userContext)
     const Navigate = useNavigate()
+    const { user } = useContext(userContext)
     const { id } = useParams();
     const [item, setItem] = useState([]);
     const [formData, setFormData] = useState({
@@ -40,11 +40,9 @@ export default function EditCard() {
                 imgAlt: item.imgAlt,
                 web: item.web,
                 description: item.description,
-
             })
         }
     }, [item.length])
-    // console.log("formData is: ", formData);
 
 
     function handleInput(ev) {
@@ -54,8 +52,8 @@ export default function EditCard() {
             ...formData,
             [id]: value
         })
-        console.log(formData);
     }
+
 
     function save(ev) {
         ev.preventDefault();
@@ -67,10 +65,11 @@ export default function EditCard() {
             body: JSON.stringify(formData),
         })
             .then(data => {
-                console.log(data);
-                // Navigate("/");
+                Navigate(-1);
             });
     }
+
+
     return (
         <div className="editCard">
 

@@ -1,11 +1,11 @@
-.CardsList {
+.clientList {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: scroll;
+    width: 100%;
 
     table {
-        width: 80%;
+        // width: 80%;
         border-collapse: separate;
         border-spacing: 0px 15px;
 
@@ -80,6 +80,4 @@
             }
         }
     }
-
-
 }

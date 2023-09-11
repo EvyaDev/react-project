@@ -8,7 +8,7 @@ export default function Signup() {
 
     const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
-    const [formData, setFormData] = useState([]);
+    const [formData, setFormData] = useState({ business: false });
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*\d.*\d.*\d)(?=.*[!@#$%^&*-_*])/;
 
@@ -53,7 +53,7 @@ export default function Signup() {
     ]
 
 
-    function HandleInput(ev) {
+    function handleInput(ev) {
 
         const { id, value, type, checked } = ev.target;
         const newValue = type === "checkbox" ? checked : value;
@@ -75,17 +75,16 @@ export default function Signup() {
             };
             setIsValid(false)
 
-
         } else {
             setIsValid(true)
         }
         setErrors(errors)
-        // console.log(formData);
     }
 
 
     function signup(ev) {
         ev.preventDefault();
+        console.log(formData);
 
         fetch(`https://api.shipap.co.il/clients/signup?token=${token}`, {
             credentials: 'include',
@@ -104,60 +103,34 @@ export default function Signup() {
             })
             .then(data => {
                 console.log(data);
+                Navigate("/login")
             })
             .catch(err => {
                 console.log(err.message);
             });
-        Navigate("/login")
 
     }
 
 
     return (
         <div className='signup'>
-            {/* {isLogged && */}
             <form onSubmit={signup}>
-                <a href="mailto:7655714@gmail.com?subject=Hi%20%3A)&body=Nice%20to%20meet%20you.">Send Mail</a>
 
                 <h2>הרשמה</h2>
                 {structure.map((s, i) => {
                     return (
-                        <>
 
+                        <div key={s.id} className={"inputField"} >
+                            {s.type != "checkbox" && <label >{s.label}: </label>}
+                            {s.type === "checkbox" && <p>{s.label}</p>}
+                            <input className={s.type === "checkbox" && "checkbox"} id={s.id} type={s.type} placeholder={s.placeholder} onChange={handleInput} />
+                            <p className={'validationError'}>{errors ? errors[s.id] : ""}</p>
+                        </div>
 
-                            <div key={s.id} className={"inputField"} >
-                                {s.type != "checkbox" && <label >{s.label}: </label>}
-                                {s.type === "checkbox" && <p>{s.label}</p>}
-                                <input className={s.type === "checkbox" && "checkbox"} id={s.id} type={s.type} placeholder={s.placeholder} onChange={HandleInput} />
-                                <p className={'validationError'}>{errors ? errors[s.id] : ""}</p>
-                            </div>
-                        </>
                     )
                 })}
                 <button>הירשם</button>
                 <Link to={"/login"}>נרשמת? לחץ כאן</Link>
             </form>
-            {/* } */}
-
         </div>)
 }
-
-
-
-// {
-//     "firstName": "",
-//     "middleName": "",
-//     "lastName": "",
-//     "phone": "",
-//     "email": "",
-//     "password": "",
-//     "imgUrl": "",
-//     "imgAlt": "",
-//     "state": "",
-//     "country": "",
-//     "city": "",
-//     "street": "",
-//     "houseNumber": 0,
-//     "zip": 0,
-//     "business": false
-// }

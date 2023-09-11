@@ -50,6 +50,8 @@ nav .btnMode {
 nav .img-avatar {
   width: inherit;
   height: inherit;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 nav .userArea .avatar {
@@ -127,20 +129,30 @@ nav .profile-open ul {
 }
 
 nav .profile-open ul a {
-  background-color: #e9e4ff39;
+  background-color: #e9e4ff00;
   width: inherit;
   border-radius: 5px;
   padding: 5px 15px;
   cursor: pointer;
-  text-align: center;
   text-decoration: none;
   color: inherit;
   -webkit-transition: .2s ease-in;
   transition: .2s ease-in;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+  font-size: .7em;
 }
 
 nav .profile-open ul .logoutBtn {
   background-color: #b717177e;
+  display: block;
+  text-align: center;
 }
 
 nav .profile-open ul .logoutBtn:hover {

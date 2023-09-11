@@ -1,0 +1,15 @@
+.Popup {
+  width: 500px;
+  height: 500px;
+  border-radius: 15px;
+  background-color: #ececec7b;
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  padding: 30px;
+}
+/*# sourceMappingURL=popup.css.map */

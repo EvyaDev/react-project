@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Loader from '../Loader';
-import "./admin.css"
+import "../adminArea/admin.css"
 import { Link } from 'react-router-dom';
-import { token } from '../../App';
+import { token, userContext } from '../../App';
 import { BsTrash3 } from 'react-icons/bs';
 
 export default function Cards() {
 
     const [cards, setCards] = useState([])
     const [loading, setLoading] = useState(false)
+    const { user } = useContext(userContext)
 
     //get all cards
     useEffect(() => {
@@ -55,7 +56,7 @@ export default function Cards() {
 
                 <tbody>
                     {!cards.length ? <td colSpan={8} style={{ textAlign: "center", display: "table-cell" }}> {loading ? <Loader width={30} /> : "אין נתונים"}</td> :
-                        cards.map((c, i) => {
+                        cards.filter(x => x.clientId === user.id).map((c, i) => {
                             return (
                                 <tr key={c.id}>
                                     <td> <p>{i + 1}</p> </td>
