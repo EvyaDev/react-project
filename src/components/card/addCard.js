@@ -34,7 +34,6 @@ export default function AddCard() {
             ...formData,
             [id]: value
         })
-        console.log(formData);
     }
 
     function addNew(ev) {

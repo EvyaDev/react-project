@@ -1,109 +1,60 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
 import { FiEdit } from "react-icons/fi"
 import { BsTrash3 } from "react-icons/bs"
 import { Link } from 'react-router-dom';
 import { RoleTypes, token, userContext } from '../../App';
 import "./Card.css"
+import Loader from '../Loader';
 
 
-export default function Card({ title, cardData }) {
+export default function Card({ title, cardData, isLiked, onlike }) {
 
-    const { userRole, user, permission, isLogged } = useContext(userContext)
-    const [favoriteList, setFavoriteList] = useState([])
-    const [like, setLike] = useState()
-
+    const { userRole, user } = useContext(userContext)
+    const [loading, setLoading] = useState(false);
 
     function remove(itemId) {
         if (!window.confirm('האם אתה בטוח שברצונך למחוק?')) {
             return;
         }
+
         fetch(`https://api.shipap.co.il/admin/cards/${itemId}?token=${token}`, {
             credentials: 'include',
             method: 'DELETE',
         })
             .then(() => {
-
             });
     }
 
-    useEffect(() => {
-
-        fetch(`https://api.shipap.co.il/cards/favorite?token=${token}`, {
-            credentials: "include",
-        })
-            .then(res => res.json())
-            .then(data => {
-                setFavoriteList(data.map(x => x.id))
-                if (favoriteList.includes(cardData.id)) {
-                    setLike(true)
-                } else {
-                    setLike(false)
-                }
-
-            })
-            .catch(err => console.log(err));
-    }, [like])
-
 
     function likeCard(cardId) {
+        setLoading(true)
 
-        if (!isLogged) {
+        fetch(`https://api.shipap.co.il/cards/${cardId}/favorite?token=${token}`, {
+            method: "PUT",
+            credentials: "include",
+        })
+            .then(() => {
+                setLoading(false)
+                onlike();
 
-            //get likes array from local storage
-            const getLocalLikes = localStorage.getItem("cardLike");
-
-            //format PARSE localStorage array
-            const parseLikes = getLocalLikes ? JSON.parse(getLocalLikes) : [];
-
-            parseLikes.push(cardId);
-
-            //save to local storage in STRINGIFY format
-            localStorage.setItem("cardLike", JSON.stringify(parseLikes))
-            setLike(true)
-
-        } else {
-            fetch(`https://api.shipap.co.il/cards/${cardId}/favorite?token=${token}`, {
-                method: "PUT",
-                credentials: "include",
             })
-                .then(() => {
-                    setLike(true)
-                })
-        }
-
-
     }
+
 
     function unlikeCard(cardId) {
+        setLoading(true)
 
-
-        if (!isLogged) {
-
-            //get likes array from local storage
-            const getLocalLikes = localStorage.getItem("cardLike");
-
-            //format PARSE localStorage array
-            const parseLikes = getLocalLikes ? JSON.parse(getLocalLikes) : [];
-
-            // parseLikes.filter(x => x != cardId);
-            // console.log(parseLikes);
-
-            //save to local storage in STRINGIFY format
-            localStorage.setItem("cardLike", JSON.stringify(parseLikes))
-            setLike(false)
-
-        } else {
-
-            fetch(`https://api.shipap.co.il/cards/${cardId}/unfavorite?token=${token}`, {
-                method: "PUT",
-                credentials: "include",
+        fetch(`https://api.shipap.co.il/cards/${cardId}/unfavorite?token=${token}`, {
+            method: "PUT",
+            credentials: "include",
+        })
+            .then(() => {
+                setLoading(false)
+                onlike();
             })
-                .then(() => {
-                    setLike(false)
-                })
-        }
     }
+
 
 
     return (
@@ -116,9 +67,9 @@ export default function Card({ title, cardData }) {
                 <div className="actions" >
 
                     {/* UN/LIKE btn */}
-                    {like ?
-                        <a><AiFillHeart onClick={() => unlikeCard(cardData.id)} className='heart' /></a> :
-                        <a><AiOutlineHeart onClick={() => likeCard(cardData.id)} className='heart' /></a>
+                    {isLiked ?
+                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <a> <AiFillHeart onClick={() => unlikeCard(cardData.id)} className='unlike' /></a> :
+                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <a><AiOutlineHeart onClick={() => likeCard(cardData.id)} className='like' /></a>
                     }
 
                     {/* EDIT btn */}
@@ -127,9 +78,9 @@ export default function Card({ title, cardData }) {
 
                     {/* DELETE btn */}
                     {(userRole === RoleTypes.ADMIN || user.id === cardData.clientId) &&
-                        <a><BsTrash3 onClick={() => remove(cardData.id)} className='heart' /></a>}
+                        <a><BsTrash3 onClick={() => remove(cardData.id)} className='trash' /></a>}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

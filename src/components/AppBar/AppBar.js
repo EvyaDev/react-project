@@ -3,12 +3,15 @@ import ToggleColorMode from "../../style/ToggleColorMode";
 import "./AppBar.css"
 import { RoleTypes, checkPermission, userContext } from "../../App";
 import { Link, useNavigate } from "react-router-dom";
-import { required } from "joi";
+import { func, required } from "joi";
 import { RiUserSettingsLine } from "react-icons/ri"
 import { LuUsers } from "react-icons/lu"
 import { BiFoodMenu } from "react-icons/bi"
 
 export const avatarImage = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+
+export let searchText = "";
 
 export default function AppBar({ handleLogout }) {
     const Navigate = useNavigate()
@@ -22,6 +25,8 @@ export default function AppBar({ handleLogout }) {
     ];
 
 
+
+
     function open() {
         setProfileOpen(true)
     }
@@ -30,9 +35,13 @@ export default function AppBar({ handleLogout }) {
         setProfileOpen(false)
     }
 
+    function searchInput(ev) {
+        searchText = ev.target.value;
+
+    }
 
     return (
-        <nav >
+        <nav>
             <div className="userArea">
                 <div onMouseLeave={close} onMouseOver={open} className="avatar">
                     {user ? user.fullName.slice(0, 1) : <img alt="avatar" className="img-avatar" src={avatarImage} />}
@@ -79,6 +88,7 @@ export default function AppBar({ handleLogout }) {
                         )
                     })}
                 </ul>
+                <input onChange={searchInput} type="text" placeholder="חיפוש"></input>
             </div>
 
             <ToggleColorMode />

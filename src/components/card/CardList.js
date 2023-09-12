@@ -5,7 +5,7 @@ import { RoleTypes, token, userContext } from '../../App';
 import { BsTrash3 } from 'react-icons/bs';
 import "../adminArea/admin.css"
 
-export default function Cards() {
+export default function CardsList() {
 
     const [cards, setCards] = useState([])
     const [loading, setLoading] = useState(false)

@@ -6,14 +6,14 @@ const colors = {
 
     // GLOBAL dark mode colors
     dark: {
-        bgc: "#201A1E",
+        bgc: "#221a2a",
         color: "white",
     },
 
     // GLOBAL light mode colors
     light: {
-        bgc: "white",
-        color: "#201A1E",
+        bgc: "#f4f4f4",
+        color: "#221a2a",
     }
 }
 
@@ -22,6 +22,12 @@ export const Theme = createGlobalStyle`
 body {
   background-color: ${(props) => (props.darkMode ? colors.dark.bgc : colors.light.bgc)};
   color: ${(props) => (props.darkMode ? colors.dark.color : colors.light.color)};
+
+nav{
+    background-color: ${(props) => (props.darkMode ? "#5151516f" : "#e4e4e46f")};
+}
+
+
   input,textarea{
     background-color:${(props) => (props.darkMode ? 'rgb(49, 49, 49)' : colors.light.bgc)};
     color: ${(props) => (props.darkMode ? colors.dark.color : colors.light.color)};
@@ -31,7 +37,7 @@ body {
     }
    
     a {
-        color: ${(props) => (props.darkMode ? '#fff' : "")};
+        color: ${(props) => (props.darkMode ? '#fff' : "#201A1E")};
     }
 
     // USER AREA //
@@ -39,7 +45,13 @@ body {
         background-color: ${(props) => (props.darkMode ? colors.dark.bgc : colors.light.bgc)};
     }
 }
-
+.Card{
+    .actions{
+        a{
+            color:#fff;
+        }
+    }
+}
 .CardPage{
     .textHeader{
         color:white;

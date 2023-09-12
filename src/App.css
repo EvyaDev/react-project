@@ -5,6 +5,7 @@
 }
 
 .App .frame {
+  margin-top: 60px;
   opacity: 1;
   width: 100%;
   min-height: 100vh;

@@ -1,35 +1,58 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import Card from './card';
 import Loader from '../Loader';
 import "./Card.css"
 import { Link } from 'react-router-dom';
 import { RoleTypes, token, userContext } from '../../App';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
+import { searchText } from '../AppBar/AppBar';
 
 export default function Cards() {
-
     const [cards, setCards] = useState([])
-    const { userRole, isLogged } = useContext(userContext)
     const [loading, setLoading] = useState(false);
+    const { userRole } = useContext(userContext)
+    const [favoriteList, setFavoriteList] = useState([])
+    const [liked, setLiked] = useState(false)
 
-    //get all cards
+
+
+    function handleLike() {
+        setLiked(!liked)
+    }
+
     useEffect(() => {
         setLoading(true)
-        fetch(`https://api.shipap.co.il/cards?token=${token}`)
-            .then(res => res.json())
-            .then(data => {
-                setCards(data)
-                setLoading(false)
-            })
-            .catch(err => console.error(err));
 
-    }, [cards.length])
+        Promise.all([
+            fetch(`https://api.shipap.co.il/cards?token=${token}`).then(res => res.json()),
+            fetch(`https://api.shipap.co.il/cards/favorite?token=${token}`, { credentials: "include" })
+                .then(res => {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                })
+
+        ]).then(data => {
+
+            const [cards, favorite] = data;
+
+            setCards(cards);
+            setLoading(false)
+
+            if (data[1]) {
+                setFavoriteList(favorite);
+            }
+
+        })
+            .catch(err => console.log(err))
+
+    }, [cards.length, liked])
+
 
     return (
         <div className='Cards'>
 
             <h1>הכרטיסים שלי</h1>
-
             {
                 [RoleTypes.BUSINESS, RoleTypes.ADMIN].includes(userRole) &&
                 <Link to={"/addcard"}>
@@ -41,12 +64,20 @@ export default function Cards() {
                 {
                     cards.length ? cards.map(c => {
                         return (
-                            <Card key={c.id} cardData={c} title={c.title} />
+                            <Card
+                                isLiked={favoriteList.map(f => f.id).includes(c.id)}
+                                key={c.id} cardData={c}
+                                title={c.title}
+                                onlike={handleLike}
+                            />
                         )
-                    }) : loading ? <Loader color={"gray"} /> : <p>אין נתונים</p>
+                    })
+                        :
+                        loading ?
+                            <Loader color={"gray"} /> :
+                            <p>אין נתונים</p>
                 }
             </section>
-
         </div>
     )
 }

@@ -8,10 +8,10 @@ export default function Loader({ color, secondaryColor, width }) {
                 height={width || "80"}
                 width={width || "80"}
                 color={color}
+                secondaryColor={secondaryColor}
                 radius="6"
                 wrapperStyle={{}}
                 wrapperClass=""
-                secondaryColor={secondaryColor}
                 visible={true}
                 ariaLabel="rings-loading"
             />

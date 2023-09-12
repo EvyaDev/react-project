@@ -5,8 +5,7 @@ nav {
     width: 100%;
     position: fixed;
     top: 0;
-    background-color: #d7deff6f;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -17,7 +16,7 @@ nav {
 
 
     .btnMode {
-        background-color: #afb7d8;
+        background-color: #20b764;
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -53,7 +52,7 @@ nav {
         height: fit-content;
         padding: 20px;
         position: absolute;
-        top: 8px;
+        top: 5px;
         border-radius: 20px;
         box-shadow: 0 0 50px -30px black;
         display: flex;

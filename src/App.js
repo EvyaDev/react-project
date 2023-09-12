@@ -22,6 +22,7 @@ export default function App() {
     const [user, setUser] = useState("");
     const [userRole, setUserRole] = useState(RoleTypes.NONE);
 
+
     //check login status
     useEffect(() => {
         fetch(`https://api.shipap.co.il/clients/login`, {
@@ -42,9 +43,9 @@ export default function App() {
                 setUserRole(data.admin ? RoleTypes.ADMIN : data.business ? RoleTypes.BUSINESS : RoleTypes.USER)
             })
             .catch(err => {
-
+                console.log(err);
             });
-    }, [])
+    }, [user])
 
 
     return (
