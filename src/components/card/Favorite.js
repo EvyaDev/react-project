@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { token, userContext } from '../../App';
 import Card from './card';
 import Loader from '../Loader';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 export default function Favorite() {
     const [favorite, setFavorite] = useState([])
@@ -43,13 +44,17 @@ export default function Favorite() {
                             />
                         )
                     }) :
-                        loading ?
-                            <Loader color={"gray"} /> :
-                            isLogged ?
-                                <p>אין נתונים</p> :
-                                <p>אינך מחובר!</p>
+                        loading ? <Loader color={"gray"} /> :
+
+                            <AiOutlineInfoCircle />
                 }
+
+                {isLogged ?
+                    <p> לא שמרת עדיין כרטיסים ברשימת המועדפים</p> :
+                    <p>אינך מחובר!</p>
+                }
+
             </section>
-        </div>
+        </div >
     )
 }
