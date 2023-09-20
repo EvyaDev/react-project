@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { RoleTypes, userContext } from '../../App';
 
 export default function Logout() {
-    const { setUser, isLogged, setUserRole, setIsLogged } = useContext(userContext)
+    const { setUser, snackbar, setUserRole, setIsLogged } = useContext(userContext)
     const Navigate = useNavigate();
 
     useEffect(() => {
@@ -19,12 +19,10 @@ export default function Logout() {
                 setIsLogged(false)
                 setUser("")
                 setUserRole(RoleTypes.NONE)
+                snackbar(" התנתקת בהצלחה")
+                Navigate("/")
             })
-
-        Navigate(-1)
-
     }, [])
 
 
 }
-

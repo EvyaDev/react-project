@@ -12,21 +12,26 @@ import CardPage from './components/cards/CardPage'
 import CardList from './components/cards/CardList'
 import Clients from './components/userArea/clients/Clients'
 import EditUser from './components/userArea/EditUser'
+import Favorite from './components/cards/Favorite'
 import MyCards from './components/cards/MyCards'
 import SearchPage from './SearchPage'
-import Favorite from './components/cards/Favorite'
 
-export default function Router() {
+export default function RouterAuth() {
     return (
         <Routes>
             <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/my-favorite" element={<Favorite />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/addCard" element={<AddCard />} />
+            <Route path="/editCard/:id" element={<EditCard />} />
+            <Route path="/cards" element={<MyCards />} />
+            <Route path="/my-favorite" element={<Favorite />} />
             <Route path="/card-single-page/:id" element={<CardPage />} />
+            <Route path="/cardlist" element={<CardList />} />
             <Route path="/clients" element={<Clients />} />
+            <Route path="/editUser" element={<EditUser />} />
             <Route path="/search-page/:query?" element={<SearchPage />} />
         </Routes>
     )

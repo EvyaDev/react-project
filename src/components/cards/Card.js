@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
 import { FiEdit } from "react-icons/fi"
 import { BsTrash3 } from "react-icons/bs"
@@ -10,20 +10,23 @@ import Loader from '../Loader';
 
 export default function Card({ title, cardData, isLiked, onlike }) {
 
-    const { userRole, user } = useContext(userContext)
+    const { isLogged, snackbar, userRole, user } = useContext(userContext)
     const [loading, setLoading] = useState(false);
 
+    //remove card
     function remove(itemId) {
         if (!window.confirm('האם אתה בטוח שברצונך למחוק?')) {
+            snackbar("המחיקה התבטלה!")
             return;
         }
-
         fetch(`https://api.shipap.co.il/admin/cards/${itemId}?token=${token}`, {
             credentials: 'include',
             method: 'DELETE',
         })
             .then(() => {
-            });
+                snackbar("הכרטיס נמחק בהצלחה!")
+            })
+            .catch(err => console.log(err))
     }
 
 
@@ -38,11 +41,13 @@ export default function Card({ title, cardData, isLiked, onlike }) {
                 setLoading(false)
                 onlike();
 
+                snackbar(isLogged ? " התווסף למועדפים!" : "התחבר כדי להוסיף")
             })
+            .catch(err => console.log(err))
     }
 
 
-    function unlikeCard(cardId) {
+    function disLikeCard(cardId) {
         setLoading(true)
 
         fetch(`https://api.shipap.co.il/cards/${cardId}/unfavorite?token=${token}`, {
@@ -52,7 +57,9 @@ export default function Card({ title, cardData, isLiked, onlike }) {
             .then(() => {
                 setLoading(false)
                 onlike();
+                snackbar(`הוסר מהמועדפים!`)
             })
+            .catch(err => console.log(err))
     }
 
 
@@ -68,8 +75,8 @@ export default function Card({ title, cardData, isLiked, onlike }) {
 
                     {/* UN/LIKE btn */}
                     {isLiked ?
-                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <a> <AiFillHeart onClick={() => unlikeCard(cardData.id)} className='unlike' /></a> :
-                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <a><AiOutlineHeart onClick={() => likeCard(cardData.id)} className='like' /></a>
+                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <a> <AiFillHeart onClick={() => disLikeCard(cardData.id)} className='heart' /></a> :
+                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <a><AiOutlineHeart onClick={() => likeCard(cardData.id)} className='heart' /></a>
                     }
 
                     {/* EDIT btn */}

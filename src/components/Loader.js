@@ -5,10 +5,10 @@ export default function Loader({ color, secondaryColor, width }) {
     return (
         <div className='loader'>
             <Oval
-                height={width || "80"}
-                width={width || "80"}
-                color={color}
-                secondaryColor={secondaryColor}
+                height={width || "70"}
+                width={width || "70"}
+                color={color || "white"}
+                secondaryColor={secondaryColor || "silver"}
                 radius="6"
                 wrapperStyle={{}}
                 wrapperClass=""

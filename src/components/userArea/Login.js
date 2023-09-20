@@ -9,13 +9,13 @@ import { RoleTypes } from '../../App';
 export default function LoginClient() {
 
     const Navigate = useNavigate();
-    const { userRole, setUserRole, isLogged, setUser, setIsLogged } = useContext(userContext);
+    const { snackbar, setUserRole, setUser, setIsLogged } = useContext(userContext);
     const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState([]);
 
     const LoginSchema = joi.object({
-        email: joi.string().email({ minDomainSegments: 2, tlds: { allow: false } }),
+        email: joi.string(),
         password: joi.string().alphanum().min(5).max(30).required(),
     })
 
@@ -68,6 +68,7 @@ export default function LoginClient() {
             })
             .then(data => {
                 setUser(data)
+                snackbar("התחברת בהצלחה!")
                 setIsLogged(true)
                 if (data.admin) {
                     setUserRole(RoleTypes.ADMIN)
@@ -94,17 +95,17 @@ export default function LoginClient() {
                 <h2> התחברות לקוח</h2>
                 <div className='inputField'>
                     <label>אימייל</label>
-                    <input id="email" type="email" placeholder='אימייל' onChange={HandleInput} />
+                    <input id="email" type="email" required placeholder='אימייל' onChange={HandleInput} />
                     <p style={{ textAlign: "center" }} className={'validationError'}>{errors ? errors.email : ""}</p>
                 </div>
                 <div className='inputField'>
                     <label>סיסמה</label>
-                    <input id="password" type="password" placeholder='סיסמה' onChange={HandleInput} />
+                    <input id="password" required type="password" placeholder='סיסמה' onChange={HandleInput} />
                     <p style={{ textAlign: "center" }} className={'validationError'}>{errors ? errors.password : ""}</p>
                 </div>
 
-                <button disabled={!IsValid}> התחבר </button>
-
+                <button > התחבר </button>
+                {/* disabled={!IsValid} */}
 
                 <Link to={"/signup"}>להרשמה לחץ כאן</Link>
             </form>
@@ -112,6 +113,3 @@ export default function LoginClient() {
         </div>
     );
 }
-
-
-

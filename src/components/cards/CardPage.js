@@ -9,7 +9,7 @@ export default function CardPage({ cardData }) {
     const { id } = useParams("");
     const [item, setItem] = useState({});
     const [loading, setLoading] = useState(false)
-    const { userRole, user } = useContext(userContext)
+    const { userRole, user, snackbar } = useContext(userContext)
 
     //get my cards
     useEffect(() => {
@@ -20,7 +20,6 @@ export default function CardPage({ cardData }) {
             .then(data => {
                 setItem(data.filter(d => d.id == id)[0])
                 setLoading(false)
-
             })
             .catch(err => console.log(err));
 
@@ -48,7 +47,7 @@ export default function CardPage({ cardData }) {
 
                             {
                                 ((userRole === RoleTypes.ADMIN && item.clientId === 0) || user.id === item.clientId) &&
-                                <Link Link to={`/editCard/${id}`}>
+                                <Link to={`/editCard/${id}`}>
                                     <button> <FiEdit /> עריכת מתכון זה </button>
                                 </Link>
                             }

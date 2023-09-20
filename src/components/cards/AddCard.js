@@ -1,13 +1,15 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import "./Card.css"
 import { useNavigate } from "react-router-dom";
-import Card from "./card";
-import { token } from "../../App";
+import Card from "./Card";
+import { token, userContext } from "../../App";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { BsTrash3 } from "react-icons/bs";
 
 export default function AddCard() {
+
+    const { snackbar } = useContext(userContext)
 
     const Navigate = useNavigate()
     const [formData, setFormData] = useState({
@@ -46,6 +48,7 @@ export default function AddCard() {
             body: JSON.stringify(formData),
         })
             .then(data => {
+                snackbar("הכרטיס התווסף בהצלחה!")
                 Navigate("/");
             });
     }

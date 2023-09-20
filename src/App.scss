@@ -3,7 +3,7 @@
     padding-top: 50px;
 
     .frame {
-        margin-top: 60px;
+        // margin-top: 60px;
         opacity: 1;
         width: 100%;
         min-height: 100vh;
@@ -24,4 +24,26 @@
     }
 
     line-height: 100px;
+}
+
+
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 10vw;
+    }
+
+    h2 {
+        font-size: 6vw;
+    }
+
+    nav {
+        .navigator {
+            display: none;
+        }
+
+        .searchInput {
+            display: none;
+        }
+    }
 }

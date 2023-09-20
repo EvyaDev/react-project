@@ -1,46 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { RoleTypes, token, userContext } from '../../../App'
-import "./clients.css"
 import { avatarImage } from '../../AppBar/AppBar';
 import { FaTrash } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi';
-import Popup from '../../Popup';
+import "./clients.css"
 
 export default function Clients() {
 
-    const { permission, isLogged } = useContext(userContext)
+    const { snackbar, isLogged } = useContext(userContext)
     const [clients, setClients] = useState([])
-    const [avatar, setAvatar] = useState("")
-    const [showPopup, setShowPopup] = useState(false)
-
-    //get all clients
-    useEffect(() => {
-        fetch(`https://api.shipap.co.il/admin/clients?token=${token}`, {
-            credentials: "include"
-        })
-            .then(res => res.json())
-            .then(data => {
-                setClients(data)
-                console.log(clients);
-            })
-            .catch(err => console.log("error is: ", err));
-
-    }, [clients.length, isLogged])
-
-    //remove client
-    function removeClient(itemId) {
-        if (!window.confirm("Are you sure you want to remove?")) {
-            return;
-        }
-
-        fetch(`https://api.shipap.co.il/admin/clients/${itemId}?token=${token}`, {
-            credentials: 'include',
-            method: 'DELETE',
-        })
-            .then(() => {
-                setClients([...clients.filter(clients => clients.id != itemId)])
-            });
-    }
+    const [isShow, setIsShow] = useState(false)
 
     const Arr = [
         { id: "firstName", type: "text", label: "שם פרטי", placeholder: "שם פרטי" },
@@ -60,13 +29,59 @@ export default function Clients() {
         { id: "business", type: "checkbox", label: " לקוח עסקי? ", },
     ]
 
+    //get all clients
+    useEffect(() => {
+        fetch(`https://api.shipap.co.il/admin/clients?token=${token}`, {
+            credentials: "include"
+        })
+            .then(res => res.json())
+            .then(data => {
+                setClients(data)
+            })
+            .catch(err => console.log("error is: ", err));
+
+    }, [clients.length, isLogged])
+
+
+    //remove client
+    function removeClient(itemId) {
+        if (!window.confirm("Are you sure you want to remove?")) {
+            return;
+        }
+
+        fetch(`https://api.shipap.co.il/admin/clients/${itemId}?token=${token}`, {
+            credentials: 'include',
+            method: 'DELETE',
+        })
+            .then(() => {
+                setClients([...clients.filter(clients => clients.id !== itemId)])
+            });
+    }
+
+    //change premission status of client
+    function changeStaus(ev, client) {
+        const status = JSON.parse(ev.target.value);
+        const obj = { ...client, id: 4, business: status }
+
+        if (!window.confirm("Are you sure you want to change this?")) {
+            return;
+        }
+
+        fetch(`https://api.shipap.co.il/admin/clients/${client.id}?token=${token}`, {
+            credentials: 'include',
+            method: 'PUT',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(obj),
+        })
+            .then(() => {
+                snackbar(`ההרשאות השתנו למשתמש ${status ? "עסקי" : "רגיל"}`)
+            });
+    }
+
     return (
         <div className='Clients' >
-
-            {/* {showPopup && <Popup structure={Arr} />} */}
-
             <div className='clientList'>
-                <h2> ניהול משתמשים</h2>
+                <h1> ניהול משתמשים</h1>
                 {!clients.length ? <p>אין נתונים</p> : <table>
                     <thead>
                         <tr>
@@ -90,13 +105,20 @@ export default function Clients() {
                                     <td>  {c.firstName}</td>
                                     <td>  {c.lastName}</td>
                                     <td>  {c.email}</td>
-                                    <td> <span className={c.business ? "business" : "regular"}>  {c.business ? "עסקי" : "רגיל"}</span></td>
+                                    {/* <td> <span className={c.business ? "business" : "regular"}>  {c.business ? "עסקי" : "רגיל"}</span></td> */}
+                                    <td>
+                                        <select defaultValue={c.business ? true : false} onChange={ev => changeStaus(ev, c)}>
+                                            <option value={false}>רגיל</option>
+                                            <option value={true}>עסקי</option>
+                                        </select>
+                                        {isShow && <button>החל</button>}
+                                    </td>
                                     <td>
                                         <ul>
-                                            <li onClick={() => removeClient(c.id)} title='מחק'>
+                                            <li title='מחק'>
                                                 <FaTrash />
                                             </li>
-                                            <li onClick={() => setShowPopup(true)} title='עריכה'>
+                                            <li title='עריכה'>
                                                 <FiEdit />
                                             </li>
                                         </ul>

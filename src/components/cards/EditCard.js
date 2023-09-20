@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
-import Card from "./card"
+import Card from "./Card"
 import { token, userContext } from '../../App'
 import "./Card.css"
 
@@ -8,7 +8,7 @@ import "./Card.css"
 export default function EditCard() {
 
     const Navigate = useNavigate()
-    const { user } = useContext(userContext)
+    const { snackbar } = useContext(userContext)
     const { id } = useParams();
     const [item, setItem] = useState([]);
     const [formData, setFormData] = useState({
@@ -44,7 +44,6 @@ export default function EditCard() {
         }
     }, [item.length])
 
-
     function handleInput(ev) {
         const { id, value } = ev.target;
 
@@ -53,7 +52,6 @@ export default function EditCard() {
             [id]: value
         })
     }
-
 
     function save(ev) {
         ev.preventDefault();
@@ -64,11 +62,12 @@ export default function EditCard() {
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(formData),
         })
-            .then(data => {
+            .then(() => {
+                snackbar("השינויים נשמרו בהצלחה!")
                 Navigate(-1);
-            });
+            })
+            .catch(err => console.log(err))
     }
-
 
     return (
         <div className="editCard">
@@ -76,7 +75,7 @@ export default function EditCard() {
             <div className="form">
                 <form onSubmit={save}>
                     <h2>עריכת מתכון </h2>
-                    <p>{user.id === item.clientId ? "המתכון הזה שלך" : "מתכון לא שלך"} </p>
+
                     <label>כותרת</label>
                     <input type="text" id="title" defaultValue={formData.title} placeholder="כותרת" onChange={handleInput}></input>
 
@@ -103,6 +102,6 @@ export default function EditCard() {
                 <p>תצוגה מקדימה</p>
                 <Card title={formData.title} cardData={formData} />
             </div>
-
-        </div>)
+        </div>
+    )
 }

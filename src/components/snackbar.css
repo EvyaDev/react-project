@@ -1,0 +1,30 @@
+.Snackbar {
+    height: fit-content;
+    width: fit-content;
+    max-width: 400px;
+    padding: 5px 15px;
+    background-color: var(--level2);
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 30px;
+    right: 50%;
+    transform: translate(50%, 200%);
+    border-radius: 5px;
+    transition: .4s ease-in;
+    gap: 10px;
+    opacity: 0;
+}
+
+.Snackbar p,
+.Snackbar svg {
+    color: black;
+}
+
+.Snackbar.show {
+    transform: translate(50%, 00%);
+    opacity: 1;
+}

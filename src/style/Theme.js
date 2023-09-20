@@ -1,9 +1,6 @@
-import React from 'react'
-import styled, { createGlobalStyle } from 'styled-components';
-
+import { createGlobalStyle } from 'styled-components';
 
 const colors = {
-
     // GLOBAL dark mode colors
     dark: {
         bgc: "#221a2a",
@@ -19,14 +16,26 @@ const colors = {
 
 export const Theme = createGlobalStyle`
 
+:root{
+    --dark:${colors.dark.bgc};
+    --level2 :#92d5ad;
+}
+
 body {
-  background-color: ${(props) => (props.darkMode ? colors.dark.bgc : colors.light.bgc)};
+  background-image: linear-gradient( ${(props) => (props.darkMode ? colors.dark.bgc : colors.light.bgc)} ,${(props) => (props.darkMode ? "black" : "white")});
   color: ${(props) => (props.darkMode ? colors.dark.color : colors.light.color)};
 
 nav{
     background-color: ${(props) => (props.darkMode ? "#5151516f" : "#e4e4e46f")};
+    .permissionTag{
+        color: ${colors.dark.bgc}
+    }
+    .navigator{
+        a.currentPage,a:hover{
+            color: ${colors.light.color};
+        }
+    }
 }
-
 
   input,textarea{
     background-color:${(props) => (props.darkMode ? 'rgb(49, 49, 49)' : colors.light.bgc)};

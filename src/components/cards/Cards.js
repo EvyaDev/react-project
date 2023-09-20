@@ -1,20 +1,20 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import Card from './card';
+import Card from './Card';
 import Loader from '../Loader';
 import "./Card.css"
 import { Link } from 'react-router-dom';
 import { RoleTypes, token, userContext } from '../../App';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
-import { searchText } from '../AppBar/AppBar';
 
-export default function Cards() {
+export default function Cards({ array, addBtnShow }) {
     const [cards, setCards] = useState([])
-    const [loading, setLoading] = useState(false);
-    const { userRole } = useContext(userContext)
     const [favoriteList, setFavoriteList] = useState([])
+    const [loading, setLoading] = useState(false);
     const [liked, setLiked] = useState(false)
 
-
+    if (!array) {
+        array = cards.map(x => x.id)
+    }
 
     function handleLike() {
         setLiked(!liked)
@@ -42,31 +42,30 @@ export default function Cards() {
             if (data[1]) {
                 setFavoriteList(favorite);
             }
-
         })
-            .catch(err => console.log(err))
+            .catch(err => { console.log(err) })
 
     }, [cards.length, liked])
 
 
     return (
-        <div className='Cards'>
+        <div className='Cards listLayout'>
 
-            <h1>הכרטיסים שלי</h1>
-            {
-                [RoleTypes.BUSINESS, RoleTypes.ADMIN].includes(userRole) &&
+            {addBtnShow &&
                 <Link to={"/addcard"}>
                     <button className='addCardBtn'> <MdOutlineAddCircleOutline /> מתכון חדש</button>
                 </Link>
             }
 
+
             <section className='cardsList'>
                 {
-                    cards.length ? cards.map(c => {
+                    cards.length ? cards.filter(x => array.includes(x.id)).map(c => {
                         return (
                             <Card
                                 isLiked={favoriteList.map(f => f.id).includes(c.id)}
-                                key={c.id} cardData={c}
+                                key={c.id}
+                                cardData={c}
                                 title={c.title}
                                 onlike={handleLike}
                             />

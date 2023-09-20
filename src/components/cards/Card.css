@@ -77,6 +77,7 @@
 .Card .heart {
   color: #fff;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .Cards {
@@ -90,21 +91,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.Cards .cardsList {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  overflow: scroll;
-  gap: 15px;
-  padding: 20px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.Cards a {
-  text-decoration: none;
 }
 
 .Cards .addCardBtn {
@@ -122,8 +108,46 @@
 }
 
 .Cards .addCardBtn:hover {
-  background-color: #00d78f;
+  background-color: var(--level2);
   cursor: pointer;
+}
+
+.Cards a {
+  text-decoration: none;
+}
+
+.Cards .cardsList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: scroll;
+  gap: 15px;
+  padding: 20px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.CardsList .addCardBtn {
+  padding: 5px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+.CardsList .addCardBtn:hover {
+  background-color: var(--level2);
+  cursor: pointer;
+}
+
+.CardsList a {
+  text-decoration: none;
 }
 
 .addCard,
@@ -348,7 +372,7 @@
 }
 
 .CardPage .content .contentHeader button:hover {
-  background-color: #00d78f;
+  background-color: var(--level2);
   cursor: pointer;
 }
 
@@ -369,11 +393,46 @@
           align-items: center;
 }
 
+.CardPage .content .contentHeader .share a:hover {
+  color: var(--level2);
+}
+
 .CardPage .content .contentBody p {
   white-space: break-spaces;
 }
 
+.Favorite .errorFavorite {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.Favorite .errorFavorite svg {
+  font-size: 2em;
+}
+
+.Favorite .errorFavorite .loginBtn {
+  padding: 0 10px;
+  display: block;
+  font-size: .9em;
+  background-color: #b7b7b7;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  margin: 0 auto;
+}
+
 @media (max-width: 900px) {
+  .Favorite,
   .addCard,
   .editCard {
     -webkit-box-orient: vertical;
@@ -381,13 +440,27 @@
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  .Favorite .display,
   .addCard .display,
   .editCard .display {
     width: 100%;
   }
+  .Favorite .form,
   .addCard .form,
   .editCard .form {
     width: 100%;
+  }
+  .Cards .cardsList {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    overflow: scroll;
+    width: 100%;
+  }
+  .CardPage .frmae {
+    min-height: 30vh;
+  }
+  .CardPage .content {
+    padding: 20px 7%;
   }
 }
 /*# sourceMappingURL=Card.css.map */
