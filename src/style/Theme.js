@@ -24,6 +24,9 @@ export const Theme = createGlobalStyle`
 body {
   background-image: linear-gradient( ${(props) => (props.darkMode ? colors.dark.bgc : colors.light.bgc)} ,${(props) => (props.darkMode ? "black" : "white")});
   color: ${(props) => (props.darkMode ? colors.dark.color : colors.light.color)};
+  button{
+    cursor:pointer;
+  }
 
 nav{
     background-color: ${(props) => (props.darkMode ? "#5151516f" : "#e4e4e46f")};

@@ -10,7 +10,7 @@ export default function CardsList() {
 
     const [cards, setCards] = useState([])
     const [loading, setLoading] = useState(false)
-    const { user, userRole } = useContext(userContext)
+    const { snackbar, userRole } = useContext(userContext)
 
     //get all cards
     useEffect(() => {
@@ -30,14 +30,23 @@ export default function CardsList() {
     }, [cards.length])
 
     function remove(itemId) {
+        if (!window.confirm("אתה בטוח שברצונך למחוק את המתכון הזה?")) {
+            snackbar("המחיקה התבטלה!");
+            return;
+        }
+
         fetch(`https://api.shipap.co.il/business/cards/${itemId}?token=${token}`, {
             credentials: 'include',
             method: 'DELETE',
         })
             .then(() => {
+                snackbar("המתכון נמחק בהצלחה!");
                 setCards([...cards.filter(c => c.id != itemId)])
-            });
+            })
+            .catch(err => console.log(err))
     }
+
+
     return (
         <div className='CardsList'>
 

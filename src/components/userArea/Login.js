@@ -9,7 +9,7 @@ import { RoleTypes } from '../../App';
 export default function LoginClient() {
 
     const Navigate = useNavigate();
-    const { snackbar, setUserRole, setUser, setIsLogged } = useContext(userContext);
+    const { user, snackbar, setUserRole, setUser, setIsLogged } = useContext(userContext);
     const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState([]);
@@ -68,7 +68,7 @@ export default function LoginClient() {
             })
             .then(data => {
                 setUser(data)
-                snackbar("התחברת בהצלחה!")
+                snackbar(`ברוך הבא!`)
                 setIsLogged(true)
                 if (data.admin) {
                     setUserRole(RoleTypes.ADMIN)

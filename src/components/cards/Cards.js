@@ -33,17 +33,17 @@ export default function Cards({ array, addBtnShow }) {
                 })
 
         ]).then(data => {
-
+            setLoading(false)
             const [cards, favorite] = data;
 
             setCards(cards);
-            setLoading(false)
 
             if (data[1]) {
                 setFavoriteList(favorite);
             }
         })
-            .catch(err => { console.log(err) })
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false))
 
     }, [cards.length, liked])
 
@@ -59,22 +59,20 @@ export default function Cards({ array, addBtnShow }) {
 
 
             <section className='cardsList'>
-                {
+                {(loading && !cards.length) ? <Loader color={"gray"} /> :
                     cards.length ? cards.filter(x => array.includes(x.id)).map(c => {
                         return (
                             <Card
                                 isLiked={favoriteList.map(f => f.id).includes(c.id)}
                                 key={c.id}
                                 cardData={c}
-                                title={c.title}
                                 onlike={handleLike}
                             />
                         )
                     })
                         :
-                        loading ?
-                            <Loader color={"gray"} /> :
-                            <p>אין נתונים</p>
+
+                        <p>אין נתונים</p>
                 }
             </section>
         </div>

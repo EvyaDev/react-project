@@ -8,7 +8,7 @@ import "./Card.css"
 import Loader from '../Loader';
 
 
-export default function Card({ title, cardData, isLiked, onlike }) {
+export default function Card({ cardData, isLiked, onlike }) {
 
     const { isLogged, snackbar, userRole, user } = useContext(userContext)
     const [loading, setLoading] = useState(false);
@@ -68,7 +68,7 @@ export default function Card({ title, cardData, isLiked, onlike }) {
         <div className="Card" style={{ backgroundImage: `url(${cardData && cardData.imgUrl})` }}>
 
             <div className="cardFrame" >
-                <Link to={`/card-single-page/${cardData.id}`}> <h2>{title}</h2></Link>
+                <Link to={`/card-single-page/${cardData.id}`}> <h2>{cardData.title}</h2></Link>
                 <p>{cardData && cardData.subtitle}</p>
 
                 <div className="actions" >

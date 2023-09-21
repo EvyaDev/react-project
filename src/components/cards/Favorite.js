@@ -21,7 +21,7 @@ export default function Favorite() {
             .then(data => {
                 setFavoriteList(data)
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
     }, [favoriteList])
 
     function handleLike() {
@@ -34,11 +34,11 @@ export default function Favorite() {
 
             <h1>המועדפים שלי</h1>
 
-            {favoriteList.length ?
+            {
 
-                <Cards array={favoriteList.map(x => x.id)} /> :
+                favoriteList.length ?
+                    <Cards array={favoriteList.map(x => x.id)} /> :
 
-                loading ? <Loader color={"gray"} /> :
                     <div className='errorFavorite'>
                         <AiOutlineInfoCircle />
                         <p>

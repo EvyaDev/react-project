@@ -8,14 +8,14 @@ export default function ToggleColorMode() {
     const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
-        const saveMode = localStorage.getItem("darkMode")
+        const saveMode = localStorage.darkMode
         if (saveMode) { setDarkMode(JSON.parse(saveMode)) }
     }, [])
 
     const toggleTheme = () => {
         const newMode = darkMode ? false : true;
         setDarkMode(newMode);
-        localStorage.setItem("darkMode", JSON.stringify(newMode))
+        localStorage.darkMode = JSON.stringify(newMode)
     };
 
 

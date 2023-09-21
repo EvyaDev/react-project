@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { token, userContext } from '../../App'
 import { useNavigate } from 'react-router-dom'
+import { avatarImage } from '../AppBar/AppBar'
 
 export default function EditUser() {
     const { isLogged, user, setUser } = useContext(userContext)
@@ -8,9 +9,10 @@ export default function EditUser() {
     const Navigate = useNavigate()
 
     useEffect(() => {
-        setFormData({ ...user })
-
-    }, [user])
+        setFormData({
+            ...user
+        })
+    }, [])
 
     const structure = [
         { id: "firstName", type: "text", label: "שם פרטי" },
@@ -38,6 +40,8 @@ export default function EditUser() {
         })
     }
 
+
+    //UPDATE function
     function update(ev) {
         ev.preventDefault();
 
@@ -58,7 +62,8 @@ export default function EditUser() {
         <div className='EditUser'>
             <div>
                 <div className='head'>
-                    <img src={formData.imgUrl}></img>
+                    <img onError={() => setFormData({ ...user, imgUrl: avatarImage })}
+                        src={formData.imgUrl}></img>
                     <h3>{user.fullName}</h3>
                 </div>
 

@@ -61,7 +61,7 @@ export default function AppBar() {
                             {!isLogged && <Link to={"/login"}><li> כניסה </li></Link>}
                             {!isLogged && <Link to={"/signup"}><li> הרשמה </li></Link>}
                             {isLogged && <Link to={"/edituser"}><RiUserSettingsLine /><li> הגדרות חשבון</li></Link>}
-                            {isLogged && <Link to={"/cardlist"}><BiFoodMenu /><li>  ניהול מתכונים</li></Link>}
+                            {(isLogged && userRole === RoleTypes.ADMIN || userRole === RoleTypes.BUSINESS) && <Link to={"/cardlist"}><BiFoodMenu /><li>  ניהול מתכונים</li></Link>}
                             {(isLogged && userRole === RoleTypes.ADMIN) && <Link to={"/clients"}><LuUsers />  עריכת משתמשים </Link>}
 
                         </ul>

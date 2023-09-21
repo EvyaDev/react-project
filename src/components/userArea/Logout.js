@@ -20,7 +20,7 @@ export default function Logout() {
                 setUser("")
                 setUserRole(RoleTypes.NONE)
                 snackbar(" התנתקת בהצלחה")
-                Navigate("/")
+                Navigate("/login")
             })
     }, [])
 

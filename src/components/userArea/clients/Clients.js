@@ -105,7 +105,6 @@ export default function Clients() {
                                     <td>  {c.firstName}</td>
                                     <td>  {c.lastName}</td>
                                     <td>  {c.email}</td>
-                                    {/* <td> <span className={c.business ? "business" : "regular"}>  {c.business ? "עסקי" : "רגיל"}</span></td> */}
                                     <td>
                                         <select defaultValue={c.business ? true : false} onChange={ev => changeStaus(ev, c)}>
                                             <option value={false}>רגיל</option>
@@ -115,11 +114,8 @@ export default function Clients() {
                                     </td>
                                     <td>
                                         <ul>
-                                            <li title='מחק'>
+                                            <li title='מחק' onClick={() => removeClient(c.id)}>
                                                 <FaTrash />
-                                            </li>
-                                            <li title='עריכה'>
-                                                <FiEdit />
                                             </li>
                                         </ul>
                                     </td>
