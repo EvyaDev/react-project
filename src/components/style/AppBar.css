@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 nav {
   height: 50px;
   max-height: 70px;
@@ -7,23 +6,23 @@ nav {
   position: fixed;
   top: 0;
   -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
+          backdrop-filter: blur(18px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 10px 30px;
   -webkit-box-shadow: 0 0 30px -10px black;
-  box-shadow: 0 0 30px -10px black;
+          box-shadow: 0 0 30px -10px black;
   z-index: 999;
 }
 
@@ -39,11 +38,11 @@ nav .userArea .avatar {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: rgba(95, 158, 160, 0.589);
 }
 
@@ -51,7 +50,7 @@ nav .userArea .avatar .img-avatar {
   width: inherit;
   height: inherit;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 
 nav .userArea .profile-open {
@@ -64,17 +63,17 @@ nav .userArea .profile-open {
   top: 5px;
   border-radius: 20px;
   -webkit-box-shadow: 0 0 50px -30px black;
-  box-shadow: 0 0 50px -30px black;
+          box-shadow: 0 0 50px -30px black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 20px;
   -webkit-transition: 1s;
   transition: 1s;
@@ -86,11 +85,11 @@ nav .userArea .profile-open a {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 nav .userArea .profile-open a .permissionTag {
@@ -107,8 +106,8 @@ nav .userArea .profile-open ul {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 10px;
 }
 
@@ -127,8 +126,8 @@ nav .userArea .profile-open ul a {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   gap: 10px;
   font-size: .7em;
 }
@@ -173,14 +172,14 @@ nav .navigator {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 nav .navigator a {
@@ -205,8 +204,7 @@ nav .navigator a::before {
   z-index: 1;
 }
 
-nav .navigator a.currentPage::before,
-nav .navigator a:hover::before {
+nav .navigator a.currentPage::before, nav .navigator a:hover::before {
   height: 100%;
   border-radius: 5px;
   opacity: 1;
@@ -225,14 +223,14 @@ nav .leftSide {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: end;
+      -ms-flex-pack: end;
+          justify-content: end;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 10px;
   width: 25%;
 }
@@ -254,14 +252,13 @@ nav .leftSide .btnMode {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 0px;
   border: none;
   cursor: pointer;
 }
-
 /*# sourceMappingURL=AppBar.css.map */

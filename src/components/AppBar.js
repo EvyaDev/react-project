@@ -1,13 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import ToggleColorMode from "../../style/ToggleColorMode";
-import "./AppBar.css"
-import { RoleTypes, checkPermission, userContext } from "../../App";
+import { useContext, useState } from "react";
+import ToggleColorMode from "../style/ToggleColorMode";
+import { RoleTypes, checkPermission, userContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
-import { func, required } from "joi";
 import { RiUserSettingsLine } from "react-icons/ri"
 import { LuUsers } from "react-icons/lu"
 import { BiFoodMenu } from "react-icons/bi"
-import { BsSearch } from "react-icons/bs";
+import "././style/AppBar.css"
 
 export const avatarImage = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
 

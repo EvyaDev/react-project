@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Router from './Router';
-import AppBar from './components/AppBar/AppBar';
+import AppBar from './components/AppBar';
 import Snackbar from './components/Snackbar';
 import RouterAuth from './RouterAuth';
 import '././style/App.css';
