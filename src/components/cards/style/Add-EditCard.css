@@ -1,0 +1,147 @@
+.AddCard,
+.EditCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 100vh;
+  width: 100%;
+}
+
+.AddCard .display,
+.EditCard .display {
+  background-image: radial-gradient(#7c7c7c4d 1.8px, #ffffff00 1.8px);
+  background-size: 36px 36px;
+  height: inherit;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 40px;
+  border-right: solid 1px #999999;
+}
+
+.AddCard .form,
+.EditCard .form {
+  width: 70%;
+}
+
+.AddCard .form h2,
+.EditCard .form h2 {
+  display: block;
+}
+
+.AddCard .form form,
+.EditCard .form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 50px 100px;
+}
+
+.AddCard .form form label,
+.EditCard .form form label {
+  font-size: 14px;
+  padding: 0 5px;
+  margin-top: 10px;
+}
+
+.AddCard .form form svg.iconError,
+.EditCard .form form svg.iconError {
+  position: relative;
+  color: yellow;
+  font-size: 15px;
+}
+
+.AddCard .form form input,
+.AddCard .form form textarea,
+.EditCard .form form input,
+.EditCard .form form textarea {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  border: 1px solid gray;
+  border-radius: 6px;
+  position: relative;
+  line-height: 5ex;
+  padding: 0 10px;
+  width: 100%;
+  resize: none;
+}
+
+.AddCard .form form input ::-webkit-input-placeholder,
+.AddCard .form form textarea ::-webkit-input-placeholder,
+.EditCard .form form input ::-webkit-input-placeholder,
+.EditCard .form form textarea ::-webkit-input-placeholder {
+  color: #78787880;
+}
+
+.AddCard .form form input :-ms-input-placeholder,
+.AddCard .form form textarea :-ms-input-placeholder,
+.EditCard .form form input :-ms-input-placeholder,
+.EditCard .form form textarea :-ms-input-placeholder {
+  color: #78787880;
+}
+
+.AddCard .form form input ::-ms-input-placeholder,
+.AddCard .form form textarea ::-ms-input-placeholder,
+.EditCard .form form input ::-ms-input-placeholder,
+.EditCard .form form textarea ::-ms-input-placeholder {
+  color: #78787880;
+}
+
+.AddCard .form form input ::placeholder,
+.AddCard .form form textarea ::placeholder,
+.EditCard .form form input ::placeholder,
+.EditCard .form form textarea ::placeholder {
+  color: #78787880;
+}
+
+.AddCard .form form textarea,
+.EditCard .form form textarea {
+  line-height: 3ex;
+  padding: 10px;
+}
+
+.AddCard .form form .checkbox,
+.EditCard .form form .checkbox {
+  -webkit-transform: scale(150%);
+          transform: scale(150%);
+}
+
+.AddCard .form button,
+.EditCard .form button {
+  margin-top: 15px;
+  background-color: rgba(208, 224, 253, 0.602);
+  border-radius: 10px;
+  padding: 10px;
+  stroke: none;
+  border: rgba(255, 255, 255, 0.137) 1px solid;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.AddCard .form .validationError,
+.EditCard .form .validationError {
+  color: red;
+  text-align: right;
+  font-size: 14px;
+}
+/*# sourceMappingURL=Add-EditCard.css.map */

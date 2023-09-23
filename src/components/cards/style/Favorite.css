@@ -1,0 +1,30 @@
+.Favorite .errorFavorite {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.Favorite .errorFavorite svg {
+  font-size: 2em;
+}
+
+.Favorite .errorFavorite .loginBtn {
+  padding: 0 10px;
+  display: block;
+  font-size: .9em;
+  background-color: var(--level2);
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=Favorite.css.map */

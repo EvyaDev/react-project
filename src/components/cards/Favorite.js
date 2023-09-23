@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { token, userContext } from '../../App';
-import Card from './Card';
-import Loader from '../Loader';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import Cards from './Cards';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import "././style/Favorite.css"
 
 export default function Favorite() {
     const [favoriteList, setFavoriteList] = useState([])

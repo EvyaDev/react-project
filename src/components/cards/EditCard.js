@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
-import Card from "./Card"
 import { token, userContext } from '../../App'
 import { JOI_HEBREW } from "../../joi-hebrew"
 import joi from 'joi'
-
-import "./Card.css"
 import { LuAlertTriangle } from 'react-icons/lu'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
 import { BsTrash3 } from 'react-icons/bs'
+import "././style/Add-EditCard.css"
 
 
 export default function EditCard() {
@@ -102,7 +100,7 @@ export default function EditCard() {
     }
 
     return (
-        <div className="editCard">
+        <div className="EditCard">
 
             <div className="form">
                 <form onSubmit={save}>

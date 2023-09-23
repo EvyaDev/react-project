@@ -1,11 +1,10 @@
 import { useContext, useState } from "react"
-import "./Card.css"
 import { useNavigate } from "react-router-dom";
-import Card from "./Card";
 import { token, userContext } from "../../App";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { BsTrash3 } from "react-icons/bs";
+import "././style/Add-EditCard.css"
 
 export default function AddCard() {
 
@@ -54,7 +53,7 @@ export default function AddCard() {
     }
 
     return (
-        <div className="addCard">
+        <div className="AddCard">
 
             <div className="form">
                 <form onSubmit={addNew}>
