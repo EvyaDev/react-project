@@ -1,53 +1,54 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import joi, { func } from 'joi';
+import joi from 'joi';
 import { JOI_HEBREW } from "../../joi-hebrew"
 import { token } from '../../App';
+import { LuAlertTriangle } from 'react-icons/lu';
 
 export default function Signup() {
 
     const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState({ business: false });
+    const Navigate = useNavigate();
 
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*\d.*\d.*\d)(?=.*[!@#$%^&*-_*])/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d.*\d.*\d.*\d)(?=.*[!@#$%^&*_-])/;
 
 
     const SignupSchema = joi.object({
         firstName: joi.string().min(3).max(12).required(),
         middleName: joi.string().min(3).max(12),
         lastName: joi.string().min(3).max(20).required(),
-        phone: joi.string().alphanum().min(5).max(30).required(),
-        email: joi.string().min(5).max(30).required(),
+        phone: joi.string().regex(/[0-9]{7,10}$/).messages({ 'string.pattern.base': "מספר טלפון לא תקין" }).min(7).max(20).required(),
+        email: joi.string().email({ minDomainSegments: 2, tlds: false }).required(),
         password: joi.string().pattern(passwordRegex).messages({
-            'string.pattern.base': 'הסיסמה חייבת לכלול לפחות אות אחת גדולה, אות אחת קטנה באנגלית, לפחות 4 מספרים, וסימן מיוחד מתוך !@, ולהיות לפחות באורך של 8 תווים.',
+            'string.pattern.base': 'הסיסמה חייבת לכלול אות גדולה, אות קטנה 4 ספרות וסימן מיוחד',
         }).min(8).max(30).required(),
-        imgUrl: joi.string(),
+        imgUrl: joi.string().min(8),
         imgAlt: joi.string(),
-        state: joi.string().min(3).max(10),
-        country: joi.string().min(3).max(10),
-        city: joi.string().max(10),
-        street: joi.string().min(3).max(10),
-        houseNumber: joi.string().alphanum(),
-        zip: joi.string().alphanum(),
+        state: joi.string().min(3).max(15),
+        country: joi.string().min(3).max(15).required(),
+        city: joi.string().max(15).required(),
+        street: joi.string().min(3).max(20).required(),
+        houseNumber: joi.string().alphanum().required(),
+        zip: joi.string().alphanum().max(10),
         business: joi.boolean(),
     })
 
-    const Navigate = useNavigate();
     const structure = [
-        { id: "firstName", type: "text", label: "שם פרטי", placeholder: "שם פרטי" },
+        { id: "firstName", type: "text", label: "שם פרטי", placeholder: "שם פרטי", require: true },
         { id: "middleName", type: "text", label: "שם אמצעי", placeholder: "שם אמצעי" },
-        { id: "lastName", type: "text", label: "שם משפחה", placeholder: "שם משפחה" },
-        { id: "phone", type: "tel", label: "טלפון", placeholder: "טלפון" },
-        { id: "email", type: "text", label: "אימייל", placeholder: "אימייל" },
-        { id: "password", type: "text", label: "סיסמה", placeholder: "סיסמה" },
+        { id: "lastName", type: "text", label: "שם משפחה", placeholder: "שם משפחה", require: true },
+        { id: "phone", type: "tel", label: "טלפון", placeholder: "טלפון", require: true },
+        { id: "email", type: "text", label: "אימייל", placeholder: "אימייל", require: true },
+        { id: "password", type: "text", label: "סיסמה", placeholder: "סיסמה", require: true },
         { id: "imgUrl", type: "text", label: "תמונה", placeholder: "תמונה" },
         { id: "imgAlt", type: "text", label: "imgAlt", placeholder: "imgAlt" },
         { id: "state", type: "text", label: "מחוז", placeholder: "מחוז" },
-        { id: "country", type: "text", label: "מדינה", placeholder: "מדינה" },
-        { id: "city", type: "text", label: "עיר", placeholder: "עיר" },
-        { id: "street", type: "text", label: "רחוב", placeholder: "רחוב" },
-        { id: "houseNumber", type: "number", label: "בית", placeholder: "בית" },
+        { id: "country", type: "text", label: "מדינה", placeholder: "מדינה", require: true },
+        { id: "city", type: "text", label: "עיר", placeholder: "עיר", require: true },
+        { id: "street", type: "text", label: "רחוב", placeholder: "רחוב", require: true },
+        { id: "houseNumber", type: "number", label: "בית", placeholder: "בית", require: true },
         { id: "zip", type: "number", label: "מיקוד", placeholder: "מיקוד" },
         { id: "business", type: "checkbox", label: " לקוח עסקי? ", },
     ]
@@ -96,6 +97,9 @@ export default function Signup() {
                 if (res.ok) {
                     return res.json();
                 } else {
+                    res.text().then(x => {
+                        setErrors({ ...errors, auth: x })
+                    })
                     return res.text().then(x => {
                         throw new Error(x);
                     });
@@ -120,16 +124,18 @@ export default function Signup() {
                 {structure.map((s, i) => {
                     return (
 
-                        <div key={s.id} className={"inputField"} >
-                            {s.type != "checkbox" && <label >{s.label}: </label>}
+                        <div key={s.id} className="inputField" >
+                            {errors[s.id] && <LuAlertTriangle className='iconError' />}
+                            {s.type != "checkbox" && <label>{s.require && <span>* </span>}{s.label}: </label>}
                             {s.type === "checkbox" && <p>{s.label}</p>}
-                            <input className={s.type === "checkbox" && "checkbox"} id={s.id} type={s.type} placeholder={s.placeholder} onChange={handleInput} />
-                            <p className={'validationError'}>{errors ? errors[s.id] : ""}</p>
+                            <input className={s.type === "checkbox" ? "checkbox" : ""} id={s.id} required={s.require} type={s.type} placeholder={s.placeholder} onChange={handleInput} />
+                            <p className='validationError'>{errors ? errors[s.id] : ""}</p>
                         </div>
 
                     )
                 })}
-                <button>הירשם</button>
+                <button disabled={!IsValid}>הירשם</button>
+                <p className='validationError'>{errors ? errors.auth : ""}</p>
                 <Link to={"/login"}>נרשמת? לחץ כאן</Link>
             </form>
         </div>)

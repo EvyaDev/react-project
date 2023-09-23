@@ -1,20 +1,15 @@
 import React from 'react'
 import { Route, Routes } from "react-router-dom"
 import ErrorPage from "./ErrorPage"
-import AddCard from './components/cards/AddCard'
 import Signup from './components/userArea/Signup'
 import Login from './components/userArea/Login'
-import Cards from './components/cards/Cards'
 import Home from './components/Home'
 import Logout from './components/userArea/Logout'
-import EditCard from './components/cards/EditCard'
 import CardPage from './components/cards/CardPage'
-import CardList from './components/cards/CardList'
 import Clients from './components/userArea/clients/Clients'
-import EditUser from './components/userArea/EditUser'
-import MyCards from './components/cards/MyCards'
 import SearchPage from './SearchPage'
 import Favorite from './components/cards/Favorite'
+import About from './About'
 
 export default function Router() {
     return (
@@ -28,6 +23,7 @@ export default function Router() {
             <Route path="/card-single-page/:id" element={<CardPage />} />
             <Route path="/clients" element={<Clients />} />
             <Route path="/search-page/:query?" element={<SearchPage />} />
+            <Route path="/about" element={<About />} />
         </Routes>
     )
 }

@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader';
 import { ImWhatsapp, ImPrinter } from 'react-icons/im';
 import { FiEdit } from 'react-icons/fi';
+import "./style/SinglePageCard.css"
 
 export default function CardPage({ cardData }) {
     const { id } = useParams("");

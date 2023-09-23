@@ -3,14 +3,14 @@ import { createGlobalStyle } from 'styled-components';
 const colors = {
     // GLOBAL dark mode colors
     dark: {
-        bgc: "#221a2a",
+        bgc: "#231c2a",
         color: "white",
     },
 
     // GLOBAL light mode colors
     light: {
         bgc: "#f4f4f4",
-        color: "#221a2a",
+        color: "#231c2a",
     }
 }
 
@@ -18,7 +18,7 @@ export const Theme = createGlobalStyle`
 
 :root{
     --dark:${colors.dark.bgc};
-    --level2 :#92d5ad;
+    --level2 :#5bcdfc;
 }
 
 body {
@@ -39,7 +39,9 @@ nav{
         }
     }
 }
-
+.inputField>label span,svg.iconError{
+    color: ${(props) => (props.darkMode ? "yellow" : "red")};
+}
   input,textarea{
     background-color:${(props) => (props.darkMode ? 'rgb(49, 49, 49)' : colors.light.bgc)};
     color: ${(props) => (props.darkMode ? colors.dark.color : colors.light.color)};

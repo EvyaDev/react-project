@@ -1,14 +1,11 @@
-import React, { useContext } from 'react'
 import Cards from './cards/Cards'
-import Snackbar from './Snackbar'
-import { userContext } from '../App'
 
-
-export default function Home({ ch }) {
+export default function Home() {
     return (
-        <>
+        <div className='Home'>
             <h1>כל הכרטיסים </h1>
+            <h2>מערכת לניהול מתכונים</h2>
             <Cards />
-        </>
+        </div>
     )
 }

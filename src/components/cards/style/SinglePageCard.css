@@ -1,0 +1,111 @@
+.CardPage .frmae {
+  width: 100%;
+  min-height: 50vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.CardPage .frmae .textHeader {
+  background-color: rgba(118, 118, 118, 0.433);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  padding: 30px;
+  max-width: 70%;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.CardPage .frmae .textHeader b hr {
+  margin: 20px 0 20px 0;
+}
+
+.CardPage .frmae .textHeader h1 {
+  line-height: 1em;
+}
+
+.CardPage .content {
+  padding: 20px 20%;
+}
+
+.CardPage .content .contentHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  background-color: #78787815;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 35px;
+  border-radius: 5px;
+}
+
+.CardPage .content .contentHeader a {
+  text-decoration: none;
+}
+
+.CardPage .content .contentHeader button {
+  padding: 2px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+}
+
+.CardPage .content .contentHeader button:hover {
+  background-color: var(--level2);
+  cursor: pointer;
+}
+
+.CardPage .content .contentHeader .share {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 20px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.CardPage .content .contentHeader .share a:hover {
+  color: var(--level2);
+}
+
+.CardPage .content .contentBody p {
+  white-space: break-spaces;
+}
+/*# sourceMappingURL=SinglePageCard.css.map */

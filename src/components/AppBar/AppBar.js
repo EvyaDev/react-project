@@ -17,9 +17,10 @@ export default function AppBar() {
     const { userRole, user, setUser, isLogged } = useContext(userContext)
     const [profileOpen, setProfileOpen] = useState(false);
     const linkStructure = [
-        { title: "בית", route: "/", rolesAllow: Object.values(RoleTypes) },
+        { title: "בית", route: "/" },
         { title: "הכרטיסים שלי", route: "/cards", rolesAllow: [RoleTypes.ADMIN, RoleTypes.BUSINESS] },
         { title: "המועדפים שלי", route: "/my-favorite", rolesAllow: Object.values(RoleTypes) },
+        { title: "אודות", route: "/about" },
     ];
 
     function open() {

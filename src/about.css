@@ -1,0 +1,23 @@
+.About {
+    width: 70vw;
+    margin: 0 auto;
+    padding: 30px 50px;
+}
+
+.About section>h2 {
+    display: inline-block;
+    background-color: var(--level2);
+    color: black;
+    padding: 0 10px;
+    line-height: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 25px -10px var(--level2);
+}
+
+.About ul {
+    list-style: circle;
+}
+
+.About p {
+    white-space: break-spaces;
+}

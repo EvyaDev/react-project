@@ -3,12 +3,15 @@
     padding-top: 50px;
 
     .frame {
-        // margin-top: 60px;
         opacity: 1;
         width: 100%;
         min-height: 100vh;
         height: 100%;
     }
+}
+
+.Home>h2 {
+    text-align: center;
 }
 
 .ErrorPage {

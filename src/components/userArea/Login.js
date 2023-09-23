@@ -1,29 +1,28 @@
-import './user.css';
 import joi from 'joi';
 import { JOI_HEBREW } from "../../joi-hebrew"
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { token, userContext } from '../../App';
 import { RoleTypes } from '../../App';
+import { LuAlertTriangle } from 'react-icons/lu';
+import './user.css';
 
 export default function LoginClient() {
 
+    const { snackbar, setUserRole, setUser, setIsLogged } = useContext(userContext);
     const Navigate = useNavigate();
-    const { user, snackbar, setUserRole, setUser, setIsLogged } = useContext(userContext);
     const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState([]);
 
     const LoginSchema = joi.object({
-        email: joi.string(),
-        password: joi.string().alphanum().min(5).max(30).required(),
+        email: joi.string().email({ minDomainSegments: 2, tlds: false }).required(),
+        password: joi.string().min(5).max(30).required(),
     })
-
 
     function HandleInput(ev) {
 
         const { id, value } = ev.target;
-
         //create a new variable to live render a Joi validation
         const newFormData = {
             ...formData,
@@ -31,7 +30,12 @@ export default function LoginClient() {
         }
         setFormData(newFormData)
 
-        const schema = LoginSchema.validate(newFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
+        const schema = LoginSchema.validate(newFormData, {
+            abortEarly: false,
+            messages: { he: JOI_HEBREW },
+            errors: { language: 'he' }
+        });
+
         const errors = {};
 
         if (schema.error) {
@@ -47,7 +51,7 @@ export default function LoginClient() {
     }
 
 
-    // function on login (send form)
+    // function on LOGIN (send form)
     function login(ev) {
         ev.preventDefault();
 
@@ -61,6 +65,10 @@ export default function LoginClient() {
                 if (res.ok) {
                     return res.json();
                 } else {
+                    res.text().then(x => {
+                        setErrors({ ...errors, auth: x })
+                    })
+
                     return res.text().then(x => {
                         throw new Error(x);
                     });
@@ -77,14 +85,11 @@ export default function LoginClient() {
                 } else {
                     setUserRole(RoleTypes.USER)
                 }
-
                 Navigate("/")
             })
             .catch(err => {
-                // console.log(err.message);
                 setIsLogged(false)
                 setUserRole(RoleTypes.NONE)
-
             });
     }
 
@@ -94,18 +99,19 @@ export default function LoginClient() {
             <form onSubmit={login}>
                 <h2> התחברות לקוח</h2>
                 <div className='inputField'>
-                    <label>אימייל</label>
+                    <label><span>* </span> אימייל</label>
+                    {errors.email && <LuAlertTriangle className='iconError' />}
                     <input id="email" type="email" required placeholder='אימייל' onChange={HandleInput} />
-                    <p style={{ textAlign: "center" }} className={'validationError'}>{errors ? errors.email : ""}</p>
+                    <p className={'validationError'}>{errors ? errors.email : ""}</p>
                 </div>
                 <div className='inputField'>
-                    <label>סיסמה</label>
+                    <label> <span>* </span> סיסמה</label>
+                    {errors.password && <LuAlertTriangle className='iconError' />}
                     <input id="password" required type="password" placeholder='סיסמה' onChange={HandleInput} />
-                    <p style={{ textAlign: "center" }} className={'validationError'}>{errors ? errors.password : ""}</p>
+                    <p className={'validationError'}>{errors ? errors.password : ""}</p>
                 </div>
-
-                <button > התחבר </button>
-                {/* disabled={!IsValid} */}
+                <button disabled={!IsValid}> התחבר </button>
+                <p className={'validationError'}>{errors.auth}</p>
 
                 <Link to={"/signup"}>להרשמה לחץ כאן</Link>
             </form>

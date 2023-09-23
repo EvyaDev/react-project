@@ -11,6 +11,10 @@
   height: 100%;
 }
 
+.Home > h2 {
+  text-align: center;
+}
+
 .ErrorPage {
   text-align: center;
   height: calc(100vh - 80px);

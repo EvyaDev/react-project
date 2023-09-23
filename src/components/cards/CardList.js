@@ -3,8 +3,10 @@ import Loader from '../Loader';
 import { Link } from 'react-router-dom';
 import { RoleTypes, token, userContext } from '../../App';
 import { BsTrash3 } from 'react-icons/bs';
-import "../adminArea/admin.css"
+import "../../components/userArea/admin.css"
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
+import { FiEdit } from 'react-icons/fi';
+
 
 export default function CardsList() {
 
@@ -62,7 +64,6 @@ export default function CardsList() {
                         {userRole === RoleTypes.ADMIN && <th>מזהה משתמש</th>}
                         <th>כותרת</th>
                         <th>כותרת משנה</th>
-                        <th>תוכן</th>
                         <th>תמונה</th>
                         <th></th>
                     </tr>
@@ -77,9 +78,11 @@ export default function CardsList() {
                                 {userRole === RoleTypes.ADMIN && <td> <p>#{c.clientId}</p> </td>}
                                 <td> <p>{c.title}</p> </td>
                                 <td> <p>{c.subtitle.slice(0, 30)}...</p> </td>
-                                <td> <p title={c.description}>{c.description.slice(0, 50)}...</p> </td>
                                 <td> <p>{c.imgUrl.slice(0, 50)}...</p> </td>
-                                <td> <BsTrash3 onClick={() => remove(c.id)} /> </td>
+                                <td className='actions'>
+                                    <BsTrash3 onClick={() => remove(c.id)} />
+                                    <Link to={`/editCard/${c.id}`}><FiEdit /></Link>
+                                </td>
                             </tr>
                         ))
                     ) : (

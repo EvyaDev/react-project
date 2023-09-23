@@ -4,7 +4,7 @@ import { FiEdit } from "react-icons/fi"
 import { BsTrash3 } from "react-icons/bs"
 import { Link } from 'react-router-dom';
 import { RoleTypes, token, userContext } from '../../App';
-import "./Card.css"
+import "././style/Card.css"
 import Loader from '../Loader';
 
 
