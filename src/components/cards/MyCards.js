@@ -3,6 +3,7 @@ import Cards from './Cards'
 import { token } from '../../App';
 import { Link } from 'react-router-dom';
 import Loader from '../Loader';
+import "./style/Cards.css"
 
 export default function MyCards() {
     const [myCardsList, setMyCardsList] = useState([])

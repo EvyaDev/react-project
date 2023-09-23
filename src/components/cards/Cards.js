@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import Card from './Card';
 import Loader from '../Loader';
-import "./Card.css"
 import { Link } from 'react-router-dom';
 import { RoleTypes, token, userContext } from '../../App';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
+import "././style/Cards.css"
 
 export default function Cards({ array, addBtnShow }) {
     const [cards, setCards] = useState([])

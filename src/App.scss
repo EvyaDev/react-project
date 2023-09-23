@@ -50,3 +50,40 @@
         }
     }
 }
+
+@media (max-width: 900px) {
+
+    .Favorite,
+    .addCard,
+    .editCard {
+        // display: flex;
+        flex-direction: column;
+
+        .display {
+            width: 100%;
+        }
+
+        .form {
+            width: 100%;
+        }
+    }
+
+    .Cards {
+        .cardsList {
+            flex-wrap: nowrap;
+            overflow: scroll;
+            width: 100%;
+        }
+    }
+
+    .CardPage {
+        .frmae {
+            min-height: 30vh;
+
+        }
+
+        .content {
+            padding: 20px 7%;
+        }
+    }
+}

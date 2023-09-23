@@ -3,9 +3,9 @@ import Loader from '../Loader';
 import { Link } from 'react-router-dom';
 import { RoleTypes, token, userContext } from '../../App';
 import { BsTrash3 } from 'react-icons/bs';
-import "../../components/userArea/admin.css"
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
 import { FiEdit } from 'react-icons/fi';
+import "../../components/userArea/admin.css"
 
 
 export default function CardsList() {
