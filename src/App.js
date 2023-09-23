@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Router from './Router';
 import AppBar from './components/AppBar/AppBar';
-import './App.css';
 import Snackbar from './components/Snackbar';
 import RouterAuth from './RouterAuth';
+import '././style/App.css';
 
 export const userContext = React.createContext("")
 export const token = "3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0"
