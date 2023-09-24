@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { token, userContext } from '../../App'
 import { useNavigate } from 'react-router-dom'
 import { avatarImage } from '../AppBar'
+import "./style/EditUser.css"
 
 export default function EditUser() {
     const { isLogged, user, setUser } = useContext(userContext)

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { RoleTypes, userContext } from '../../App';
 
@@ -23,6 +23,4 @@ export default function Logout() {
                 Navigate("/login")
             })
     }, [])
-
-
 }

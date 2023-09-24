@@ -4,6 +4,7 @@ import joi from 'joi';
 import { JOI_HEBREW } from "../../joi-hebrew"
 import { token } from '../../App';
 import { LuAlertTriangle } from 'react-icons/lu';
+import "./style/user.css"
 
 export default function Signup() {
 

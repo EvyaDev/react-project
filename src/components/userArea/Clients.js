@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { RoleTypes, token, userContext } from '../../../App'
-import { avatarImage } from '../../AppBar';
+import { token, userContext } from '../../App'
+import { avatarImage } from '../AppBar';
 import { FaTrash } from 'react-icons/fa';
-import { FiEdit } from 'react-icons/fi';
-import "./clients.css"
+import "./style/clients.css"
 
 export default function Clients() {
 

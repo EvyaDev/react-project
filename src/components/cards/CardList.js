@@ -5,7 +5,7 @@ import { RoleTypes, token, userContext } from '../../App';
 import { BsTrash3 } from 'react-icons/bs';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
 import { FiEdit } from 'react-icons/fi';
-import "../../components/userArea/admin.css"
+import "./style/CardsList.css"
 
 
 export default function CardsList() {
