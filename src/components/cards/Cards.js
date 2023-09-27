@@ -25,13 +25,20 @@ export default function Cards({ array, addBtnShow }) {
         setLoading(true)
 
         Promise.all([
-            fetch(`https://api.shipap.co.il/cards?token=${token}`).then(res => res.json().catch(err => console.log(err))),
+
+            fetch(`https://api.shipap.co.il/cards?token=${token}`, { credentials: "include" })
+                .then(res => res.json())
+                .catch(err => console.log(err)),
+
             fetch(`https://api.shipap.co.il/cards/favorite?token=${token}`, { credentials: "include" })
                 .then(res => {
                     if (res.ok) {
                         return res.json();
+                    } else {
+                        throw new Error(res.status)
                     }
                 })
+                .catch(err => console.log(err))
 
         ]).then(data => {
             const [cards, favorite] = data;
