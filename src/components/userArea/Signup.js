@@ -85,7 +85,6 @@ export default function Signup() {
 
     function signup(ev) {
         ev.preventDefault();
-        console.log(formData);
 
         fetch(`https://api.shipap.co.il/clients/signup?token=${token}`, {
             credentials: 'include',
@@ -106,7 +105,6 @@ export default function Signup() {
                 }
             })
             .then(data => {
-                console.log(data);
                 Navigate("/login")
             })
             .catch(err => console.log(err))
