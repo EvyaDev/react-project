@@ -15,7 +15,6 @@ export default function Signup() {
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d.*\d.*\d.*\d)(?=.*[!@#$%^&*_-])/;
 
-
     const SignupSchema = joi.object({
         firstName: joi.string().min(3).max(12).required(),
         middleName: joi.string().min(3).max(12),
@@ -110,9 +109,7 @@ export default function Signup() {
                 console.log(data);
                 Navigate("/login")
             })
-            .catch(err => {
-                console.log(err.message);
-            });
+            .catch(err => console.log(err))
 
     }
 

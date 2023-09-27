@@ -41,9 +41,8 @@ export default function LoginClient() {
         if (schema.error) {
             for (const e of schema.error.details) {
                 errors[e.context.key] = e.message;
-            };
+            }
             setIsValid(false)
-
         } else {
             setIsValid(true)
         }
@@ -61,7 +60,7 @@ export default function LoginClient() {
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(formData),
         })
-            .then(res => {
+            .then(async res => {
                 if (res.ok) {
                     return res.json();
                 } else {
@@ -69,9 +68,8 @@ export default function LoginClient() {
                         setErrors({ ...errors, auth: x })
                     })
 
-                    return res.text().then(x => {
-                        throw new Error(x);
-                    });
+                    const x_1 = await res.text();
+                    throw new Error(x_1);
                 }
             })
             .then(data => {
@@ -88,6 +86,7 @@ export default function LoginClient() {
                 Navigate("/")
             })
             .catch(err => {
+                console.log(err);
                 setIsLogged(false)
                 setUserRole(RoleTypes.NONE)
             });

@@ -37,14 +37,15 @@ export default function Clients() {
             .then(data => {
                 setClients(data)
             })
-            .catch(err => console.log("error is: ", err));
+            .catch(err => console.log(err));
 
     }, [clients.length, isLogged])
 
 
     //remove client
     function removeClient(itemId) {
-        if (!window.confirm("Are you sure you want to remove?")) {
+
+        if (!window.confirm("אתה בטוח שברצונך למחוק את המשתמש?")) {
             return;
         }
 
@@ -54,7 +55,8 @@ export default function Clients() {
         })
             .then(() => {
                 setClients([...clients.filter(clients => clients.id !== itemId)])
-            });
+            })
+            .catch(err => console.log(err));
     }
 
     //change premission status of client
@@ -62,7 +64,7 @@ export default function Clients() {
         const status = JSON.parse(ev.target.value);
         const obj = { ...client, id: 4, business: status }
 
-        if (!window.confirm("Are you sure you want to change this?")) {
+        if (!window.confirm("האם אתה בטוח שברצונך לשמור את השינויים?")) {
             return;
         }
 
@@ -74,7 +76,8 @@ export default function Clients() {
         })
             .then(() => {
                 snackbar(`ההרשאות השתנו למשתמש ${status ? "עסקי" : "רגיל"}`)
-            });
+            })
+            .catch(err => console.log(err));
     }
 
     return (

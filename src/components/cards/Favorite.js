@@ -9,7 +9,7 @@ import "././style/Favorite.css"
 export default function Favorite() {
 
     const [favoriteList, setFavoriteList] = useState([]);
-    const { countFavorite, isLogged } = useContext(userContext);
+    const { cardChanged, isLogged } = useContext(userContext);
 
     //get all favorite cards
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function Favorite() {
                 setFavoriteList(data)
             })
             .catch(err => console.log(err))
-    }, [countFavorite])
+    }, [cardChanged])
 
 
     return (

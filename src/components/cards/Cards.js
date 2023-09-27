@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Card from './Card';
 import Loader from '../Loader';
 import { Link } from 'react-router-dom';
-import { token } from '../../App';
+import { token, userContext } from '../../App';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
 import "././style/Cards.css"
 
 export default function Cards({ array, addBtnShow }) {
+    const { cardChanged } = useContext(userContext)
     const [cards, setCards] = useState([])
     const [favoriteList, setFavoriteList] = useState([])
     const [loading, setLoading] = useState(false);
@@ -24,7 +25,7 @@ export default function Cards({ array, addBtnShow }) {
         setLoading(true)
 
         Promise.all([
-            fetch(`https://api.shipap.co.il/cards?token=${token}`).then(res => res.json()),
+            fetch(`https://api.shipap.co.il/cards?token=${token}`).then(res => res.json().catch(err => console.log(err))),
             fetch(`https://api.shipap.co.il/cards/favorite?token=${token}`, { credentials: "include" })
                 .then(res => {
                     if (res.ok) {
@@ -33,9 +34,8 @@ export default function Cards({ array, addBtnShow }) {
                 })
 
         ]).then(data => {
-            setLoading(false)
             const [cards, favorite] = data;
-
+            setLoading(false)
             setCards(cards);
 
             if (data[1]) {
@@ -45,7 +45,7 @@ export default function Cards({ array, addBtnShow }) {
             .catch(err => console.log(err))
             .finally(() => setLoading(false))
 
-    }, [cards.length, liked])
+    }, [cardChanged])
 
 
     return (
@@ -56,7 +56,6 @@ export default function Cards({ array, addBtnShow }) {
                     <button className='addCardBtn'> <MdOutlineAddCircleOutline /> מתכון חדש</button>
                 </Link>
             }
-
 
             <section className='cardsList'>
                 {(loading && !cards.length) ? <Loader color={"gray"} /> :
@@ -71,13 +70,9 @@ export default function Cards({ array, addBtnShow }) {
                         )
                     })
                         :
-
                         <p>אין נתונים</p>
                 }
             </section>
         </div>
     )
 }
-
-
-

@@ -20,19 +20,21 @@ export default function RouterAuth() {
 
     return (
         <Routes>
-            <Route path="*" element={<ErrorPage />} />
             <Route path="/" element={<Home />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/addCard" element={<AddCard />} />
-            <Route path="/editCard/:id" element={<EditCard />} />
-            <Route path="/cards" element={<MyCards />} />
-            <Route path="/my-favorite" element={<Favorite />} />
-            <Route path="/card-single-page/:id" element={<CardPage />} />
-            <Route path="/cardlist" element={<CardList />} />
-            <Route path="/clients" element={<Clients />} />
-            {userRole !== RoleTypes.ADMIN && <Route path="/editUser" element={<EditUser />} />}
-            <Route path="/search-page/:query?" element={<SearchPage />} />
+            <Route path="*" element={<ErrorPage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/clients" element={<Clients />} />
+            <Route path="/cardlist" element={<CardList />} />
+            <Route path="/errorPage" element={<ErrorPage />} />
+            <Route path="/my-favorite" element={<Favorite />} />
+            <Route path="/editCard/:id?" element={<EditCard />} />
+            <Route path="/card-single-page/:id" element={<CardPage />} />
+            <Route path="/search-page/:query?" element={<SearchPage />} />
+
+            {userRole !== RoleTypes.USER && < Route path="/addCard" element={<AddCard />} />}
+            {userRole !== RoleTypes.USER && <Route path="/cards" element={<MyCards />} />}
+            {userRole !== RoleTypes.ADMIN && <Route path="/editUser" element={<EditUser />} />}
         </Routes>
     )
 }

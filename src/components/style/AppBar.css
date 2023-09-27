@@ -1,4 +1,3 @@
-@charset "UTF-8";
 nav {
   height: 50px;
   max-height: 70px;
@@ -212,9 +211,7 @@ nav .navigator a.currentPage::before, nav .navigator a:hover::before {
 
 nav .navigator a span {
   position: relative;
-  /* או על פי הצורך */
   z-index: 2;
-  /* גדול מהקו התחתון */
 }
 
 nav .leftSide {

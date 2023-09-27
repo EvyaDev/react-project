@@ -18,7 +18,7 @@ export default function SearchPage() {
                 setCards(data.filter(card => card.title.includes(query)));
                 setLoading(false)
             })
-            .catch(err => { console.log(err) })
+            .catch(err => console.log(err))
 
     }, [query])
 
@@ -46,5 +46,3 @@ export default function SearchPage() {
         </div>
     )
 }
-
-//cards.map(c => c.id)

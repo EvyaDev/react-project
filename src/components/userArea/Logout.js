@@ -16,11 +16,12 @@ export default function Logout() {
             credentials: 'include',
         })
             .then(() => {
-                setIsLogged(false)
                 setUser("")
+                setIsLogged(false)
                 setUserRole(RoleTypes.NONE)
                 snackbar(" התנתקת בהצלחה")
                 Navigate("/login")
             })
+            .catch(err => console.log(err))
     }, [])
 }

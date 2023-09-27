@@ -9,7 +9,7 @@ import Loader from '../Loader';
 
 
 export default function Card({ cardData, isLiked, onlike }) {
-    const { countFavorite, setCountFavorite, isLogged, snackbar, userRole, user } = useContext(userContext)
+    const { cardChanged, setCardChanged, isLogged, snackbar, userRole, user } = useContext(userContext)
     const [loading, setLoading] = useState(false);
 
     //remove card
@@ -18,13 +18,20 @@ export default function Card({ cardData, isLiked, onlike }) {
             snackbar("המחיקה התבטלה!")
             return;
         }
-        fetch(`https://api.shipap.co.il/admin/cards/${itemId}?token=${token}`, {
+
+        fetch(`https://api.shipap.co.il/${userRole === RoleTypes.ADMIN ? "admin" : "business"}/cards/${itemId}?token=${token}`, {
             credentials: 'include',
             method: 'DELETE',
         })
-            .then(() => {
-                snackbar("הכרטיס נמחק בהצלחה!")
+            .then(res => {
+                if (res.ok) {
+                    snackbar("הכרטיס נמחק בהצלחה!")
+                } else {
+                    snackbar("המחיקה התבטלה!")
+                    throw new Error("error on delete");
+                }
             })
+            .then(() => setCardChanged(cardChanged + 1))
             .catch(err => console.log(err))
     }
 
@@ -38,9 +45,9 @@ export default function Card({ cardData, isLiked, onlike }) {
         })
             .then(() => {
                 onlike();
-                snackbar(isLogged ? " התווסף למועדפים!" : "התחבר כדי להוסיף")
+                snackbar(isLogged ? " התווסף למועדפים!" : " התחבר כדי להוסיף למועדפים!")
                 setLoading(false)
-                setCountFavorite(countFavorite + 1)
+                setCardChanged(cardChanged + 1)
             })
             .catch(err => console.log(err))
 
@@ -57,7 +64,7 @@ export default function Card({ cardData, isLiked, onlike }) {
             .then(() => {
                 setLoading(false)
                 onlike();
-                setCountFavorite(countFavorite - 1)
+                setCardChanged(cardChanged - 1)
                 snackbar(`הוסר מהמועדפים!`)
             })
             .catch(err => console.log(err))
@@ -69,6 +76,7 @@ export default function Card({ cardData, isLiked, onlike }) {
         <div className="Card" style={{ backgroundImage: `url(${cardData && cardData.imgUrl})` }}>
 
             <div className="cardFrame">
+                <p>{cardData.id}</p>
                 <Link to={`/card-single-page/${cardData.id}`}> <h2>{cardData.title}</h2></Link>
                 <p>{cardData && cardData.subtitle}</p>
                 <div className="actions" >

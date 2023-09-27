@@ -16,21 +16,11 @@ export default function AddCard() {
     const placeholderImg = "https://theme-assets.getbento.com/sensei/a42cf8c.sensei/assets/images/catering-item-placeholder-704x520.png"
 
     const addCardSchema = joi.object({
-        id: joi.any(),
-        title: joi.string().min(3).max(30).required(),
+        title: joi.string().min(3).max(50).required(),
         subtitle: joi.string().max(200).required(),
         imgUrl: joi.string().required(),
         imgAlt: joi.string().required(),
-        web: joi.any(),
         description: joi.string().min(10).max(2000).required(),
-        phone: joi.any(),
-        email: joi.any(),
-        state: joi.any(),
-        country: joi.any(),
-        city: joi.any(),
-        street: joi.any(),
-        houseNumber: joi.any(),
-        zip: joi.any(),
     })
 
     const Navigate = useNavigate()
@@ -43,6 +33,7 @@ export default function AddCard() {
         "street": "",
         "houseNumber": "",
         "zip": "",
+        "web": "",
     })
 
     function handleInput(ev) {
@@ -53,7 +44,7 @@ export default function AddCard() {
             [id]: value
         })
 
-        const schema = addCardSchema.validate(updateFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
+        const schema = addCardSchema.validate(updateFormData, { abortEarly: false, allowUnknown: true, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
 
         const errors = {};
         if (schema.error) {
@@ -66,7 +57,6 @@ export default function AddCard() {
         }
         setFormData(updateFormData)
         setErrors(errors)
-        console.log(formData);
     }
 
     function addNew(ev) {

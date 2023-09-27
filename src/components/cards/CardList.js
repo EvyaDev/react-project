@@ -21,16 +21,13 @@ export default function CardsList() {
             credentials: "include"
         })
             .then(res => res.json())
-            .then(data => {
-                setCards(data)
-                setLoading(false)
-            })
-            .catch(err => {
-                console.log(err);
-                setLoading(false);
-            });
+            .then(data => setCards(data))
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false))
+
     }, [cards.length])
 
+    //remove card
     function remove(itemId) {
         if (!window.confirm("אתה בטוח שברצונך למחוק את המתכון הזה?")) {
             snackbar("המחיקה התבטלה!");
@@ -43,7 +40,7 @@ export default function CardsList() {
         })
             .then(() => {
                 snackbar("המתכון נמחק בהצלחה!");
-                setCards([...cards.filter(c => c.id != itemId)])
+                setCards([...cards.filter(c => c.id !== itemId)])
             })
             .catch(err => console.log(err))
     }
@@ -76,7 +73,7 @@ export default function CardsList() {
                                 <td> <p>{c.id}</p> </td>
                                 {userRole === RoleTypes.ADMIN && <td> <p>#{c.clientId}</p> </td>}
                                 <td> <p>{c.title}</p> </td>
-                                <td> <img src={c.imgUrl}></img> </td>
+                                <td> <img alt={c.imgAlt} src={c.imgUrl}></img> </td>
                                 <td>
                                     <div className='actions'>
                                         <BsTrash3 onClick={() => remove(c.id)} />

@@ -29,7 +29,6 @@ export default function EditUser() {
         setFormData({
             ...user
         })
-        console.log(user);
     }, [user])
 
     function handleInput(ev) {
