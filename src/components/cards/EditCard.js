@@ -54,7 +54,6 @@ export default function EditCard() {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if ((user.id === data.clientId && userRole === RoleTypes.BUSINESS) || (userRole === RoleTypes.ADMIN && data.clientId === 0)) {
                     return setFormData(data);
                 } else {

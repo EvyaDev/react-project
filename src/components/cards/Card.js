@@ -76,7 +76,6 @@ export default function Card({ cardData, isLiked, onlike }) {
         <div className="Card" style={{ backgroundImage: `url(${cardData && cardData.imgUrl})` }}>
 
             <div className="cardFrame">
-                <p>{cardData.id}</p>
                 <Link to={`/card-single-page/${cardData.id}`}> <h2>{cardData.title}</h2></Link>
                 <p>{cardData && cardData.subtitle}</p>
                 <div className="actions" >

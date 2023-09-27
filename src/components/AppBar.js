@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ToggleColorMode from "../style/ToggleThemeMode";
 import { RoleTypes, checkPermission, userContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { RiUserSettingsLine } from "react-icons/ri"
 import { LuUsers } from "react-icons/lu"
 import { BiFoodMenu } from "react-icons/bi"
 import "././style/AppBar.css"
+import "././style/AppBarProfile.css"
 
 export const avatarImage = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
 
@@ -14,6 +15,7 @@ export default function AppBar() {
 
     const { userRole, user, setUser, isLogged } = useContext(userContext)
     const [profileOpen, setProfileOpen] = useState(false);
+    const [text, setText] = useState("");
     const linkStructure = [
         { title: "בית", route: "/" },
         { title: "הכרטיסים שלי", route: "/cards", rolesAllow: [RoleTypes.ADMIN, RoleTypes.BUSINESS] },
@@ -30,12 +32,18 @@ export default function AppBar() {
     }
 
     function searchInput(ev) {
-        const text = ev.target.value;
+        setText(ev.target.value);
         if (text === "") {
             return Navigate("/")
         }
         Navigate(`/search-page/${text}`)
     }
+
+    useEffect(() => {
+        if (window.location.pathname.split("/")[1] !== "search-page") {
+            setText("")
+        }
+    }, [window.location.pathname.split("/")[1]])
 
     return (
         <nav>
@@ -91,7 +99,7 @@ export default function AppBar() {
             </div>
 
             <div className="leftSide">
-                <input className="searchInput" onChange={searchInput} type="text" placeholder=" חיפוש מתכון..."></input>
+                <input className="searchInput" value={text} onChange={searchInput} type="text" placeholder="חיפוש מתכון..."></input>
                 <ToggleColorMode />
             </div>
         </nav >
