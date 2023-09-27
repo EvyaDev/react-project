@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import Router from './Router';
 import AppBar from './components/AppBar';
 import Snackbar from './components/Snackbar';
 import RouterAuth from './RouterAuth';
 import '././style/App.css';
 
-export const userContext = React.createContext("")
+export const userContext = createContext()
 export const token = "3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0"
 
 export function checkPermission(roles, role) {
@@ -19,24 +19,25 @@ export const RoleTypes = {
     NONE: "none",
 }
 
-
 export default function App() {
-
+    const [countFavorite, setCountFavorite] = useState(0);
     const [isLogged, setIsLogged] = useState();
     const [user, setUser] = useState("");
     const [userRole, setUserRole] = useState(RoleTypes.NONE);
     const [isShow, setIsShow] = useState(false);
     const [snackText, setSnackText] = useState("");
 
-    const snackbar = text => {
+    const snackbar = (text) => {
         setIsShow(true)
         setSnackText(text)
+
         setTimeout(() => {
             setIsShow(false)
         }, 3 * 1000)
+
     }
 
-    //check login status
+    //check login status first time
     useEffect(() => {
         fetch(`https://api.shipap.co.il/clients/login`, {
             credentials: 'include',
@@ -58,12 +59,37 @@ export default function App() {
             .catch(err => {
                 console.log(err);
             });
-    }, [user])
+    }, [])
 
+
+    //check login status every 10 minutes
+    useEffect(() => {
+        setInterval(() => {
+            fetch(`https://api.shipap.co.il/clients/login`, {
+                credentials: 'include',
+            })
+                .then(res => {
+                    if (res.ok) {
+                        return;
+                    } else {
+                        setIsLogged(false)
+                        setUser("")
+                        setUserRole(RoleTypes.NONE);
+                        throw new Error("המשתמש לא מחובר");
+                    }
+                })
+                .then(() => {
+                    console.log("מחובר");
+                    setIsLogged(true)
+                })
+                .catch(err => console.log(err))
+
+        }, 10 * 60 * 1000)
+    }, [])
 
     return (
 
-        <userContext.Provider value={{ snackbar, userRole, setUserRole, user, setUser, isLogged, setIsLogged }}>
+        <userContext.Provider value={{ countFavorite, setCountFavorite, snackbar, userRole, setUserRole, user, setUser, isLogged, setIsLogged }}>
             <div className="App">
                 <AppBar />
                 <div className="frame">

@@ -5,22 +5,16 @@ import { avatarImage } from '../AppBar'
 import "./style/EditUser.css"
 
 export default function EditUser() {
-    const { isLogged, user, setUser } = useContext(userContext)
+    const { user, setUser } = useContext(userContext)
     const [formData, setFormData] = useState({})
     const Navigate = useNavigate()
 
-    useEffect(() => {
-        setFormData({
-            ...user
-        })
-    }, [])
 
     const structure = [
         { id: "firstName", type: "text", label: "שם פרטי" },
         { id: "middleName", type: "text", label: "שם אמצעי" },
         { id: "lastName", type: "text", label: "שם משפחה" },
         { id: "phone", type: "tel", label: "טלפון" },
-        { id: "email", type: "text", label: "אימייל" },
         { id: "imgUrl", type: "text", label: "תמונה" },
         { id: "imgAlt", type: "text", label: "imgAlt" },
         { id: "state", type: "text", label: "מחוז" },
@@ -31,6 +25,12 @@ export default function EditUser() {
         { id: "zip", type: "number", label: "מיקוד" },
     ]
 
+    useEffect(() => {
+        setFormData({
+            ...user
+        })
+        console.log(user);
+    }, [user])
 
     function handleInput(ev) {
         const { id, value } = ev.target;
@@ -55,7 +55,8 @@ export default function EditUser() {
             .then(() => {
                 setUser(formData)
                 Navigate(-1)
-            });
+            })
+            .catch(err => console.log(err))
     }
 
 
@@ -63,16 +64,15 @@ export default function EditUser() {
         <div className='EditUser'>
             <div>
                 <div className='head'>
-                    <img onError={() => setFormData({ ...user, imgUrl: avatarImage })}
-                        src={formData.imgUrl}></img>
+                    <img alt={formData.imgAlt} onError={() => setFormData({ ...user, imgUrl: avatarImage })}
+                        src={formData.imgUrl || avatarImage}></img>
                     <h3>{user.fullName}</h3>
                 </div>
 
                 <div>
                     <form onSubmit={update}>
                         {structure
-                            // .filter(x => formData[x.id])
-                            .map((s, i) => {
+                            .map(s => {
                                 return (
                                     <div className='inputField' key={s.id}>
                                         <label>{s.label}</label>

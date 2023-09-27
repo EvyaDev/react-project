@@ -66,7 +66,6 @@ export default function Signup() {
             [id]: newValue
         }
         setFormData(newFormData)
-        console.log(formData);
 
         const schema = SignupSchema.validate(newFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
         const errors = {};
@@ -75,6 +74,7 @@ export default function Signup() {
             for (const e of schema.error.details) {
                 errors[e.context.key] = e.message;
             };
+
             setIsValid(false)
 
         } else {
@@ -127,9 +127,16 @@ export default function Signup() {
 
                         <div key={s.id} className="inputField" >
                             {errors[s.id] && <LuAlertTriangle className='iconError' />}
-                            {s.type != "checkbox" && <label>{s.require && <span>* </span>}{s.label}: </label>}
+                            {s.type !== "checkbox" && <label>{s.require && <span>* </span>}{s.label}: </label>}
                             {s.type === "checkbox" && <p>{s.label}</p>}
-                            <input className={s.type === "checkbox" ? "checkbox" : ""} id={s.id} required={s.require} type={s.type} placeholder={s.placeholder} onChange={handleInput} />
+                            <input
+                                className={s.type === "checkbox" ? "checkbox" : ""}
+                                id={s.id}
+                                required={s.require}
+                                type={s.type}
+                                placeholder={s.placeholder}
+                                onChange={handleInput}
+                            />
                             <p className='validationError'>{errors ? errors[s.id] : ""}</p>
                         </div>
 
@@ -139,5 +146,6 @@ export default function Signup() {
                 <p className='validationError'>{errors ? errors.auth : ""}</p>
                 <Link to={"/login"}>נרשמת? לחץ כאן</Link>
             </form>
-        </div>)
+        </div>
+    )
 }

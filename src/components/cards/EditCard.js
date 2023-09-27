@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom"
 import { token, userContext } from '../../App'
 import { JOI_HEBREW } from "../../joi-hebrew"
 import joi from 'joi'
-import { LuAlertTriangle } from 'react-icons/lu'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
 import { BsTrash3 } from 'react-icons/bs'
@@ -16,7 +15,7 @@ export default function EditCard() {
     const { snackbar } = useContext(userContext)
     const { id } = useParams();
     const [item, setItem] = useState([]);
-    const [IsValid, setIsValid] = useState(false);
+    const [IsValid, setIsValid] = useState(true);
     const [errors, setErrors] = useState({});
 
     const [formData, setFormData] = useState({
@@ -28,14 +27,25 @@ export default function EditCard() {
         web: "",
         description: "",
     })
+
     const editCardSchema = joi.object({
+        id: joi.any(),
         title: joi.string().min(3).max(30).required(),
-        subtitle: joi.string().min(3).max(30).required(),
-        imgUrl: joi.string().min(3).max(30).required(),
-        imgAlt: joi.string().min(3).max(30).required(),
-        web: joi.string().min(3).max(30).required(),
-        description: joi.string().min(3).max(30).required(),
+        subtitle: joi.string().max(200).required(),
+        imgUrl: joi.string().required(),
+        imgAlt: joi.string().required(),
+        web: joi.any(),
+        description: joi.string().min(10).max(2000).required(),
     })
+
+    const fields = [
+        { id: "title", label: "כותרת", type: "text", placeholder: "כותרת", },
+        { id: "subtitle", label: "כותרת משנה", type: "text", placeholder: "כותרת משנה", },
+        { id: "imgUrl", label: "תמונה", type: "text", placeholder: "תמונה", },
+        { id: "imgAlt", label: "alt", type: "text", placeholder: "alt image", },
+        { id: "web", label: "קישור חיצוני", type: "text", placeholder: "URL", },
+        { id: "description", label: "תוכן", type: "textarea", placeholder: "תוכן", },
+    ];
 
     //get my cards
     useEffect(() => {
@@ -58,30 +68,32 @@ export default function EditCard() {
                 description: item.description,
             })
         }
-    }, [item.length])
+    }, [item.id])
+
 
     function handleInput(ev) {
         const { id, value } = ev.target;
 
-        setFormData({
+        const updateFormData = ({
             ...formData,
             [id]: value
         })
 
-        const schema = editCardSchema.validate(formData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
+        const schema = editCardSchema.validate(updateFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
+
         const errors = {};
         if (schema.error) {
-
             for (const e of schema.error.details) {
                 errors[e.context.key] = e.message;
             };
             setIsValid(false)
-
         } else {
             setIsValid(true)
         }
+        setFormData(updateFormData)
         setErrors(errors)
     }
+
 
     function save(ev) {
         ev.preventDefault();
@@ -105,32 +117,26 @@ export default function EditCard() {
             <div className="form">
                 <form onSubmit={save}>
                     <h2>עריכת מתכון </h2>
-
-                    <label>כותרת</label>
-                    {errors.title && <LuAlertTriangle className='iconError' />}
-                    <input type="text" id="title" defaultValue={formData.title} placeholder="כותרת" onChange={handleInput}></input>
-
-                    <label>כותרת משנה</label>
-                    {errors.subtitle && <LuAlertTriangle className='iconError' />}
-                    <input type="text" id="subtitle" value={formData.subtitle} placeholder="כותרת משנה" onChange={handleInput}></input>
-
-                    <label>תמונה</label>
-                    {errors.imgUrl && <LuAlertTriangle className='iconError' />}
-                    <input type="text" id="imgUrl" value={formData.imgUrl} placeholder="תמונה" onChange={handleInput}></input>
-
-                    <label>alt</label>
-                    {errors.imgAlt && <LuAlertTriangle className='iconError' />}
-                    <input type="text" id="imgAlt" value={formData.imgAlt} placeholder="alt image" onChange={handleInput}></input>
-
-                    <label>קישור חיצוני</label>
-                    {errors.web && <LuAlertTriangle className='iconError' />}
-                    <input type="text" id="web" value={formData.web} placeholder="URL" onChange={handleInput}></input>
-
-                    <label> תוכן</label>
-                    {errors.description && <LuAlertTriangle className='iconError' />}
-                    <textarea id="description" value={formData.description} lang="1000" rows={10} onChange={handleInput}></textarea>
-
-                    <button>שמור שינויים</button>
+                    {fields.map(f => {
+                        return (
+                            <div key={f.id}>
+                                <label>{f.label}</label>
+                                {f.type === "textarea" ?
+                                    <textarea
+                                        id={f.id}
+                                        defaultValue={formData[f.id]}
+                                        lang={2000}
+                                        rows={10}
+                                        onChange={handleInput}
+                                    ></textarea> :
+                                    <input id={f.id} type={f.type} defaultValue={formData[f.id]} placeholder={f.placeholder} onChange={handleInput} />
+                                }
+                                <p className='validationError'>{errors[f.id] && errors[f.id]}</p>
+                            </div>
+                        )
+                    })}
+                    <button disabled={!IsValid}>שמור שינויים</button>
+                    <button type='button' onClick={() => Navigate(-1)}>ביטול </button>
                 </form>
             </div>
 

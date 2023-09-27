@@ -21,7 +21,6 @@ export default function Router() {
             <Route path="/my-favorite" element={<Favorite />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/card-single-page/:id" element={<CardPage />} />
-            <Route path="/clients" element={<Clients />} />
             <Route path="/search-page/:query?" element={<SearchPage />} />
             <Route path="/about" element={<About />} />
         </Routes>

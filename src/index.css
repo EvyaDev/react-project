@@ -1,38 +1,38 @@
 @font-face {
-  font-family: ploni;
-  src: url("../public/fonts/ploni-light-aaa.ttf");
-  font-weight: 100;
+    font-family: ploni;
+    src: url("../public/fonts/ploni-light-aaa.ttf");
+    font-weight: 100;
 }
 
 @font-face {
-  font-family: ploni;
-  src: url("../public/fonts/ploni-regular-aaa.woff2");
-  font-weight: normal;
+    font-family: ploni;
+    src: url("../public/fonts/ploni-regular-aaa.woff2");
+    font-weight: normal;
 }
 
 @font-face {
-  font-family: ploni;
-  src: url("../public/fonts/ploni-medium-aaa.ttf");
-  font-weight: 500;
+    font-family: ploni;
+    src: url("../public/fonts/ploni-medium-aaa.ttf");
+    font-weight: 500;
 }
 
 @font-face {
-  font-family: ploni;
-  src: url("../public/fonts/ploni-bold-aaa.ttf");
-  font-weight: bold;
+    font-family: ploni;
+    src: url("../public/fonts/ploni-bold-aaa.ttf");
+    font-weight: bold;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'ploni', 'assistant', 'Roboto', sans-serif;
-  direction: rtl;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'ploni', 'assistant', 'Roboto', sans-serif;
+    direction: rtl;
 }
 
 
 /* GLOBAL FONTS */
 h1 {
-  font-size: 60px;
-  text-align: center;
+    font-size: 60px;
+    text-align: center;
 }

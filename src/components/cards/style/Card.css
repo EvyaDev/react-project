@@ -27,7 +27,7 @@
           flex-direction: column;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
-          justify-content: end;
+          justify-content: flex-end;
   overflow: scroll;
 }
 
@@ -74,9 +74,11 @@
   color: #fff;
 }
 
-.Card .heart {
+.Card .heartBtn,
+.Card .trash {
   color: #fff;
   font-size: 20px;
-  cursor: pointer;
+  background: none;
+  border: none;
 }
 /*# sourceMappingURL=Card.css.map */

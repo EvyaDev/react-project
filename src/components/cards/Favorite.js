@@ -1,15 +1,15 @@
+import Cards from './Cards';
 import React, { useContext, useEffect, useState } from 'react'
 import { token, userContext } from '../../App';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
-import Cards from './Cards';
 import { Link } from 'react-router-dom';
 import "././style/Favorite.css"
 
+
 export default function Favorite() {
-    const [favoriteList, setFavoriteList] = useState([])
-    const { isLogged } = useContext(userContext)
-    const [loading, setLoading] = useState(false);
-    const [liked, setLiked] = useState(false)
+
+    const [favoriteList, setFavoriteList] = useState([]);
+    const { countFavorite, isLogged } = useContext(userContext);
 
     //get all favorite cards
     useEffect(() => {
@@ -21,23 +21,16 @@ export default function Favorite() {
                 setFavoriteList(data)
             })
             .catch(err => console.log(err))
-    }, [favoriteList])
-
-    function handleLike() {
-        setLiked(!liked)
-    }
+    }, [countFavorite])
 
 
     return (
         <div className='Cards Favorite'>
-
             <h1>המועדפים שלי</h1>
-
             {
-
                 favoriteList.length ?
-                    <Cards array={favoriteList.map(x => x.id)} /> :
-
+                    <Cards array={favoriteList.map(x => x.id)} />
+                    :
                     <div className='errorFavorite'>
                         <AiOutlineInfoCircle />
                         <p>
@@ -50,7 +43,6 @@ export default function Favorite() {
                         </p>
                     </div>
             }
-
         </div >
     )
 }

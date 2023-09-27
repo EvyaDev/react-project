@@ -1,6 +1,8 @@
+import { useContext } from 'react'
 import Cards from './cards/Cards'
 
 export default function Home() {
+
     return (
         <div className='Home'>
             <h1>כל הכרטיסים </h1>

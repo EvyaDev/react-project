@@ -63,7 +63,6 @@ export default function CardsList() {
                         <th>ID</th>
                         {userRole === RoleTypes.ADMIN && <th>מזהה משתמש</th>}
                         <th>כותרת</th>
-                        <th>כותרת משנה</th>
                         <th>תמונה</th>
                         <th></th>
                     </tr>
@@ -77,11 +76,12 @@ export default function CardsList() {
                                 <td> <p>{c.id}</p> </td>
                                 {userRole === RoleTypes.ADMIN && <td> <p>#{c.clientId}</p> </td>}
                                 <td> <p>{c.title}</p> </td>
-                                <td> <p>{c.subtitle.slice(0, 30)}...</p> </td>
-                                <td> <p>{c.imgUrl.slice(0, 50)}...</p> </td>
-                                <td className='actions'>
-                                    <BsTrash3 onClick={() => remove(c.id)} />
-                                    <Link to={`/editCard/${c.id}`}><FiEdit /></Link>
+                                <td> <img src={c.imgUrl}></img> </td>
+                                <td>
+                                    <div className='actions'>
+                                        <BsTrash3 onClick={() => remove(c.id)} />
+                                        <Link to={`/editCard/${c.id}`}><FiEdit /></Link>
+                                    </div>
                                 </td>
                             </tr>
                         ))

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
 import { FiEdit } from "react-icons/fi"
 import { BsTrash3 } from "react-icons/bs"
@@ -9,8 +9,7 @@ import Loader from '../Loader';
 
 
 export default function Card({ cardData, isLiked, onlike }) {
-
-    const { isLogged, snackbar, userRole, user } = useContext(userContext)
+    const { countFavorite, setCountFavorite, isLogged, snackbar, userRole, user } = useContext(userContext)
     const [loading, setLoading] = useState(false);
 
     //remove card
@@ -38,12 +37,13 @@ export default function Card({ cardData, isLiked, onlike }) {
             credentials: "include",
         })
             .then(() => {
-                setLoading(false)
                 onlike();
-
                 snackbar(isLogged ? " התווסף למועדפים!" : "התחבר כדי להוסיף")
+                setLoading(false)
+                setCountFavorite(countFavorite + 1)
             })
             .catch(err => console.log(err))
+
     }
 
 
@@ -57,6 +57,7 @@ export default function Card({ cardData, isLiked, onlike }) {
             .then(() => {
                 setLoading(false)
                 onlike();
+                setCountFavorite(countFavorite - 1)
                 snackbar(`הוסר מהמועדפים!`)
             })
             .catch(err => console.log(err))
@@ -67,27 +68,26 @@ export default function Card({ cardData, isLiked, onlike }) {
     return (
         <div className="Card" style={{ backgroundImage: `url(${cardData && cardData.imgUrl})` }}>
 
-            <div className="cardFrame" >
+            <div className="cardFrame">
                 <Link to={`/card-single-page/${cardData.id}`}> <h2>{cardData.title}</h2></Link>
                 <p>{cardData && cardData.subtitle}</p>
-
                 <div className="actions" >
 
                     {/* UN/LIKE btn */}
                     {isLiked ?
-                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <a> <AiFillHeart onClick={() => disLikeCard(cardData.id)} className='heart' /></a> :
-                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <a><AiOutlineHeart onClick={() => likeCard(cardData.id)} className='heart' /></a>
+                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <button className='heartBtn'><AiFillHeart onClick={() => disLikeCard(cardData.id)} /></button> :
+                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <button className='heartBtn'><AiOutlineHeart onClick={() => likeCard(cardData.id)} /></button>
                     }
 
                     {/* EDIT btn */}
-                    {((userRole === RoleTypes.ADMIN && cardData.clientId === 0) || user.id === cardData.clientId) &&
+                    {(((user.id === cardData.clientId && userRole === RoleTypes.BUSINESS) || (userRole === RoleTypes.ADMIN && cardData.clientId === 0)) && isLogged) &&
                         <Link to={`/editCard/${cardData.id}`}><FiEdit className='edit' /></Link>}
 
                     {/* DELETE btn */}
-                    {(userRole === RoleTypes.ADMIN || user.id === cardData.clientId) &&
-                        <a><BsTrash3 onClick={() => remove(cardData.id)} className='trash' /></a>}
+                    {(((user.id === cardData.clientId && userRole === RoleTypes.BUSINESS) || userRole === RoleTypes.ADMIN) && isLogged) &&
+                        <button className='trash'><BsTrash3 onClick={() => remove(cardData.id)} /></button>}
                 </div>
             </div>
-        </div >
+        </div>
     )
 }

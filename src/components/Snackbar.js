@@ -1,6 +1,6 @@
 import React from 'react'
-import "./snackbar.css"
 import { TbAlertCircleFilled } from "react-icons/tb"
+import "././style/Snackbar.css"
 
 export default function Snackbar({ text, show }) {
 

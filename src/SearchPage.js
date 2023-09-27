@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Cards from './components/cards/Cards'
-import { Navigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { token } from './App'
 import { MagnifyingGlass } from 'react-loader-spinner'
-import "././style/searchPage.css"
+import "././style/SearchPage.css"
 
 export default function SearchPage() {
     const { query } = useParams()

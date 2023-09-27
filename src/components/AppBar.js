@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import ToggleColorMode from "../style/ToggleColorMode";
+import ToggleColorMode from "../style/ToggleThemeMode";
 import { RoleTypes, checkPermission, userContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
 import { RiUserSettingsLine } from "react-icons/ri"
@@ -41,7 +41,9 @@ export default function AppBar() {
         <nav>
             <div className="userArea">
                 <div onMouseLeave={close} onMouseOver={open} className="avatar">
-                    {user ? `${user.fullName.slice(0, 1)}${user.lastName ? user.lastName.slice(0, 1) : ""}` :
+                    {isLogged ?
+                        `${user.fullName.slice(0, 1)}${user.lastName ?
+                            user.lastName.slice(0, 1) : ""}` :
                         <img alt="avatar" className="img-avatar" src={avatarImage} />}
                 </div>
 
@@ -49,17 +51,17 @@ export default function AppBar() {
                     <div onMouseLeave={close} onMouseOver={open} className="profile-open">
                         <a>
                             <div className="avatar">
-                                {user ? `${user.fullName.slice(0, 1)}${user.lastName ? user.lastName.slice(0, 1) : ""}` : <img alt="avatar" className="img-avatar" src={avatarImage} />}
+                                {isLogged ? `${user.fullName.slice(0, 1)}${user.lastName ? user.lastName.slice(0, 1) : ""}` : <img alt="avatar" className="img-avatar" src={avatarImage} />}
                             </div>
-                            <div>{user ? user.fullName : "אינך מחובר"}</div>
-                            {user && <span className="permissionTag"> {user.admin ? "מנהל" : user.business ? "לקוח עסקי" : "רגיל"}</span>}
+                            <div>{isLogged ? user.fullName : "אינך מחובר"}</div>
+                            {isLogged && <span className="permissionTag"> {user.admin ? "מנהל" : user.business ? "לקוח עסקי" : "רגיל"}</span>}
                         </a>
 
 
                         <ul>
-                            {!isLogged && <Link to={"/login"}><li> כניסה </li></Link>}
+                            {!isLogged && <Link to={"/login"}><li onClick={close}> כניסה </li></Link>}
                             {!isLogged && <Link to={"/signup"}><li> הרשמה </li></Link>}
-                            {isLogged && <Link to={"/edituser"}><RiUserSettingsLine /><li> הגדרות חשבון</li></Link>}
+                            {(isLogged && userRole !== RoleTypes.ADMIN) && <Link to={"/edituser"}><RiUserSettingsLine /><li onClick={close}> הגדרות חשבון</li></Link>}
                             {(isLogged && userRole === RoleTypes.ADMIN || userRole === RoleTypes.BUSINESS) && <Link to={"/cardlist"}><BiFoodMenu /><li>  ניהול מתכונים</li></Link>}
                             {(isLogged && userRole === RoleTypes.ADMIN) && <Link to={"/clients"}><LuUsers />  עריכת משתמשים </Link>}
 
@@ -67,8 +69,8 @@ export default function AppBar() {
 
                         {isLogged &&
                             <ul>
-                                <li onClick={() => Navigate("/logout")}>
-                                    <a className="logoutBtn" > התנתק </a>
+                                <li onClick={() => { Navigate("/logout"); close() }}>
+                                    <a className="logoutBtn"> התנתק </a>
                                 </li>
                             </ul>
                         }
@@ -92,6 +94,6 @@ export default function AppBar() {
                 <input className="searchInput" onChange={searchInput} type="text" placeholder=" חיפוש מתכון..."></input>
                 <ToggleColorMode />
             </div>
-        </nav>
+        </nav >
     );
 }

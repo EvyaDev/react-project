@@ -1,6 +1,7 @@
 import React from 'react'
 import { Oval } from "react-loader-spinner"
-import "./loader.css"
+import "././style/Loader.css"
+
 export default function Loader({ color, secondaryColor, width }) {
     return (
         <div className='loader'>

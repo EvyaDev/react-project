@@ -26,7 +26,7 @@
           flex-direction: column;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
-          justify-content: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -77,12 +77,13 @@
   -ms-flex-item-align: end;
       align-self: flex-end;
   border: 1px solid gray;
-  border-radius: 6px;
+  border-radius: 10px;
   position: relative;
   line-height: 5ex;
   padding: 0 10px;
   width: 100%;
   resize: none;
+  border: solid 1px var(--level2);
 }
 
 .AddCard .form form input ::-webkit-input-placeholder,
@@ -128,11 +129,12 @@
 .AddCard .form button,
 .EditCard .form button {
   margin-top: 15px;
-  background-color: rgba(208, 224, 253, 0.602);
+  background-color: var(--level2);
   border-radius: 10px;
   padding: 10px;
   stroke: none;
   border: rgba(255, 255, 255, 0.137) 1px solid;
+  border: none;
   outline: none;
   width: 100%;
   cursor: pointer;

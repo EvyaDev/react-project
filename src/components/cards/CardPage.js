@@ -6,11 +6,11 @@ import { ImWhatsapp, ImPrinter } from 'react-icons/im';
 import { FiEdit } from 'react-icons/fi';
 import "./style/SinglePageCard.css"
 
-export default function CardPage({ cardData }) {
+export default function CardPage() {
     const { id } = useParams("");
     const [item, setItem] = useState({});
     const [loading, setLoading] = useState(false)
-    const { userRole, user, snackbar } = useContext(userContext)
+    const { userRole, user } = useContext(userContext)
 
     //get my cards
     useEffect(() => {
@@ -26,7 +26,7 @@ export default function CardPage({ cardData }) {
 
     }, [item.length])
 
-    const { title, description, subtitle, imgUrl, clientId } = item;
+    const { title, description, subtitle, imgUrl } = item;
 
     return (
         <div className='CardPage' >

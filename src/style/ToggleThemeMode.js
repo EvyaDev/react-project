@@ -3,7 +3,7 @@ import { Theme } from './Theme';
 import { BsSun } from "react-icons/bs"
 import { BiMoon } from "react-icons/bi"
 
-export default function ToggleColorMode() {
+export default function ToggleThemeMode() {
 
     const [darkMode, setDarkMode] = useState(false);
 
@@ -20,7 +20,7 @@ export default function ToggleColorMode() {
 
 
     return (
-        <div >
+        <div>
             <Theme darkMode={darkMode} />
             {
                 <button className='btnMode' onClick={toggleTheme}>
@@ -30,3 +30,6 @@ export default function ToggleColorMode() {
         </div>
     )
 }
+
+
+

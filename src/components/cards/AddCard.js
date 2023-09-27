@@ -1,4 +1,6 @@
 import { useContext, useState } from "react"
+import { JOI_HEBREW } from "../../joi-hebrew"
+import joi from 'joi'
 import { useNavigate } from "react-router-dom";
 import { token, userContext } from "../../App";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -9,32 +11,62 @@ import "././style/Add-EditCard.css"
 export default function AddCard() {
 
     const { snackbar } = useContext(userContext)
+    const [IsValid, setIsValid] = useState(true);
+    const [errors, setErrors] = useState({});
+    const placeholderImg = "https://theme-assets.getbento.com/sensei/a42cf8c.sensei/assets/images/catering-item-placeholder-704x520.png"
+
+    const addCardSchema = joi.object({
+        id: joi.any(),
+        title: joi.string().min(3).max(30).required(),
+        subtitle: joi.string().max(200).required(),
+        imgUrl: joi.string().required(),
+        imgAlt: joi.string().required(),
+        web: joi.any(),
+        description: joi.string().min(10).max(2000).required(),
+        phone: joi.any(),
+        email: joi.any(),
+        state: joi.any(),
+        country: joi.any(),
+        city: joi.any(),
+        street: joi.any(),
+        houseNumber: joi.any(),
+        zip: joi.any(),
+    })
 
     const Navigate = useNavigate()
     const [formData, setFormData] = useState({
-        "title": "כותרת לדוגמה",
-        "subtitle": "כותרת משנה לדוגמה",
-        "description": "",
-        "phone": "undefined",
-        "email": "undefined",
-        "web": "undefined",
-        "imgUrl": "https://theme-assets.getbento.com/sensei/a42cf8c.sensei/assets/images/catering-item-placeholder-704x520.png",
-        "imgAlt": "undefined",
-        "state": "undefined",
-        "country": "undefined",
-        "city": "undefined",
-        "street": "undefined",
-        "houseNumber": "null",
-        "zip": "undefined"
+        "phone": "",
+        "email": "",
+        "state": "",
+        "country": "",
+        "city": "",
+        "street": "",
+        "houseNumber": "",
+        "zip": "",
     })
 
     function handleInput(ev) {
         const { id, value } = ev.target;
 
-        setFormData({
+        const updateFormData = ({
             ...formData,
             [id]: value
         })
+
+        const schema = addCardSchema.validate(updateFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
+
+        const errors = {};
+        if (schema.error) {
+            for (const e of schema.error.details) {
+                errors[e.context.key] = e.message;
+            };
+            setIsValid(false)
+        } else {
+            setIsValid(true)
+        }
+        setFormData(updateFormData)
+        setErrors(errors)
+        console.log(formData);
     }
 
     function addNew(ev) {
@@ -46,10 +78,11 @@ export default function AddCard() {
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(formData),
         })
-            .then(data => {
+            .then(() => {
                 snackbar("הכרטיס התווסף בהצלחה!")
                 Navigate("/");
-            });
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -58,34 +91,40 @@ export default function AddCard() {
             <div className="form">
                 <form onSubmit={addNew}>
                     <h2>הוספת מתכון חדש</h2>
-                    <label>כותרת</label>
+                    <label>* כותרת</label>
                     <input type="text" id="title" placeholder="כותרת" onChange={handleInput}></input>
+                    <p className="validationError">{errors.title}</p>
 
-                    <label>כותרת משנה</label>
+                    <label>* כותרת משנה</label>
                     <input type="text" id="subtitle" placeholder="כותרת משנה" onChange={handleInput}></input>
+                    <p className="validationError">{errors.subtitle}</p>
 
-                    <label>תמונה</label>
+                    <label>* תמונה</label>
                     <input type="text" id="imgUrl" placeholder="תמונה" onChange={handleInput}></input>
+                    <p className="validationError">{errors.imgUrl}</p>
 
-                    <label>alt</label>
+                    <label>* alt</label>
                     <input type="text" id="imgAlt" placeholder="alt image" onChange={handleInput}></input>
+                    <p className="validationError">{errors.imgAlt}</p>
 
                     <label>קישור חיצוני</label>
                     <input type="text" id="web" placeholder="URL" onChange={handleInput}></input>
+                    <p className="validationError">{errors.web}</p>
 
-                    <label> תוכן</label>
+                    <label> * תוכן</label>
                     <textarea id="description" lang="1000" rows={10} onChange={handleInput}></textarea>
+                    <p className="validationError">{errors.description}</p>
 
-                    <button>הוסף</button>
+                    <button disabled={!IsValid}>הוסף</button>
                 </form>
             </div>
             <div className="display" >
 
                 <p>תצוגה מקדימה</p>
-                <div className="Card" style={{ backgroundImage: `url(${formData.imgUrl && formData.imgUrl})` }}>
+                <div className="Card" style={{ backgroundImage: `url(${formData.imgUrl || placeholderImg})` }}>
                     <div className="cardFrame" >
-                        <h2>{formData.title}</h2>
-                        <p>{formData && formData.subtitle.slice(0, 70)}...</p>
+                        <h2>{formData.title || "כותרת לדוגמה"}</h2>
+                        <p>{(formData.subtitle && formData.subtitle.slice(0, 70)) || "כותרת משנה לדוגמה"}...</p>
 
                         <div className="actions" >
                             <AiOutlineHeart className='heart' />
