@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Loader from '../Loader';
 import { Link } from 'react-router-dom';
-import { RoleTypes, token, userContext } from '../../App';
+import { RoleTypes, token, generalContext } from '../../App';
 import { BsTrash3 } from 'react-icons/bs';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
 import { FiEdit } from 'react-icons/fi';
@@ -12,7 +12,7 @@ export default function CardsList() {
 
     const [cards, setCards] = useState([])
     const [loading, setLoading] = useState(false)
-    const { snackbar, userRole } = useContext(userContext)
+    const { snackbar, userRole } = useContext(generalContext)
 
     //get all cards
     useEffect(() => {

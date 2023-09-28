@@ -1,6 +1,6 @@
 import Cards from './Cards';
 import React, { useContext, useEffect, useState } from 'react'
-import { token, userContext } from '../../App';
+import { token, generalContext } from '../../App';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import "././style/Favorite.css"
@@ -9,19 +9,28 @@ import "././style/Favorite.css"
 export default function Favorite() {
 
     const [favoriteList, setFavoriteList] = useState([]);
-    const { cardChanged, isLogged } = useContext(userContext);
+    const { cardChanged, isLogged } = useContext(generalContext);
 
     //get all favorite cards
     useEffect(() => {
         fetch(`https://api.shipap.co.il/cards/favorite?token=${token}`, {
             credentials: "include",
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    throw new Error(res.status)
+                }
+            })
             .then(data => {
                 setFavoriteList(data)
             })
             .catch(err => console.log(err))
     }, [cardChanged])
+
+
+
 
 
     return (
@@ -36,7 +45,7 @@ export default function Favorite() {
                         <p>
                             {isLogged && !favoriteList.length ? "לא שמרת עדיין כרטיסים ברשימת המועדפים" :
                                 <>
-                                    <span> "אינך מחובר!"</span>
+                                    <span>  אינך מחובר, על מנת לצפות ברשימת הכרטיסים המועדפים שלך יש להתחבר תחילה!</span>
                                     <Link to={"/login"}> <button className='loginBtn'> התחבר</button></Link>
                                 </>
                             }

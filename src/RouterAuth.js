@@ -13,10 +13,10 @@ import Favorite from './components/cards/Favorite'
 import MyCards from './components/cards/MyCards'
 import SearchPage from './SearchPage'
 import About from './About'
-import { RoleTypes, userContext } from './App'
+import { RoleTypes, generalContext } from './App'
 
 export default function RouterAuth() {
-    const { userRole } = useContext(userContext)
+    const { userRole } = useContext(generalContext)
 
     return (
         <Routes>

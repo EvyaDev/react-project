@@ -3,13 +3,13 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
 import { FiEdit } from "react-icons/fi"
 import { BsTrash3 } from "react-icons/bs"
 import { Link } from 'react-router-dom';
-import { RoleTypes, token, userContext } from '../../App';
+import { RoleTypes, token, generalContext } from '../../App';
 import "././style/Card.css"
 import Loader from '../Loader';
 
 
 export default function Card({ cardData, isLiked, onlike }) {
-    const { cardChanged, setCardChanged, isLogged, snackbar, userRole, user } = useContext(userContext)
+    const { cardChanged, setCardChanged, isLogged, snackbar, userRole, user } = useContext(generalContext)
     const [loading, setLoading] = useState(false);
 
     //remove card
@@ -82,17 +82,17 @@ export default function Card({ cardData, isLiked, onlike }) {
 
                     {/* UN/LIKE btn */}
                     {isLiked ?
-                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <button className='heartBtn'><AiFillHeart onClick={() => disLikeCard(cardData.id)} /></button> :
-                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <button className='heartBtn'><AiOutlineHeart onClick={() => likeCard(cardData.id)} /></button>
+                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <button ><AiFillHeart onClick={() => disLikeCard(cardData.id)} /></button> :
+                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <button ><AiOutlineHeart onClick={() => likeCard(cardData.id)} /></button>
                     }
 
                     {/* EDIT btn */}
                     {(((user.id === cardData.clientId && userRole === RoleTypes.BUSINESS) || (userRole === RoleTypes.ADMIN && cardData.clientId === 0)) && isLogged) &&
-                        <Link to={`/editCard/${cardData.id}`}><FiEdit className='edit' /></Link>}
+                        <Link to={`/editCard/${cardData.id}`}><FiEdit /></Link>}
 
                     {/* DELETE btn */}
                     {(((user.id === cardData.clientId && userRole === RoleTypes.BUSINESS) || userRole === RoleTypes.ADMIN) && isLogged) &&
-                        <button className='trash'><BsTrash3 onClick={() => remove(cardData.id)} /></button>}
+                        <button ><BsTrash3 onClick={() => remove(cardData.id)} /></button>}
                 </div>
             </div>
         </div>

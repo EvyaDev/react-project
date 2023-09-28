@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Theme } from './Theme';
 import { BsSun } from "react-icons/bs"
 import { BiMoon } from "react-icons/bi"
+import { darkContext } from '../App';
 
 export default function ToggleThemeMode() {
 
-    const [darkMode, setDarkMode] = useState(false);
+    // const [darkMode, setDarkMode] = useState(false);
+    const { darkMode, setDarkMode } = useContext(darkContext);
 
     useEffect(() => {
         const saveMode = localStorage.darkMode

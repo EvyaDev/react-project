@@ -2,6 +2,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding-top: 50px;
+  max-width: 100%;
 }
 
 .App .frame {
@@ -55,54 +56,5 @@
           align-items: center;
   padding: 0px;
   border: none;
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 10vw;
-  }
-  h2 {
-    font-size: 6vw;
-  }
-  nav .navigator {
-    display: none;
-  }
-  nav .searchInput {
-    display: none;
-  }
-}
-
-@media (max-width: 900px) {
-  .Favorite,
-  .addCard,
-  .editCard {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .Favorite .display,
-  .addCard .display,
-  .editCard .display {
-    width: 100%;
-  }
-  .Favorite .form,
-  .addCard .form,
-  .editCard .form {
-    width: 100%;
-  }
-  .Cards .cardsList {
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-    overflow: scroll;
-    width: 100%;
-  }
-  .CardPage .frmae {
-    min-height: 30vh;
-  }
-  .CardPage .content {
-    padding: 20px 7%;
-  }
 }
 /*# sourceMappingURL=App.css.map */

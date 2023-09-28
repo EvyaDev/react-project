@@ -66,6 +66,14 @@
   color: #fff;
 }
 
+.Card .actions svg,
+.Card .actions button {
+  color: #fff;
+  font-size: 20px;
+  background: none;
+  border: none;
+}
+
 .Card h2 {
   color: white;
   line-height: 1em;
@@ -73,13 +81,5 @@
 
 .Card p {
   color: #fff;
-}
-
-.Card .heartBtn,
-.Card .trash {
-  color: #fff;
-  font-size: 20px;
-  background: none;
-  border: none;
 }
 /*# sourceMappingURL=Card.css.map */

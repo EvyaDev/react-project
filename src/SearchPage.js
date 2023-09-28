@@ -26,7 +26,7 @@ export default function SearchPage() {
 
     return (
         <div className='SearchPage'>
-            <h1>תוצאות חיפוש: </h1>
+            <h1>תוצאות חיפוש עבור "<b>{query}</b>": </h1>
 
             {cards.length ? <Cards array={cards.map(c => c.id)} /> :
 

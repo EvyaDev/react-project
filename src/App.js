@@ -4,14 +4,15 @@ import AppBar from './components/AppBar';
 import Snackbar from './components/Snackbar';
 import RouterAuth from './RouterAuth';
 import '././style/App.css';
+import "./style/responsive.css"
 
-export const userContext = createContext()
+export const darkContext = createContext();
+export const generalContext = createContext()
 export const token = "3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0"
 
 export function checkPermission(roles, role) {
     return roles.includes(role);
 }
-
 
 export const RoleTypes = {
     ADMIN: "admin",
@@ -20,7 +21,9 @@ export const RoleTypes = {
     NONE: "none",
 }
 
+
 export default function App() {
+    const [darkMode, setDarkMode] = useState(false);
     const [cardChanged, setCardChanged] = useState(0);
     const [isLogged, setIsLogged] = useState();
     const [user, setUser] = useState("");
@@ -70,8 +73,8 @@ export default function App() {
                     if (res.ok) {
                         return;
                     } else {
+                        setUser("")
                         setIsLogged(false)
-                        setUser()
                         setUserRole(RoleTypes.NONE);
                         throw new Error("המשתמש לא מחובר");
                     }
@@ -85,15 +88,16 @@ export default function App() {
     }, [])
 
     return (
-
-        <userContext.Provider value={{ cardChanged, setCardChanged, snackbar, userRole, setUserRole, user, setUser, isLogged, setIsLogged }}>
-            <div className="App">
-                <AppBar />
-                <div className="frame">
-                    {isLogged ? <RouterAuth /> : <Router />}
-                    <Snackbar show={isShow} text={snackText} />
+        <darkContext.Provider value={{ darkMode, setDarkMode }}>
+            <generalContext.Provider value={{ cardChanged, setCardChanged, snackbar, userRole, setUserRole, user, setUser, isLogged, setIsLogged }}>
+                <div className="App">
+                    <AppBar />
+                    <div className="frame">
+                        {isLogged ? <RouterAuth /> : <Router />}
+                        <Snackbar show={isShow} text={snackText} />
+                    </div>
                 </div>
-            </div>
-        </userContext.Provider>
+            </generalContext.Provider>
+        </darkContext.Provider>
     );
 }

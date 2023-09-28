@@ -2,14 +2,14 @@ import joi from 'joi';
 import { JOI_HEBREW } from "../../joi-hebrew"
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { token, userContext } from '../../App';
+import { token, generalContext } from '../../App';
 import { RoleTypes } from '../../App';
 import { LuAlertTriangle } from 'react-icons/lu';
 import "./style/user.css"
 
 export default function LoginClient() {
 
-    const { snackbar, setUserRole, setUser, setIsLogged } = useContext(userContext);
+    const { snackbar, setUserRole, setUser, setIsLogged } = useContext(generalContext);
     const Navigate = useNavigate();
     const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
@@ -23,6 +23,7 @@ export default function LoginClient() {
     function HandleInput(ev) {
 
         const { id, value } = ev.target;
+
         //create a new variable to live render a Joi validation
         const newFormData = {
             ...formData,
@@ -37,7 +38,6 @@ export default function LoginClient() {
         });
 
         const errors = {};
-
         if (schema.error) {
             for (const e of schema.error.details) {
                 errors[e.context.key] = e.message;
@@ -49,7 +49,6 @@ export default function LoginClient() {
         setErrors(errors)
     }
 
-
     // function on LOGIN (send form)
     function login(ev) {
         ev.preventDefault();
@@ -60,16 +59,14 @@ export default function LoginClient() {
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(formData),
         })
-            .then(async res => {
+            .then(res => {
                 if (res.ok) {
                     return res.json();
                 } else {
-                    res.text().then(x => {
+                    return res.text().then(x => {
                         setErrors({ ...errors, auth: x })
-                    })
-
-                    const x_1 = await res.text();
-                    throw new Error(x_1);
+                        throw new Error(x);
+                    });
                 }
             })
             .then(data => {
@@ -91,6 +88,7 @@ export default function LoginClient() {
                 setUserRole(RoleTypes.NONE)
             });
     }
+
 
     return (
 
@@ -114,7 +112,6 @@ export default function LoginClient() {
 
                 <Link to={"/signup"}>להרשמה לחץ כאן</Link>
             </form>
-
         </div>
     );
 }

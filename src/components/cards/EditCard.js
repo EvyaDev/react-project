@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
-import { RoleTypes, token, userContext } from '../../App'
+import { RoleTypes, token, generalContext } from '../../App'
 import { JOI_HEBREW } from "../../joi-hebrew"
 import joi from 'joi'
 import { AiOutlineHeart } from 'react-icons/ai'
@@ -13,7 +13,7 @@ import Loader from '../Loader'
 export default function EditCard() {
 
     const Navigate = useNavigate()
-    const { userRole, user, snackbar } = useContext(userContext)
+    const { userRole, user, snackbar } = useContext(generalContext)
     const { id } = useParams();
     const [IsValid, setIsValid] = useState(true);
     const [errors, setErrors] = useState({});

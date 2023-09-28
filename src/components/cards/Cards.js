@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import Card from './Card';
 import Loader from '../Loader';
 import { Link } from 'react-router-dom';
-import { token, userContext } from '../../App';
+import { token, generalContext } from '../../App';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
 import "././style/Cards.css"
 
 export default function Cards({ array, addBtnShow }) {
-    const { cardChanged } = useContext(userContext)
+    const { cardChanged } = useContext(generalContext)
     const [cards, setCards] = useState([])
     const [favoriteList, setFavoriteList] = useState([])
     const [loading, setLoading] = useState(false);

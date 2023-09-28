@@ -4,11 +4,11 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   overflow: scroll;
 }
 
@@ -18,8 +18,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 8px;
   border-radius: 5px;
   border: none;
@@ -53,7 +53,7 @@ table thead th {
 
 table tbody tr {
   -webkit-box-shadow: 0 0 40px -25px black;
-          box-shadow: 0 0 40px -25px black;
+  box-shadow: 0 0 40px -25px black;
   border-radius: 10px;
   font-size: .8em;
   padding: 40px;
@@ -79,20 +79,20 @@ table tbody tr td {
   font-size: 14px;
 }
 
-table tbody tr td > div.actions {
+table tbody tr td>div.actions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   gap: 20px;
 }
 
@@ -100,9 +100,9 @@ table tbody tr td img {
   height: 50px;
   width: 50px;
   -o-object-position: center;
-     object-position: center;
+  object-position: center;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 10px;
   font-size: 14px;
 }
@@ -127,8 +127,9 @@ table tbody tr td ul {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   gap: 10px;
 }
+
 /*# sourceMappingURL=CardsList.css.map */

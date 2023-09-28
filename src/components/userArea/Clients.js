@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { token, userContext } from '../../App'
+import { token, generalContext } from '../../App'
 import { avatarImage } from '../AppBar';
 import { FaTrash } from 'react-icons/fa';
 import "./style/clients.css"
 
 export default function Clients() {
 
-    const { snackbar, isLogged } = useContext(userContext)
+    const { snackbar, isLogged } = useContext(generalContext)
     const [clients, setClients] = useState([])
     const [isShow, setIsShow] = useState(false)
 

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { RoleTypes, token, userContext } from '../../App';
+import { RoleTypes, token, generalContext } from '../../App';
 import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader';
 import { ImWhatsapp, ImPrinter } from 'react-icons/im';
@@ -10,7 +10,7 @@ export default function CardPage() {
     const { id } = useParams("");
     const [item, setItem] = useState({});
     const [loading, setLoading] = useState(false)
-    const { userRole, user } = useContext(userContext)
+    const { userRole, user } = useContext(generalContext)
 
     //get my cards
     useEffect(() => {

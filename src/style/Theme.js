@@ -32,17 +32,28 @@ export const Theme = createGlobalStyle`
     }
 
     nav {
-      background-color: ${(props) =>
-    props.darkMode ? colors.dark.navBgColor : colors.light.navBgColor};
+      background-color: ${(props) => props.darkMode ? colors.dark.navBgColor : colors.light.navBgColor};
       .permissionTag {
         color: ${colors.dark.bgc};
       }
-      .navigator {
-        a.currentPage,
-        a:hover {
-          color: ${(props) =>
-    props.darkMode ? colors.light.color : colors.dark.color};
+.navigator{
+
+  a.currentPage,
+  a:hover {
+    color: ${(props) => props.darkMode ? colors.light.color : colors.dark.color};
+  }
+}
+}
+
+      .navigator.showMenu{
+        ul{
+          background-color: ${(props) => props.darkMode ? "#352a41" : "#dedede"};
+
+          a{
+            color: ${(props) => (props.darkMode ? colors.dark.color : colors.light.color)};
+          }
         }
+        
       }
     }
     .inputField > label span,
@@ -51,8 +62,7 @@ export const Theme = createGlobalStyle`
     }
     input,
     textarea {
-      background-color: ${(props) =>
-    props.darkMode ? colors.dark.inputBgColor : colors.light.inputBgColor};
+      background-color: ${(props) => props.darkMode ? colors.dark.inputBgColor : colors.light.inputBgColor};
       color: ${(props) => (props.darkMode ? colors.dark.color : colors.light.color)};
     }
     hr {

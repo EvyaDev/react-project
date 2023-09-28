@@ -66,7 +66,7 @@ export default function Signup() {
         }
         setFormData(newFormData)
 
-        const schema = SignupSchema.validate(newFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
+        const schema = SignupSchema.validate(newFormData, { abortEarly: false, messages: { he: JOI_HEBREW }, allowUnknown: true, errors: { language: 'he' } });
         const errors = {};
         if (schema.error) {
 

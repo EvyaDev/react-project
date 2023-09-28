@@ -1,6 +1,17 @@
 .SearchPage {
+
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.SearchPage h1 {
+    font-weight: 100;
+    font-size: 4vw;
+}
+
+.SearchPage h1>b {
+    color: var(--level2);
 }

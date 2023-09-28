@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import ToggleColorMode from "../style/ToggleThemeMode";
-import { RoleTypes, checkPermission, userContext } from "../App";
+import { RoleTypes, checkPermission, generalContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
 import { RiUserSettingsLine } from "react-icons/ri"
 import { LuUsers } from "react-icons/lu"
 import { BiFoodMenu } from "react-icons/bi"
+import { RxHamburgerMenu } from "react-icons/rx"
 import "././style/AppBar.css"
 import "././style/AppBarProfile.css"
 
@@ -13,8 +14,10 @@ export const avatarImage = "https://cdn-icons-png.flaticon.com/512/149/149071.pn
 export default function AppBar() {
     const Navigate = useNavigate()
 
-    const { userRole, user, setUser, isLogged } = useContext(userContext)
+    const { userRole, user, isLogged } = useContext(generalContext)
     const [profileOpen, setProfileOpen] = useState(false);
+    const [width, setWidth] = useState(window.innerWidth);
+    const [menuOpen, setMenuOpen] = useState(false);
     const [text, setText] = useState("");
     const linkStructure = [
         { title: "בית", route: "/" },
@@ -23,27 +26,42 @@ export default function AppBar() {
         { title: "אודות", route: "/about" },
     ];
 
-    function open() {
-        setProfileOpen(true)
-    }
-
-    function close() {
-        setProfileOpen(false)
-    }
+    const close = () => { setProfileOpen(false) }
+    const open = () => { setProfileOpen(true) }
 
     function searchInput(ev) {
-        setText(ev.target.value);
-        if (text === "") {
-            return Navigate("/")
+
+        const newText = ev.target.value;
+        setText(newText)
+        if (newText !== "") {
+            Navigate(`/search-page/${newText}`)
+        } else {
+            Navigate("/")
         }
-        Navigate(`/search-page/${text}`)
     }
 
     useEffect(() => {
         if (window.location.pathname.split("/")[1] !== "search-page") {
             setText("")
         }
-    }, [window.location.pathname.split("/")[1]])
+    }, [window.location.pathname])
+
+
+    function handleMenu() {
+        setMenuOpen(!menuOpen)
+    }
+
+    function handleResize() {
+        setWidth(window.innerWidth);
+        width >= 767 && setMenuOpen(false)
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize)
+        return () => {
+            window.removeEventListener("resize", handleResize)
+        }
+    }, [])
 
     return (
         <nav>
@@ -86,11 +104,12 @@ export default function AppBar() {
                 }
             </div>
 
-            <div className="navigator">
+            <div className={menuOpen ? "navigator showMenu" : "navigator"}>
                 <ul>
+                    {(width < 767) && <ToggleColorMode />}
                     {linkStructure.filter(l => !l.rolesAllow || checkPermission(l.rolesAllow, userRole)).map(l => {
                         return (
-                            <li key={l.title} >
+                            <li key={l.title} onClick={() => setMenuOpen(false)} >
                                 <Link className={l.route === window.location.pathname ? "currentPage" : ""} to={l.route}><span>{l.title}</span></Link>
                             </li>
                         )
@@ -99,9 +118,10 @@ export default function AppBar() {
             </div>
 
             <div className="leftSide">
-                <input className="searchInput" value={text} onChange={searchInput} type="text" placeholder="חיפוש מתכון..."></input>
-                <ToggleColorMode />
+                <input className="searchInput" onChange={searchInput} value={text} type="text" placeholder="חיפוש מתכון..."></input>
+                <RxHamburgerMenu className="menuToggle" onClick={handleMenu} />
+                {width > 767 && <ToggleColorMode />}
             </div>
-        </nav >
+        </nav>
     );
 }

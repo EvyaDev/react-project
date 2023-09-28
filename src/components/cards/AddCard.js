@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { JOI_HEBREW } from "../../joi-hebrew"
 import joi from 'joi'
 import { useNavigate } from "react-router-dom";
-import { token, userContext } from "../../App";
+import { token, generalContext } from "../../App";
 import { AiOutlineHeart } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import { BsTrash3 } from "react-icons/bs";
@@ -10,7 +10,7 @@ import "././style/Add-EditCard.css"
 
 export default function AddCard() {
 
-    const { snackbar } = useContext(userContext)
+    const { snackbar } = useContext(generalContext)
     const [IsValid, setIsValid] = useState(true);
     const [errors, setErrors] = useState({});
     const placeholderImg = "https://theme-assets.getbento.com/sensei/a42cf8c.sensei/assets/images/catering-item-placeholder-704x520.png"

@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { RoleTypes, userContext } from '../../App';
+import { RoleTypes, generalContext } from '../../App';
 
 export default function Logout() {
-    const { setUser, snackbar, setUserRole, setIsLogged } = useContext(userContext)
+    const { setUser, snackbar, setUserRole, setIsLogged } = useContext(generalContext)
     const Navigate = useNavigate();
 
     useEffect(() => {
@@ -20,8 +20,8 @@ export default function Logout() {
                 setIsLogged(false)
                 setUserRole(RoleTypes.NONE)
                 snackbar(" התנתקת בהצלחה")
-                Navigate("/login")
             })
             .catch(err => console.log(err))
+            .finally(() => Navigate("/login"))
     }, [])
 }
