@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { RoleTypes, token, generalContext } from '../../App';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../Loader';
 import { ImWhatsapp, ImPrinter } from 'react-icons/im';
 import { FiEdit } from 'react-icons/fi';
 import "./style/SinglePageCard.css"
 
 export default function CardPage() {
-    const { id } = useParams("");
+    const { id } = useParams();
     const [item, setItem] = useState({});
+    const Navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const { userRole, user } = useContext(generalContext)
 
@@ -19,10 +20,14 @@ export default function CardPage() {
         fetch(`https://api.shipap.co.il/cards?token=${token}`)
             .then(res => res.json())
             .then(data => {
-                setItem(data.filter(d => d.id == id)[0])
-                setLoading(false)
+                if (data.map(d => d.id).includes(+id)) {
+                    setItem(data.filter(d => d.id == id)[0])
+                } else {
+                    Navigate("/errorPage")
+                }
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false))
 
     }, [item.length])
 

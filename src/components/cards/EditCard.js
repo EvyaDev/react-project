@@ -47,8 +47,8 @@ export default function EditCard() {
 
     //get one card
     useEffect(() => {
-
         setLoading(true)
+
         fetch(`https://api.shipap.co.il/cards/${id}?token=${token}`, {
             credentials: 'include',
         })

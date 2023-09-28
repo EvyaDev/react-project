@@ -17,6 +17,7 @@ export default function Router() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/errorPage" element={<ErrorPage />} />
             <Route path="/my-favorite" element={<Favorite />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/card-single-page/:id" element={<CardPage />} />

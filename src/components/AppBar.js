@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ToggleColorMode from "../style/ToggleThemeMode";
 import { RoleTypes, checkPermission, generalContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ export const avatarImage = "https://cdn-icons-png.flaticon.com/512/149/149071.pn
 
 export default function AppBar() {
     const Navigate = useNavigate()
-
+    const myRef = useRef()
     const { userRole, user, isLogged } = useContext(generalContext)
     const [profileOpen, setProfileOpen] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
@@ -47,9 +47,23 @@ export default function AppBar() {
     }, [window.location.pathname])
 
 
-    function handleMenu() {
-        setMenuOpen(!menuOpen)
+    function toggleMenu() {
+        setMenuOpen(!menuOpen);
     }
+
+    useEffect(() => {
+        const handleDocumentClick = (event) => {
+            if (myRef.current && !myRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        };
+
+        window.addEventListener("click", handleDocumentClick);
+
+        return () => {
+            window.removeEventListener("click", handleDocumentClick);
+        };
+    }, []);
 
     function handleResize() {
         setWidth(window.innerWidth);
@@ -105,11 +119,11 @@ export default function AppBar() {
             </div>
 
             <div className={menuOpen ? "navigator showMenu" : "navigator"}>
-                <ul>
+                <ul onClick={() => setMenuOpen(true)}>
                     {(width < 767) && <ToggleColorMode />}
                     {linkStructure.filter(l => !l.rolesAllow || checkPermission(l.rolesAllow, userRole)).map(l => {
                         return (
-                            <li key={l.title} onClick={() => setMenuOpen(false)} >
+                            <li key={l.title} >
                                 <Link className={l.route === window.location.pathname ? "currentPage" : ""} to={l.route}><span>{l.title}</span></Link>
                             </li>
                         )
@@ -119,7 +133,11 @@ export default function AppBar() {
 
             <div className="leftSide">
                 <input className="searchInput" onChange={searchInput} value={text} type="text" placeholder="חיפוש מתכון..."></input>
-                <RxHamburgerMenu className="menuToggle" onClick={handleMenu} />
+
+                <div ref={myRef} className="menuToggle" onClick={toggleMenu} >
+                    <RxHamburgerMenu />
+                </div>
+
                 {width > 767 && <ToggleColorMode />}
             </div>
         </nav>

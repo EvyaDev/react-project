@@ -31,6 +31,7 @@ export default function App() {
     const [isShow, setIsShow] = useState(false);
     const [snackText, setSnackText] = useState("");
 
+
     const snackbar = (text) => {
         setIsShow(true)
         setSnackText(text)
@@ -84,7 +85,7 @@ export default function App() {
                 })
                 .catch(err => console.log(err))
 
-        }, 5 * 60 * 1000)
+        }, 10 * 60 * 1000)
     }, [])
 
     return (
