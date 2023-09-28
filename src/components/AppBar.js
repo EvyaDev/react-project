@@ -12,8 +12,8 @@ import "././style/AppBarProfile.css"
 export const avatarImage = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
 
 export default function AppBar() {
-    const Navigate = useNavigate()
     const myRef = useRef()
+    const Navigate = useNavigate()
     const { userRole, user, isLogged } = useContext(generalContext)
     const [profileOpen, setProfileOpen] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
@@ -29,7 +29,8 @@ export default function AppBar() {
     const close = () => { setProfileOpen(false) }
     const open = () => { setProfileOpen(true) }
 
-    function searchInput(ev) {
+
+    function handleSearch(ev) {
 
         const newText = ev.target.value;
         setText(newText)
@@ -40,6 +41,7 @@ export default function AppBar() {
         }
     }
 
+    //clear search input on change url
     useEffect(() => {
         if (window.location.pathname.split("/")[1] !== "search-page") {
             setText("")
@@ -65,6 +67,8 @@ export default function AppBar() {
         };
     }, []);
 
+
+    //-- hide menu on screen change bigger --//
     function handleResize() {
         setWidth(window.innerWidth);
         width >= 767 && setMenuOpen(false)
@@ -103,7 +107,7 @@ export default function AppBar() {
                             {!isLogged && <Link to={"/signup"}><li> הרשמה </li></Link>}
                             {(isLogged && userRole !== RoleTypes.ADMIN) && <Link to={"/edituser"}><RiUserSettingsLine /><li onClick={close}> הגדרות חשבון</li></Link>}
                             {(isLogged && userRole === RoleTypes.ADMIN || userRole === RoleTypes.BUSINESS) && <Link to={"/cardlist"}><BiFoodMenu /><li>  ניהול מתכונים</li></Link>}
-                            {(isLogged && userRole === RoleTypes.ADMIN) && <Link to={"/clients"}><LuUsers />  עריכת משתמשים </Link>}
+                            {(isLogged && userRole === RoleTypes.ADMIN) && <Link to={"/clients"}><LuUsers /> <li>עריכת משתמשים </li> </Link>}
 
                         </ul>
 
@@ -132,7 +136,7 @@ export default function AppBar() {
             </div>
 
             <div className="leftSide">
-                <input className="searchInput" onChange={searchInput} value={text} type="text" placeholder="חיפוש מתכון..."></input>
+                <input className="searchInput" onChange={handleSearch} value={text} type="text" placeholder="חיפוש מתכון..."></input>
 
                 <div ref={myRef} className="menuToggle" onClick={toggleMenu} >
                     <RxHamburgerMenu />

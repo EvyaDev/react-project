@@ -40,7 +40,14 @@
   text-decoration: underline;
 }
 
+.Card .cardFrame h2 {
+  color: white;
+  line-height: 1em;
+  text-align: right !important;
+}
+
 .Card .cardFrame p {
+  color: #fff;
   font-size: .8em;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -72,14 +79,5 @@
   font-size: 20px;
   background: none;
   border: none;
-}
-
-.Card h2 {
-  color: white;
-  line-height: 1em;
-}
-
-.Card p {
-  color: #fff;
 }
 /*# sourceMappingURL=Card.css.map */

@@ -1,8 +1,9 @@
 .Snackbar {
     height: fit-content;
     width: fit-content;
-    max-width: 400px;
-    padding: 5px 15px;
+    min-width: 200px;
+    max-width: 500px;
+    padding: 5px 10px;
     background-color: var(--level2);
     text-align: center;
     display: flex;

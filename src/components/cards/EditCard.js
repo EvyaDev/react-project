@@ -54,7 +54,8 @@ export default function EditCard() {
         })
             .then(res => res.json())
             .then(data => {
-                if ((user.id === data.clientId && userRole === RoleTypes.BUSINESS) || (userRole === RoleTypes.ADMIN && data.clientId === 0)) {
+                if ((user.id === data.clientId && userRole === RoleTypes.BUSINESS) ||
+                    (userRole === RoleTypes.ADMIN && data.clientId === 0)) {
                     return setFormData(data);
                 } else {
                     Navigate("/errorPage")
@@ -123,7 +124,7 @@ export default function EditCard() {
                                             id={f.id}
                                             defaultValue={formData[f.id]}
                                             lang={2000}
-                                            rows={10}
+                                            rows={15}
                                             onChange={handleInput}
                                         ></textarea> :
                                         <input id={f.id} type={f.type} defaultValue={formData[f.id]} placeholder={f.placeholder} onChange={handleInput} />
