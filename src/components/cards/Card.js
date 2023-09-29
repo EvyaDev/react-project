@@ -82,7 +82,7 @@ export default function Card({ cardData, isLiked, onlike }) {
 
                     {/* UN/LIKE btn */}
                     {isLiked ?
-                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <button ><AiFillHeart onClick={() => disLikeCard(cardData.id)} /></button> :
+                        loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <button className='heartFill'><AiFillHeart onClick={() => disLikeCard(cardData.id)} /></button> :
                         loading ? <Loader width={20} color={"white"} secondaryColor={"silver"} /> : <button ><AiOutlineHeart onClick={() => likeCard(cardData.id)} /></button>
                     }
 

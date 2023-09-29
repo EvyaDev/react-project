@@ -4,58 +4,68 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
 }
 
-.clientList table {
+.clientList .tableFrame {
+  width: 100%;
+  overflow: scroll;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.clientList .tableFrame table {
+  margin: 0 auto;
   border-collapse: separate;
   border-spacing: 0px 5px;
 }
 
-.clientList table thead tr {
+.clientList .tableFrame table thead tr {
   height: 30px;
   background-color: #e9e9e9;
 }
 
-.clientList table thead th {
+.clientList .tableFrame table thead th {
   font-weight: 800;
   font-size: 16px;
 }
 
-.clientList table tbody tr td {
+.clientList .tableFrame table tbody tr td {
   text-align: right;
   padding: 10px 40px;
   font-size: 14px;
 }
 
-.clientList table tbody tr td:first-child {
+.clientList .tableFrame table tbody tr td:first-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 10px;
   font-weight: 700;
 }
 
-.clientList table tbody tr td img {
+.clientList .tableFrame table tbody tr td img {
   height: 35px;
   width: 35px;
   -o-object-position: center;
-     object-position: center;
+  object-position: center;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 50%;
   font-size: 14px;
 }
 
-.clientList table tbody tr td .deleteUser {
+.clientList .tableFrame table tbody tr td .deleteUser {
   background: none;
   border: none;
   color: red;
@@ -67,14 +77,15 @@
   transition: .2s ease-in;
 }
 
-.clientList table tbody tr td .deleteUser:hover {
+.clientList .tableFrame table tbody tr td .deleteUser:hover {
   scale: 130%;
 }
 
-.clientList table tbody tr td select {
+.clientList .tableFrame table tbody tr td select {
   background: none;
   border-radius: 5px;
   padding: 2px 7px;
-  border: 1px solid var(--level2);
+  border: 1px solid var(--mainColor);
 }
+
 /*# sourceMappingURL=clients.css.map */

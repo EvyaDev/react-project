@@ -1,24 +1,26 @@
 import { createGlobalStyle } from 'styled-components';
+import { colorsPalette } from '../App';
 
 const colors = {
-    dark: {
-        bgc: "#231c2a",
-        color: "white",
-        navBgColor: "#5151516f",
-        inputBgColor: "rgb(49, 49, 49)",
-    },
-    light: {
-        bgc: "#f4f4f4",
-        color: "#231c2a",
-        navBgColor: "#e4e4e46f",
-        inputBgColor: "#f4f4f4",
-    },
+  dark: {
+    bgc: "#231c2a",
+    color: "white",
+    navBgColor: "#5151516f",
+    inputBgColor: "rgb(49, 49, 49)",
+  },
+  light: {
+    bgc: "#f4f4f4",
+    color: "#231c2a",
+    navBgColor: "#e4e4e46f",
+    inputBgColor: "#f4f4f4",
+  },
 };
+
 
 export const Theme = createGlobalStyle`
   :root {
     --dark: ${colors.dark.bgc};
-    --level2: #5bcdfc;
+    --mainColor: #5bcdfc;
   }
 
   body {
@@ -32,18 +34,18 @@ export const Theme = createGlobalStyle`
     }
 
     nav {
-      background-color: ${(props) => props.darkMode ? colors.dark.navBgColor : colors.light.navBgColor};
-      .permissionTag {
-        color: ${colors.dark.bgc};
-      }
-.navigator{
+        background-color: ${(props) => props.darkMode ? colors.dark.navBgColor : colors.light.navBgColor};
+            .permissionTag {
+                color: ${colors.dark.bgc};
+            }
+        .navigator{
 
-  a.currentPage,
-  a:hover {
-    color: ${(props) => props.darkMode ? colors.light.color : colors.dark.color};
-  }
-}
-}
+            a.currentPage,
+            a:hover {
+                color: ${(props) => props.darkMode ? colors.light.color : colors.dark.color};
+            }
+        }
+    }   
 
       .navigator.showMenu{
         ul{
@@ -71,39 +73,45 @@ export const Theme = createGlobalStyle`
     a {
       color: ${(props) => (props.darkMode ? "#fff" : "#201A1E")};
     }
-    .profile-open {
-      background-color: ${(props) => props.darkMode ? colors.dark.bgc : colors.light.bgc};
-    }
-  }
-  .Card {
-    .actions {
-      a {
-        color: #fff;
-      }
-    }
-  }
-  .CardPage {
-    .textHeader {
-      color: white;
-    }
+        .profile-open {
+        background-color: ${(props) => props.darkMode ? colors.dark.bgc : colors.light.bgc};
+        }
   }
 
-
-  .clientList {
-    table{
-
-        thead {
-            tr {
-                background-color: ${(props) => props.darkMode ? "#443655" : "#e9e9e9"};
+    .Card {
+        .actions {
+            a {
+                color: #fff;
             }
         }
-        tbody{
-            tr{
-                
-                background-color: ${(props) => props.darkMode ? "#2a2234" : "#e6e6e664"};
-                td{
-                    select{
-                        color:${(props) => props.darkMode ? colors.dark.color : colors.light.color};
+    }
+
+    .CardPage {
+        .textHeader {
+            color: white;
+        }
+    }
+
+
+  .clientList,.CardsList {
+    .tableFrame {
+
+        table{
+
+            thead {
+                tr {
+                    background-color: ${(props) => props.darkMode ? "#443655" : "#e9e9e9"};
+                }
+            }
+
+            tbody{
+                tr{
+                    
+                    background-color: ${(props) => props.darkMode ? "#2a2234" : "#e6e6e664"};
+                    td{
+                        select{
+                            color:${(props) => props.darkMode ? colors.dark.color : colors.light.color};
+                        }
                     }
                 }
             }

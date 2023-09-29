@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import ToggleColorMode from "../style/ToggleThemeMode";
-import { LOGO, RoleTypes, checkPermission, generalContext } from "../App";
+import { LOGO, RoleTypes, checkPermission, colorsPalette, generalContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
 import { RiUserSettingsLine } from "react-icons/ri"
 import { LuUsers } from "react-icons/lu"
@@ -14,7 +14,7 @@ export const avatarImage = "https://cdn-icons-png.flaticon.com/512/149/149071.pn
 export default function AppBar() {
     const myRef = useRef()
     const Navigate = useNavigate()
-    const { userRole, user, isLogged } = useContext(generalContext)
+    const { setColorPalette, userRole, user, isLogged } = useContext(generalContext)
     const [profileOpen, setProfileOpen] = useState(false);
     const [width, setWidth] = useState(window.innerWidth);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -81,6 +81,12 @@ export default function AppBar() {
         }
     }, [])
 
+    function setColor(color) {
+        console.log(color);
+        setColorPalette(color)
+        localStorage.colorPlatte = JSON.stringify(color);
+    }
+
     return (
         <nav>
             <LOGO />
@@ -109,9 +115,18 @@ export default function AppBar() {
                             {(isLogged && userRole !== RoleTypes.ADMIN) && <Link to={"/edituser"}><RiUserSettingsLine /><li onClick={close}> הגדרות חשבון</li></Link>}
                             {(isLogged && userRole === RoleTypes.ADMIN || userRole === RoleTypes.BUSINESS) && <Link to={"/cardlist"}><BiFoodMenu /><li>  ניהול מתכונים</li></Link>}
                             {(isLogged && userRole === RoleTypes.ADMIN) && <Link to={"/clients"}><LuUsers /> <li>עריכת משתמשים </li> </Link>}
-
                         </ul>
 
+                        <div className="palette">
+                            <p>ערכת נושא</p>
+                            <ToggleColorMode />
+                            <ul className="colorPalette" >
+                                <li><div className="colorIcon blue " onClick={() => setColor(colorsPalette.BLUE)}></div></li>
+                                <li><div className="colorIcon red " onClick={() => setColor(colorsPalette.RED)}></div></li>
+                                <li><div className="colorIcon yellow " onClick={() => setColor(colorsPalette.YELLOW)}></div></li>
+                                <li><div className="colorIcon green " onClick={() => setColor(colorsPalette.GREEN)}></div></li>
+                            </ul>
+                        </div>
                         {isLogged &&
                             <ul>
                                 <li onClick={() => { Navigate("/logout"); close() }}>

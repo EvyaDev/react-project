@@ -30,8 +30,16 @@ export const RoleTypes = {
     NONE: "none",
 }
 
+export const colorsPalette = {
+    BLUE: "#5bcdfc",
+    RED: "#eb6e6e",
+    YELLOW: "#cccc41",
+    GREEN: "#7bcc7b",
+}
+
 export default function App() {
     const [darkMode, setDarkMode] = useState(false);
+    const [colorPalette, setColorPalette] = useState(colorsPalette.BLUE);
     const [cardChanged, setCardChanged] = useState(0);
     const [isLogged, setIsLogged] = useState();
     const [user, setUser] = useState("");
@@ -39,6 +47,10 @@ export default function App() {
     const [isShow, setIsShow] = useState(false);
     const [snackText, setSnackText] = useState("");
 
+
+    useEffect(() => {
+        setColorPalette(localStorage.colorPlatte ? JSON.parse(localStorage.colorPlatte) : colorsPalette.BLUE)
+    }, [colorPalette])
 
     const snackbar = (text) => {
         setIsShow(true)
@@ -102,8 +114,15 @@ export default function App() {
 
     return (
         <darkContext.Provider value={{ darkMode, setDarkMode }}>
-            <generalContext.Provider value={{ cardChanged, setCardChanged, snackbar, userRole, setUserRole, user, setUser, isLogged, setIsLogged }}>
-                <div className="App">
+            <generalContext.Provider value={{
+                colorPalette, setColorPalette,
+                cardChanged, setCardChanged,
+                userRole, setUserRole,
+                user, setUser,
+                isLogged, setIsLogged,
+                snackbar
+            }}>
+                <div className="App" style={{ "--mainColor": colorPalette }}>
                     <AppBar />
                     <div className="frame">
                         {isLogged ? <RouterAuth /> : <Router />}
@@ -111,6 +130,6 @@ export default function App() {
                     </div>
                 </div>
             </generalContext.Provider>
-        </darkContext.Provider>
+        </darkContext.Provider >
     );
 }

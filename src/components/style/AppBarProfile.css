@@ -17,7 +17,7 @@ nav .userArea .profile-open {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border: 1px var(--level2) solid;
+  border: 1px var(--mainColor) solid;
   width: clamp(220px, 70vw, 300px);
   -webkit-box-shadow: 0 0 50px -30px black;
           box-shadow: 0 0 50px -30px black;
@@ -40,9 +40,9 @@ nav .userArea .profile-open a .permissionTag {
   font-size: 13px;
   padding: 3px 8px;
   border-radius: 5px;
-  background-color: var(--level2);
-  -webkit-box-shadow: 0 0 30px -5px var(--level2);
-          box-shadow: 0 0 30px -5px var(--level2);
+  background-color: var(--mainColor);
+  -webkit-box-shadow: 0 0 30px -5px var(--mainColor);
+          box-shadow: 0 0 30px -5px var(--mainColor);
 }
 
 nav .userArea .profile-open ul {
@@ -97,5 +97,69 @@ nav .userArea .profile-open ul .logoutBtn:hover {
 
 nav .userArea .profile-open ul a:hover {
   background-color: #e9e4ff86;
+}
+
+nav .userArea .profile-open .palette {
+  padding: 10px;
+  width: 100%;
+  background-color: #8d8d8d19;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav .userArea .profile-open .palette p {
+  text-align: center;
+}
+
+nav .userArea .profile-open .palette .colorPalette {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+nav .userArea .profile-open .palette .colorPalette .colorIcon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+}
+
+nav .userArea .profile-open .palette .colorPalette .colorIcon.blue {
+  background-color: #5BCDFC;
+}
+
+nav .userArea .profile-open .palette .colorPalette .colorIcon.red {
+  background-color: #eb6e6e;
+}
+
+nav .userArea .profile-open .palette .colorPalette .colorIcon.yellow {
+  background-color: #cccc41;
+}
+
+nav .userArea .profile-open .palette .colorPalette .colorIcon.green {
+  background-color: #7bcc7b;
 }
 /*# sourceMappingURL=AppBarProfile.css.map */

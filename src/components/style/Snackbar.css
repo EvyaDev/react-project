@@ -4,7 +4,7 @@
     min-width: 200px;
     max-width: 500px;
     padding: 5px 10px;
-    background-color: var(--level2);
+    background-color: var(--mainColor);
     text-align: center;
     display: flex;
     flex-direction: row;

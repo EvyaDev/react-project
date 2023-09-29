@@ -4,11 +4,11 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   overflow: scroll;
 }
 
@@ -18,8 +18,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 8px;
   border-radius: 5px;
   border: none;
@@ -27,7 +27,7 @@
 }
 
 .CardsList .addCardBtn:hover {
-  background-color: var(--level2);
+  background-color: var(--mainColor);
   cursor: pointer;
 }
 
@@ -41,8 +41,8 @@
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   gap: 10px;
 }
 
@@ -92,9 +92,9 @@
   height: 50px;
   width: 50px;
   -o-object-position: center;
-     object-position: center;
+  object-position: center;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 50%;
   font-size: 14px;
 }
@@ -119,8 +119,9 @@
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   gap: 10px;
 }
+
 /*# sourceMappingURL=admin.css.map */

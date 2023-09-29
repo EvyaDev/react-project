@@ -11,8 +11,8 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
@@ -34,7 +34,7 @@
   z-index: 1;
   background-color: rgba(255, 255, 255, 0);
   -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   padding: 0 5px;
 }
 
@@ -44,7 +44,7 @@
   right: -25px;
   top: 7px;
   -webkit-transform: translate(0, 50%);
-          transform: translate(0, 50%);
+  transform: translate(0, 50%);
   font-size: 15px;
 }
 
@@ -81,7 +81,7 @@
 .login form .inputField .checkbox,
 .signup form .inputField .checkbox {
   -webkit-transform: scale(150%);
-          transform: scale(150%);
+  transform: scale(150%);
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -89,7 +89,7 @@
 
 .login form button,
 .signup form button {
-  background-color: var(--level2);
+  background-color: var(--mainColor);
   border-radius: 10px;
   padding: 10px;
   stroke: none;
@@ -107,4 +107,5 @@
   max-width: 70%;
   margin: 0 auto;
 }
+
 /*# sourceMappingURL=user.css.map */

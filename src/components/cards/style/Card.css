@@ -73,11 +73,20 @@
   color: #fff;
 }
 
+.Card .actions button.heartFill > svg {
+  color: var(--mainColor);
+}
+
 .Card .actions svg,
 .Card .actions button {
   color: #fff;
   font-size: 20px;
   background: none;
   border: none;
+}
+
+.Card .actions svg:hover,
+.Card .actions button:hover {
+  color: var(--mainColor);
 }
 /*# sourceMappingURL=Card.css.map */

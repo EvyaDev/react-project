@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { token, generalContext } from '../../App'
 import { avatarImage } from '../AppBar';
-import "./style/clients.css"
 import { HiMinusCircle } from 'react-icons/hi';
+import "./style/clients.css"
 
 export default function Clients() {
 
@@ -84,45 +84,49 @@ export default function Clients() {
         <div className='Clients' >
             <div className='clientList'>
                 <h1> ניהול משתמשים</h1>
-                {!clients.length ? <p>אין נתונים</p> : <table>
-                    <thead>
-                        <tr>
-                            <th>שם מלא</th>
-                            <th>ID</th>
-                            <th>מייל</th>
-                            <th>הרשאה</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                {!clients.length ? <p>אין נתונים</p> :
+                    <div className='tableFrame' >
 
-
-                        {clients.map(c => {
-                            return (
-                                <tr key={c.id} className='clientItem'>
-                                    <td>
-                                        <img onError={e => { e.target.src = avatarImage }} alt={c.imgAlt} src={c.imgUrl}></img>
-                                        <p> {c.firstName} {c.lastName}</p>
-                                    </td>
-                                    <td>  {c.id}</td>
-                                    <td>  {c.email}</td>
-                                    <td>
-                                        <select defaultValue={c.business ? true : false} onChange={ev => changeStaus(ev, c)}>
-                                            <option value={false}>רגיל</option>
-                                            <option value={true}>עסקי</option>
-                                        </select>
-                                        {isShow && <button>החל</button>}
-                                    </td>
-                                    <td>
-                                        <button className='deleteUser' title='מחק' onClick={() => removeClient(c.id)}>
-                                            <HiMinusCircle />
-                                        </button>
-                                    </td>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>שם מלא</th>
+                                    <th>ID</th>
+                                    <th>מייל</th>
+                                    <th>הרשאה</th>
+                                    <th></th>
                                 </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+
+
+                                {clients.map(c => {
+                                    return (
+                                        <tr key={c.id} className='clientItem'>
+                                            <td>
+                                                <img onError={e => { e.target.src = avatarImage }} alt={c.imgAlt} src={c.imgUrl}></img>
+                                                <p> {c.firstName} {c.lastName}</p>
+                                            </td>
+                                            <td>  {c.id}</td>
+                                            <td>  {c.email}</td>
+                                            <td>
+                                                <select defaultValue={c.business ? true : false} onChange={ev => changeStaus(ev, c)}>
+                                                    <option value={false}>רגיל</option>
+                                                    <option value={true}>עסקי</option>
+                                                </select>
+                                                {isShow && <button>החל</button>}
+                                            </td>
+                                            <td>
+                                                <button className='deleteUser' title='מחק' onClick={() => removeClient(c.id)}>
+                                                    <HiMinusCircle />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
                 }
             </div>
 

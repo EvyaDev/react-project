@@ -4,21 +4,21 @@
     padding: 20px 40px 150px 40px;
 }
 
-.About section>h2 {
+
+.About section>h3 {
     display: inline-block;
-    background-color: var(--level2);
+    background-color: var(--mainColor);
     color: black;
     padding: 0 10px;
-    line-height: 30px;
     border-radius: 5px;
-    box-shadow: 0 0 25px -10px var(--level2);
+    box-shadow: 0 0 25px -10px var(--mainColor);
     margin-bottom: 10px;
 }
 
 .About p,
 li {
     text-align: justify;
-    font-size: clamp(14px, 2vw, 20px);
+    font-size: clamp(13px, 2vw, 16px);
 }
 
 .About ul {
