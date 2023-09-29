@@ -51,7 +51,6 @@ export default function Signup() {
         { id: "business", type: "checkbox", label: " לקוח עסקי? ", require: false },
     ]
 
-
     function handleInput(ev) {
 
         const { id, value, type, checked } = ev.target;
@@ -77,6 +76,7 @@ export default function Signup() {
         } else {
             setIsValid(true)
         }
+
         setErrors(errors)
     }
 

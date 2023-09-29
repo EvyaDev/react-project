@@ -23,7 +23,6 @@ export default function SearchPage() {
     }, [query])
 
 
-
     return (
         <div className='SearchPage'>
             <h1>תוצאות חיפוש עבור "<b>{query}</b>": </h1>

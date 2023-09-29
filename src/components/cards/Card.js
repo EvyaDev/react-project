@@ -35,7 +35,7 @@ export default function Card({ cardData, isLiked, onlike }) {
             .catch(err => console.log(err))
     }
 
-
+    //FAVORITE
     function likeCard(cardId) {
         setLoading(true)
 
@@ -50,10 +50,9 @@ export default function Card({ cardData, isLiked, onlike }) {
                 setCardChanged(cardChanged + 1)
             })
             .catch(err => console.log(err))
-
     }
 
-
+    //UNFAVORITE
     function disLikeCard(cardId) {
         setLoading(true)
 
@@ -69,7 +68,6 @@ export default function Card({ cardData, isLiked, onlike }) {
             })
             .catch(err => console.log(err))
     }
-
 
 
     return (

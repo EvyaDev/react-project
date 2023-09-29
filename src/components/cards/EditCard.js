@@ -6,8 +6,8 @@ import joi from 'joi'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { FiEdit } from 'react-icons/fi'
 import { BsTrash3 } from 'react-icons/bs'
-import "././style/Add-EditCard.css"
 import Loader from '../Loader'
+import "././style/Add-EditCard.css"
 
 
 export default function EditCard() {
@@ -45,7 +45,7 @@ export default function EditCard() {
         { id: "description", label: "תוכן", type: "textarea", placeholder: "תוכן", },
     ];
 
-    //get one card
+    //GET ONE CARD
     useEffect(() => {
         setLoading(true)
 
@@ -93,7 +93,7 @@ export default function EditCard() {
         setErrors(errors)
     }
 
-
+    // SAVE CHANGES
     function save(ev) {
         ev.preventDefault();
 

@@ -28,7 +28,7 @@ export default function Clients() {
         { id: "business", type: "checkbox", label: " לקוח עסקי? ", },
     ]
 
-    //get all clients
+    //GET ALL CLIENTS
     useEffect(() => {
         fetch(`https://api.shipap.co.il/admin/clients?token=${token}`, {
             credentials: "include"
@@ -42,7 +42,7 @@ export default function Clients() {
     }, [clients.length, isLogged])
 
 
-    //remove client
+    //DELETE CLIENT
     function removeClient(itemId) {
 
         if (!window.confirm("אתה בטוח שברצונך למחוק את המשתמש?")) {
@@ -59,7 +59,7 @@ export default function Clients() {
             .catch(err => console.log(err));
     }
 
-    //change premission status of client
+    //SAVE CHANGES
     function changeStaus(ev, client) {
         const status = JSON.parse(ev.target.value);
         const obj = { ...client, id: 4, business: status }
@@ -84,9 +84,9 @@ export default function Clients() {
         <div className='Clients' >
             <div className='clientList'>
                 <h1> ניהול משתמשים</h1>
+
                 {!clients.length ? <p>אין נתונים</p> :
                     <div className='tableFrame' >
-
                         <table>
                             <thead>
                                 <tr>
@@ -98,7 +98,6 @@ export default function Clients() {
                                 </tr>
                             </thead>
                             <tbody>
-
 
                                 {clients.map(c => {
                                     return (
@@ -129,7 +128,6 @@ export default function Clients() {
                     </div>
                 }
             </div>
-
         </div >
     )
 }

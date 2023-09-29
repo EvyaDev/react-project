@@ -49,7 +49,7 @@ export default function LoginClient() {
         setErrors(errors)
     }
 
-    // function on LOGIN (send form)
+    //LOGIN
     function login(ev) {
         ev.preventDefault();
 
@@ -89,9 +89,7 @@ export default function LoginClient() {
             });
     }
 
-
     return (
-
         <div className='login'>
             <form onSubmit={login}>
                 <LOGO width={60} />
@@ -103,12 +101,14 @@ export default function LoginClient() {
                     <input id="email" type="email" required placeholder='אימייל' onChange={HandleInput} />
                     <p className={'validationError'}>{errors ? errors.email : ""}</p>
                 </div>
+
                 <div className='inputField'>
                     <label> <span>* </span> סיסמה</label>
                     {errors.password && <LuAlertTriangle className='iconError' />}
                     <input id="password" required type="password" placeholder='סיסמה' onChange={HandleInput} />
                     <p className={'validationError'}>{errors ? errors.password : ""}</p>
                 </div>
+
                 <button disabled={!IsValid}> התחבר </button>
                 <p className={'validationError'}>{errors.auth}</p>
 

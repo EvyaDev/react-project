@@ -10,10 +10,10 @@ import "././style/Add-EditCard.css"
 
 export default function AddCard() {
 
+    const placeholderImg = "https://theme-assets.getbento.com/sensei/a42cf8c.sensei/assets/images/catering-item-placeholder-704x520.png"
     const { snackbar } = useContext(generalContext)
     const [IsValid, setIsValid] = useState(true);
     const [errors, setErrors] = useState({});
-    const placeholderImg = "https://theme-assets.getbento.com/sensei/a42cf8c.sensei/assets/images/catering-item-placeholder-704x520.png"
 
     const addCardSchema = joi.object({
         title: joi.string().min(3).max(50).required(),
@@ -59,6 +59,7 @@ export default function AddCard() {
         setErrors(errors)
     }
 
+    //ADD CARD
     function addNew(ev) {
         ev.preventDefault();
 
@@ -108,9 +109,10 @@ export default function AddCard() {
                     <button disabled={!IsValid}>הוסף</button>
                 </form>
             </div>
-            <div className="display" >
 
+            <div className="display">
                 <p>תצוגה מקדימה</p>
+
                 <div className="Card" style={{ backgroundImage: `url(${formData.imgUrl || placeholderImg})` }}>
                     <div className="cardFrame" >
                         <h2>{formData.title || "כותרת לדוגמה"}</h2>
@@ -123,9 +125,7 @@ export default function AddCard() {
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     )
 }

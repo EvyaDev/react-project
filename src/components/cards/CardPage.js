@@ -13,7 +13,7 @@ export default function CardPage() {
     const [loading, setLoading] = useState(false)
     const { userRole, user } = useContext(generalContext)
 
-    //get my cards
+    //GET MY CARDS
     useEffect(() => {
         setLoading(true)
 
@@ -39,25 +39,21 @@ export default function CardPage() {
             {loading ? <Loader color={"white"} /> :
                 <>
                     <div className='frmae' style={{ backgroundImage: `linear-gradient(#ffffff00, #000), url(${imgUrl})` }}>
-
                         <div className='textHeader'>
                             <h1>{title}</h1>
                             <hr />
                             <p>{subtitle}</p>
                         </div>
-
                     </div>
+
                     <div className='content'>
-
                         <div className='contentHeader'>
-
                             {
                                 ((userRole === RoleTypes.ADMIN && item.clientId === 0) || user.id === item.clientId) &&
                                 <Link to={`/editCard/${id}`}>
                                     <button> <FiEdit /> עריכת מתכון זה </button>
                                 </Link>
                             }
-
                             <div className='share'>
                                 <p> שיתוף:  </p>
                                 <Link to={`https://api.whatsapp.com/send?text=${window.location.href}`}> <ImWhatsapp /></Link>

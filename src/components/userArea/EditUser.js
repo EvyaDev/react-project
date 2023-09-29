@@ -71,11 +71,9 @@ export default function EditUser() {
         }
         setFormData(updateFormData);
         setErrors(errors)
-
     }
 
-
-    //UPDATE function
+    //UPDATE
     function update(ev) {
         ev.preventDefault();
 
@@ -91,7 +89,6 @@ export default function EditUser() {
             })
             .catch(err => console.log(err))
     }
-
 
     return (
         <div className='EditUser'>

@@ -24,8 +24,8 @@ export default function Cards({ array, addBtnShow }) {
     useEffect(() => {
         setLoading(true)
 
+        //GET ALL CARDS THEN GET FAVORITE CARD
         Promise.all([
-
             fetch(`https://api.shipap.co.il/cards?token=${token}`, { credentials: "include" })
                 .then(res => res.json())
                 .catch(err => console.log(err)),
@@ -54,10 +54,8 @@ export default function Cards({ array, addBtnShow }) {
 
     }, [cardChanged])
 
-
     return (
-        <div className='Cards listLayout'>
-
+        <div className='Cards '>
             {addBtnShow &&
                 <Link to={"/addcard"}>
                     <button className='addCardBtn'> <MdOutlineAddCircleOutline /> מתכון חדש</button>

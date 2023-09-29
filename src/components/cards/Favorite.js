@@ -30,15 +30,15 @@ export default function Favorite() {
     }, [cardChanged])
 
 
-
-
-
     return (
         <div className='Cards Favorite'>
             <h1>המועדפים שלי</h1>
             {
                 favoriteList.length ?
-                    <Cards array={favoriteList.map(x => x.id)} />
+                    <section className='cardsList'>
+
+                        <Cards array={favoriteList.map(x => x.id)} />
+                    </section>
                     :
                     <div className='errorFavorite'>
                         <AiOutlineInfoCircle />

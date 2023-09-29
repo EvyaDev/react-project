@@ -27,7 +27,7 @@ export default function CardsList() {
 
     }, [cards.length])
 
-    //remove card
+    //REMOVE CARD
     function remove(itemId) {
         if (!window.confirm("אתה בטוח שברצונך למחוק את המתכון הזה?")) {
             snackbar("המחיקה התבטלה!");
@@ -47,12 +47,13 @@ export default function CardsList() {
 
     return (
         <div className='CardsList'>
+
             <h1> ניהול מתכונים</h1>
             <Link to={"/addcard"}>
                 <button className='addCardBtn'> <MdOutlineAddCircleOutline /> מתכון חדש</button>
             </Link>
-            {!cards.length ? <p>אין נתונים</p> :
 
+            {!cards.length ? <p>אין נתונים</p> :
                 <div className='tableFrame'>
                     <table>
                         <thead>

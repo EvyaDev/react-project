@@ -93,29 +93,33 @@ export const Theme = createGlobalStyle`
     }
 
 
-  .clientList,.CardsList {
-    .tableFrame {
+    .clientList,.CardsList {
+      .tableFrame {
 
-        table{
+          table{
 
-            thead {
-                tr {
-                    background-color: ${(props) => props.darkMode ? "#443655" : "#e9e9e9"};
-                }
-            }
+              thead {
+                  tr {
+                      background-color: ${(props) => props.darkMode ? "#443655" : "#e9e9e9"};
+                  }
+              }
 
-            tbody{
-                tr{
-                    
-                    background-color: ${(props) => props.darkMode ? "#2a2234" : "#e6e6e664"};
-                    td{
-                        select{
-                            color:${(props) => props.darkMode ? colors.dark.color : colors.light.color};
-                        }
-                    }
-                }
-            }
-        }
+              tbody{
+                  tr{
+                      
+                      background-color: ${(props) => props.darkMode ? "#2a2234" : "#e6e6e664"};
+                      td{
+                          select{
+                              color:${(props) => props.darkMode ? colors.dark.color : colors.light.color};
+                          }
+                      }
+                  }
+              }
+          }
+      }
     }
-  }
+    .Footer{
+      background-color: ${(props) => props.darkMode ? "#465f69" : "#e0e0e0"};
+    }
 `;
+

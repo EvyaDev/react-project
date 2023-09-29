@@ -1,5 +1,6 @@
 nav .userArea .profile-open {
   top: 5px;
+  left: 20px;
   gap: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
