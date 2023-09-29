@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { colorsPalette } from '../App';
 
 const colors = {
   dark: {

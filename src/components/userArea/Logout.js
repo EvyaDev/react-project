@@ -23,5 +23,6 @@ export default function Logout() {
             })
             .catch(err => console.log(err))
             .finally(() => Navigate("/login"))
+        /* eslint-disable-next-line */
     }, [])
 }

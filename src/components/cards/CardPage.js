@@ -21,7 +21,7 @@ export default function CardPage() {
             .then(res => res.json())
             .then(data => {
                 if (data.map(d => d.id).includes(+id)) {
-                    setItem(data.filter(d => d.id == id)[0])
+                    setItem(data.filter(d => d.id === +id)[0])
                 } else {
                     Navigate("/errorPage")
                 }
@@ -29,7 +29,7 @@ export default function CardPage() {
             .catch(err => console.log(err))
             .finally(() => setLoading(false))
 
-    }, [item.length])
+    }, [item.length, Navigate, id])
 
     const { title, description, subtitle, imgUrl } = item;
 

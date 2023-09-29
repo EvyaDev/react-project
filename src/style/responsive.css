@@ -36,7 +36,9 @@
 
 @media (max-width: 767px) {
   nav .menuToggle {
-    display: block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
   nav .searchInput {
     display: none;

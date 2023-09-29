@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Loader from '../Loader';
 import { Link } from 'react-router-dom';
-import { RoleTypes, token, generalContext, LOGO } from '../../App';
+import { RoleTypes, token, generalContext } from '../../App';
 import { HiMinusCircle } from 'react-icons/hi';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
 import { FiEdit } from 'react-icons/fi';

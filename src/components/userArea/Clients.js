@@ -8,25 +8,6 @@ export default function Clients() {
 
     const { snackbar, isLogged } = useContext(generalContext)
     const [clients, setClients] = useState([])
-    const [isShow, setIsShow] = useState(false)
-
-    const Arr = [
-        { id: "firstName", type: "text", label: "שם פרטי", placeholder: "שם פרטי" },
-        { id: "middleName", type: "text", label: "שם אמצעי", placeholder: "שם אמצעי" },
-        { id: "lastName", type: "text", label: "שם משפחה", placeholder: "שם משפחה" },
-        { id: "phone", type: "tel", label: "טלפון", placeholder: "טלפון" },
-        { id: "email", type: "text", label: "אימייל", placeholder: "אימייל" },
-        { id: "password", type: "text", label: "סיסמה", placeholder: "סיסמה" },
-        { id: "imgUrl", type: "text", label: "תמונה", placeholder: "תמונה" },
-        { id: "imgAlt", type: "text", label: "imgAlt", placeholder: "imgAlt" },
-        { id: "state", type: "text", label: "מחוז", placeholder: "מחוז" },
-        { id: "country", type: "text", label: "מדינה", placeholder: "מדינה" },
-        { id: "city", type: "text", label: "עיר", placeholder: "עיר" },
-        { id: "street", type: "text", label: "רחוב", placeholder: "רחוב" },
-        { id: "houseNumber", type: "number", label: "בית", placeholder: "בית" },
-        { id: "zip", type: "number", label: "מיקוד", placeholder: "מיקוד" },
-        { id: "business", type: "checkbox", label: " לקוח עסקי? ", },
-    ]
 
     //GET ALL CLIENTS
     useEffect(() => {
@@ -113,7 +94,6 @@ export default function Clients() {
                                                     <option value={false}>רגיל</option>
                                                     <option value={true}>עסקי</option>
                                                 </select>
-                                                {isShow && <button>החל</button>}
                                             </td>
                                             <td>
                                                 <button className='deleteUser' title='מחק' onClick={() => removeClient(c.id)}>

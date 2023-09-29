@@ -47,6 +47,7 @@ export default function AppBar() {
         if (window.location.pathname.split("/")[1] !== "search-page") {
             setText("")
         }
+        /* eslint-disable-next-line */
     }, [window.location.pathname])
 
 
@@ -80,6 +81,7 @@ export default function AppBar() {
         return () => {
             window.removeEventListener("resize", handleResize)
         }
+        /* eslint-disable-next-line */
     }, [])
 
     //SAVE GLOBAL COLOR PLATTE
@@ -90,7 +92,9 @@ export default function AppBar() {
 
     return (
         <nav>
-            <LOGO />
+            <Link to={"/"}><LOGO /></Link>
+            <p>{APP_NAME}</p>
+
             <div className={menuOpen ? "navigator showMenu" : "navigator"}>
                 <ul onClick={() => setMenuOpen(true)}>
                     {(width < 767) && <ToggleColorMode />}
@@ -135,7 +139,7 @@ export default function AppBar() {
                                 {!isLogged && <Link to={"/login"}><li onClick={close}> כניסה </li></Link>}
                                 {!isLogged && <Link to={"/signup"}><li> הרשמה </li></Link>}
                                 {(isLogged && userRole !== RoleTypes.ADMIN) && <Link to={"/edituser"}><RiUserSettingsLine /><li onClick={close}> הגדרות חשבון</li></Link>}
-                                {(isLogged && userRole === RoleTypes.ADMIN || userRole === RoleTypes.BUSINESS) && <Link to={"/cardlist"}><BiFoodMenu /><li>  ניהול מתכונים</li></Link>}
+                                {(isLogged && (userRole === RoleTypes.ADMIN || userRole === RoleTypes.BUSINESS)) && <Link to={"/cardlist"}><BiFoodMenu /><li>  ניהול מתכונים</li></Link>}
                                 {(isLogged && userRole === RoleTypes.ADMIN) && <Link to={"/clients"}><LuUsers /> <li>עריכת משתמשים </li> </Link>}
                             </ul>
 

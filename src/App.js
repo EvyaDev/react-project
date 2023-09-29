@@ -9,14 +9,14 @@ import "./style/responsive.css"
 import Footer from './components/Footer';
 
 
-export const APP_NAME = "YammyCard";
+export const APP_NAME = "המתכונים שלי";
 export const darkContext = createContext();
 export const generalContext = createContext()
 export const token = "3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0"
 
 export const LOGO = ({ width }) => {
     return (
-        <img style={{ width: width || 40 + "px", margin: "0 auto" }} src={logo}></img>
+        <img alt='logo' style={{ width: width || 40 + "px", margin: "0 auto" }} src={logo}></img>
     )
 };
 
@@ -112,6 +112,7 @@ export default function App() {
 
     useEffect(() => {
         checkLoginStatus()
+        /* eslint-disable-next-line */
     }, [])
 
     return (

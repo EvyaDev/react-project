@@ -66,7 +66,7 @@ export default function EditCard() {
                 Navigate("/errorPage");
             })
             .finally(() => setLoading(false))
-    }, [Navigate, id])
+    }, [Navigate, id, user.id, userRole])
 
 
     function handleInput(ev) {
