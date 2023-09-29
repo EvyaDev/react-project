@@ -74,7 +74,7 @@ nav .navigator a::before {
   right: 0;
   content: "";
   border-radius: 0;
-  background-color: var(--level2);
+  background-color: var(--mainColor);
   height: 2px;
   width: 100%;
   -webkit-transition: all .1s ease-in;
