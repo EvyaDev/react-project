@@ -1,8 +1,13 @@
 .App {
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+          box-sizing: border-box;
   padding-top: 50px;
   max-width: 100%;
+}
+
+.App input {
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
 }
 
 .App .frame {
@@ -33,7 +38,7 @@
   font-size: clamp(13px, 2vw, 16px);
 }
 
-.Home>h2 {
+.Home > h2 {
   text-align: center;
 }
 
@@ -44,15 +49,15 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   line-height: 100px;
 }
 
@@ -61,7 +66,7 @@
 }
 
 .btnMode {
-  background-color: var(--mainColor);
+  background-color: var(--level2);
   color: var(--dark);
   width: 30px;
   height: 30px;
@@ -70,13 +75,12 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 0px;
   border: none;
 }
-
 /*# sourceMappingURL=App.css.map */

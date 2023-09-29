@@ -1,18 +1,19 @@
 import React from 'react'
 import "././style/About.css"
+import { APP_NAME } from './App'
 
 export default function About() {
     return (
         <div className='About'>
             <header>
-                <h1>אודות YummyCards</h1>
+                <h1>אודות {APP_NAME}</h1>
             </header>
             <br />
             <main>
                 <section>
                     <h3>המטרה שלנו</h3>
                     <p>
-                        ב-YummyCards אנחנו מחויבים לספק פתרונות תכנות ומותאמים אישית לכל משתמש.
+                        ב-{APP_NAME} אנחנו מחויבים לספק פתרונות תכנות ומותאמים אישית לכל משתמש.
                         יחד עם יכולות ניהול וחיפוש מתקדמות, אנחנו מבטיחים שתוכלו למצוא, לערוך ולשתף מתכונים בקלות וביעילות.
                     </p>
                 </section>
@@ -30,10 +31,10 @@ export default function About() {
                 <br />
                 <br />
                 <section>
-                    <h3>השתמשו ב-YummyCards</h3>
+                    <h3>השתמשו ב-{APP_NAME}</h3>
                     <p>
                         אם אתם מחפשים מערכת יעילה לניהול מתכונים או פשוט אוהבים לבשל ולחלוק את המתכונים שלכם עם העולם,
-                        YummyCards היא המערכת שתפתור את הצרכים שלכם.
+                        {APP_NAME} היא המערכת שתפתור את הצרכים שלכם.
                     </p>
                 </section>
                 <br />
