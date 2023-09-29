@@ -24,7 +24,7 @@ export default function RouterAuth() {
             <Route path="*" element={<ErrorPage />} />
             <Route path="/about" element={<About />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/clients" element={<Clients />} />
+            {userRole === RoleTypes.ADMIN && <Route path="/clients" element={<Clients />} />}
             <Route path="/cardlist" element={<CardList />} />
             <Route path="/errorPage" element={<ErrorPage />} />
             <Route path="/my-favorite" element={<Favorite />} />

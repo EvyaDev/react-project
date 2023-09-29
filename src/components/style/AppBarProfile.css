@@ -1,17 +1,15 @@
 nav .userArea .profile-open {
-  width: clamp(220px, 70vw, 300px);
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding: 20px;
-  position: absolute;
   top: 5px;
-  border-radius: 20px;
-  -webkit-box-shadow: 0 0 50px -30px black;
-          box-shadow: 0 0 50px -30px black;
+  gap: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding: 20px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  border-radius: 20px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -19,30 +17,36 @@ nav .userArea .profile-open {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 20px;
+  border: 1px var(--level2) solid;
+  width: clamp(220px, 70vw, 300px);
+  -webkit-box-shadow: 0 0 50px -30px black;
+          box-shadow: 0 0 50px -30px black;
 }
 
 nav .userArea .profile-open a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 nav .userArea .profile-open a .permissionTag {
-  background-color: var(--level2);
   font-size: 13px;
-  border-radius: 5px;
   padding: 3px 8px;
+  border-radius: 5px;
+  background-color: var(--level2);
+  -webkit-box-shadow: 0 0 30px -5px var(--level2);
+          box-shadow: 0 0 30px -5px var(--level2);
 }
 
 nav .userArea .profile-open ul {
+  gap: 10px;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -51,27 +55,29 @@ nav .userArea .profile-open ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 10px;
+}
+
+nav .userArea .profile-open ul li {
+  font-size: 14px !important;
 }
 
 nav .userArea .profile-open ul a {
-  background-color: #e9e4ff00;
-  width: inherit;
-  border-radius: 5px;
-  padding: 5px 15px;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  -webkit-transition: .2s ease-in;
-  transition: .2s ease-in;
+  gap: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  color: inherit;
+  width: inherit;
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 5px;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  gap: 10px;
+  text-decoration: none;
+  -webkit-transition: .1s ease-in;
+  transition: .1s ease-in;
 }
 
 nav .userArea .profile-open ul .logoutBtn {
@@ -83,6 +89,9 @@ nav .userArea .profile-open ul .logoutBtn {
 
 nav .userArea .profile-open ul .logoutBtn:hover {
   background-color: #b71717c9;
+  -webkit-box-shadow: 0 0 30px -5px red;
+          box-shadow: 0 0 30px -5px red;
+  font-size: 120% !important;
   color: white;
 }
 

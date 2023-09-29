@@ -3,12 +3,21 @@ import Router from './Router';
 import AppBar from './components/AppBar';
 import Snackbar from './components/Snackbar';
 import RouterAuth from './RouterAuth';
+import logo from "./Asset8logo-blue.png"
 import '././style/App.css';
 import "./style/responsive.css"
 
+export const LOGO = ({ width }) => {
+    return (
+        <img style={{ width: width || 40 + "px", margin: "0 auto" }} src={logo}></img>
+    )
+};
+
+export const APP_NAME = "YammyCard";
 export const darkContext = createContext();
 export const generalContext = createContext()
 export const token = "3aa43feb-35d3-11ee-b3e9-14dda9d4a5f0"
+
 
 export function checkPermission(roles, role) {
     return roles.includes(role);
@@ -20,7 +29,6 @@ export const RoleTypes = {
     BUSINESS: "business",
     NONE: "none",
 }
-
 
 export default function App() {
     const [darkMode, setDarkMode] = useState(false);
@@ -65,27 +73,31 @@ export default function App() {
 
 
     //check login status every 10 minutes
-    useEffect(() => {
-        setInterval(() => {
-            fetch(`https://api.shipap.co.il/clients/login`, {
-                credentials: 'include',
+    function checkLoginStatus() {
+        fetch(`https://api.shipap.co.il/clients/login`, {
+            credentials: 'include',
+        })
+            .then(res => {
+                if (res.ok) {
+                    return;
+                } else {
+                    setUser("")
+                    setIsLogged(false)
+                    setUserRole(RoleTypes.NONE);
+                    throw new Error("המשתמש לא מחובר");
+                }
             })
-                .then(res => {
-                    if (res.ok) {
-                        return;
-                    } else {
-                        setUser("")
-                        setIsLogged(false)
-                        setUserRole(RoleTypes.NONE);
-                        throw new Error("המשתמש לא מחובר");
-                    }
-                })
-                .then(() => {
-                    setIsLogged(true)
-                })
-                .catch(err => console.log(err))
+            .then(() => {
+                setIsLogged(true)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        setTimeout(() => { checkLoginStatus(); console.log("check"); }, 10 * 60 * 1000);
+    }
 
-        }, 10 * 60 * 1000)
+    useEffect(() => {
+        checkLoginStatus()
     }, [])
 
     return (

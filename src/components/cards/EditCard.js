@@ -78,12 +78,13 @@ export default function EditCard() {
         })
 
         const schema = editCardSchema.validate(updateFormData, { abortEarly: false, allowUnknown: true, messages: { he: JOI_HEBREW }, errors: { language: 'he' } });
-
         const errors = {};
         if (schema.error) {
+
             for (const e of schema.error.details) {
                 errors[e.context.key] = e.message;
             };
+
             setIsValid(false)
         } else {
             setIsValid(true)
@@ -125,7 +126,7 @@ export default function EditCard() {
                                             defaultValue={formData[f.id]}
                                             lang={2000}
                                             rows={15}
-                                            onChange={handleInput}
+                                            onInput={handleInput}
                                         ></textarea> :
                                         <input id={f.id} type={f.type} defaultValue={formData[f.id]} placeholder={f.placeholder} onChange={handleInput} />
                                     }

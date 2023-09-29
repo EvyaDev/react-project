@@ -58,6 +58,7 @@
 .EditCard .form form label {
   font-size: 14px;
   padding: 0 5px;
+  margin-top: 10px;
 }
 
 .AddCard .form form svg.iconError,
@@ -84,7 +85,6 @@
   height: fit-content;
   resize: vertical;
   border: solid 1px var(--level2);
-  margin-bottom: 20px;
 }
 
 .AddCard .form form input ::-webkit-input-placeholder,

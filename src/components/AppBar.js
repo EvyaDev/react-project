@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import ToggleColorMode from "../style/ToggleThemeMode";
-import { RoleTypes, checkPermission, generalContext } from "../App";
+import { LOGO, RoleTypes, checkPermission, generalContext } from "../App";
 import { Link, useNavigate } from "react-router-dom";
 import { RiUserSettingsLine } from "react-icons/ri"
 import { LuUsers } from "react-icons/lu"
@@ -83,6 +83,7 @@ export default function AppBar() {
 
     return (
         <nav>
+            <LOGO />
             <div className="userArea">
                 <div onMouseLeave={close} onMouseOver={open} className="avatar">
                     {isLogged ?

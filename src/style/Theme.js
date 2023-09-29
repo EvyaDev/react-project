@@ -1,18 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 
 const colors = {
-  dark: {
-    bgc: "#231c2a",
-    color: "white",
-    navBgColor: "#5151516f",
-    inputBgColor: "rgb(49, 49, 49)",
-  },
-  light: {
-    bgc: "#f4f4f4",
-    color: "#231c2a",
-    navBgColor: "#e4e4e46f",
-    inputBgColor: "#f4f4f4",
-  },
+    dark: {
+        bgc: "#231c2a",
+        color: "white",
+        navBgColor: "#5151516f",
+        inputBgColor: "rgb(49, 49, 49)",
+    },
+    light: {
+        bgc: "#f4f4f4",
+        color: "#231c2a",
+        navBgColor: "#e4e4e46f",
+        inputBgColor: "#f4f4f4",
+    },
 };
 
 export const Theme = createGlobalStyle`
@@ -85,6 +85,29 @@ export const Theme = createGlobalStyle`
   .CardPage {
     .textHeader {
       color: white;
+    }
+  }
+
+
+  .clientList {
+    table{
+
+        thead {
+            tr {
+                background-color: ${(props) => props.darkMode ? "#443655" : "#e9e9e9"};
+            }
+        }
+        tbody{
+            tr{
+                
+                background-color: ${(props) => props.darkMode ? "#2a2234" : "#e6e6e664"};
+                td{
+                    select{
+                        color:${(props) => props.darkMode ? colors.dark.color : colors.light.color};
+                    }
+                }
+            }
+        }
     }
   }
 `;

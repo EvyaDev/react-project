@@ -1,3 +1,9 @@
+.login .logo,
+.signup .logo {
+  width: 80px;
+  margin: 0 auto;
+}
+
 .login form,
 .signup form {
   display: -webkit-box;
@@ -76,6 +82,9 @@
 .signup form .inputField .checkbox {
   -webkit-transform: scale(150%);
           transform: scale(150%);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .login form button,
