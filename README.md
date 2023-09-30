@@ -14,8 +14,8 @@ git clone https://github.com/EvyaDev/react-project.git
 
 2. **Installing the required dependencies**:
 ```
-npm install
 cd react-project
+npm install
 ```
 
 3. **Running the project**:
@@ -37,8 +37,11 @@ Application allows users to:
 ## Technologies used
 
 - [React](https://he.reactjs.org/): the project framework.
+- [React icons](https://react-icons.github.io/react-icons/)
 - [React Router](https://reactrouter.com/): for navigating between the pages.
 - [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage): for saving the information in the browser.
+- [styled-components](https://styled-components.com)
+
 
 ## Donations and assistance
 
