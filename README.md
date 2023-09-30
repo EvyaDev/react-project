@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# פרויקט React - ניהול כרטיסים
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![תמונת פרויקט](תמונת-פרויקט.jpg)
 
-## Available Scripts
+## מבוא
 
-In the project directory, you can run:
+פרויקט זה הוא אפליקציה מבוססת React שמאפשרת למשתמשים להוסיף, לערוך ולנהל כרטיסים (Cards). המטרה העיקרית של הפרויקט היא להדגים כיצד לבנות אפליקציה באמצעות React, לנהל מצבי רכיבים, ולשלב פונקציות בדף האינטרנט.
 
-### `npm start`
+## התקנה והרצה
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+כדי להתקין ולהריץ את הפרויקט במערכת שלך, עקוב אחר השלבים הבאים:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **הורדת הקובץ מ- GitHub**: 
+git clone https://github.com/EvyaDev/react-project.git
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **התקנת התלות הנדרשות**:
+cd react-project
+npm install
 
-### `npm run build`
+3. **הרצת הפרויקט**:
+npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+עם השלבים הללו, הפרויקט יתחיל לרוץ בסביבת הפיתוח שלך ותוכל לגשת אליו בכתובת ה-URL הבאה: [http://localhost:3000](http://localhost:3000)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## שימוש
 
-### `npm run eject`
+אפליקציה מאפשרת למשתמשים:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- הוספת כרטיס חדש.
+- צפייה, עריכה ומחיקת כרטיסים קיימים.
+- מיון וסינון של הכרטיסים לפי מאפיינים שונים.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## טכנולוגיות שנעשה בהן שימוש
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [React](https://he.reactjs.org/): מסגרת הפרויקט.
+- [React Router](https://reactrouter.com/): לניווט בין העמודים.
+- [Material-UI](https://material-ui.com/): לעיצוב ולמראה האפליקציה.
+- [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage): לשמירת המידע בדפדפן.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## תרומות וסיוע
 
-## Learn More
+אם יש לך הצעות לשדרוג או תרומות לפרויקט, אנחנו מזמינים אותך לפתוח Issue או Pull Request בגיטהאב.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## רישיון
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+פרויקט זה משוייך ל-[MIT License](LICENSE).
 
-### Code Splitting
+![MIT License](https://img.shields.io/badge/license-MIT-green)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+**הבהרות:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- הפרויקט הוא למטרות למידה והדגמה בלבד.
+- התמונות והלוגו הם למטרות דוגמה וניתן להחליף אותם בתוכן משלך.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
