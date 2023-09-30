@@ -1,4 +1,4 @@
-# React project - ticket management
+# React project - caeds management
 
 ## Introduction
 
@@ -11,7 +11,6 @@ To install and run the project on your system, follow these steps:
 ```
 git clone https://github.com/EvyaDev/react-project.git
 ```
-
 
 2. **Installing the required dependencies**:
 ```
