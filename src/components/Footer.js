@@ -1,5 +1,5 @@
 import { GoHome } from "react-icons/go"
-import { AiFillHeart } from "react-icons/ai"
+import { AiOutlineHeart } from "react-icons/ai"
 import { BsFolder2Open } from "react-icons/bs"
 import { Link } from "react-router-dom"
 import { RoleTypes, generalContext } from "../App"
@@ -16,7 +16,7 @@ export default function Footer() {
                     <p>בית</p>
                 </div>
                 <div>
-                    <Link to={"/my-favorite"}> <li>{<AiFillHeart />}</li></Link>
+                    <Link to={"/my-favorite"}> <li>{<AiOutlineHeart />}</li></Link>
                     <p>מועדפים</p>
                 </div>
                 {(isLogged && userRole !== RoleTypes.USER) &&

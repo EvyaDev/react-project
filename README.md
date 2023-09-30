@@ -43,6 +43,7 @@ Application allows users to:
 Libraries - 
 - [React icons](https://react-icons.github.io/react-icons/)
 - [styled-components](https://styled-components.com): for global theme app.
+- [JOI Validations](https://joi.dev/): for Validations.
 
 
 ## Donations and assistance

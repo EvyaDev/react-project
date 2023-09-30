@@ -84,27 +84,27 @@ export default function AddCard() {
                     <h2>הוספת מתכון חדש</h2>
                     <label>* כותרת</label>
                     <input type="text" id="title" placeholder="כותרת" onChange={handleInput}></input>
-                    <p className="validationError">{errors.title}</p>
+                    {errors.title ? <p className="validationError">{errors.title}</p> : ""}
 
                     <label>* כותרת משנה</label>
                     <input type="text" id="subtitle" placeholder="כותרת משנה" onChange={handleInput}></input>
-                    <p className="validationError">{errors.subtitle}</p>
+                    {errors.subtitle ? <p className="validationError">{errors.subtitle}</p> : ""}
 
                     <label>* תמונה</label>
                     <input type="text" id="imgUrl" placeholder="תמונה" onChange={handleInput}></input>
-                    <p className="validationError">{errors.imgUrl}</p>
+                    {errors.imgUrl ? <p className="validationError">{errors.imgUrl}</p> : ""}
 
                     <label>* alt</label>
                     <input type="text" id="imgAlt" placeholder="alt image" onChange={handleInput}></input>
-                    <p className="validationError">{errors.imgAlt}</p>
+                    {errors.imgAlt ? <p className="validationError">{errors.imgAlt}</p> : ""}
 
                     <label>קישור חיצוני</label>
                     <input type="text" id="web" placeholder="URL" onChange={handleInput}></input>
-                    <p className="validationError">{errors.web}</p>
+                    {errors.web ? <p className="validationError">{errors.web}</p> : ""}
 
                     <label> * תוכן</label>
                     <textarea id="description" lang="1000" rows={10} onChange={handleInput}></textarea>
-                    <p className="validationError">{errors.description}</p>
+                    {errors.description ? <p className="validationError">{errors.description}</p> : ""}
 
                     <button disabled={!IsValid}>הוסף</button>
                 </form>
@@ -126,6 +126,6 @@ export default function AddCard() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import "././style/About.css"
+import "././style/about.css"
 import { APP_NAME } from './App'
 
 export default function About() {

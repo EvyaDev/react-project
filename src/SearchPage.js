@@ -3,7 +3,7 @@ import Cards from './components/cards/Cards'
 import { useParams } from 'react-router-dom'
 import { token } from './App'
 import { MagnifyingGlass } from 'react-loader-spinner'
-import "././style/SearchPage.css"
+import "././style/searchPage.css"
 
 export default function SearchPage() {
     const { query } = useParams()

@@ -14,23 +14,23 @@ export default function EditUser() {
     const [errors, setErrors] = useState({});
 
     const structure = [
-        { id: "firstName", type: "text", label: "שם פרטי" },
+        { id: "firstName", type: "text", label: "שם פרטי", req: true },
         { id: "middleName", type: "text", label: "שם אמצעי" },
-        { id: "lastName", type: "text", label: "שם משפחה" },
-        { id: "phone", type: "tel", label: "טלפון" },
-        { id: "imgUrl", type: "text", label: "תמונה" },
-        { id: "imgAlt", type: "text", label: "imgAlt" },
+        { id: "lastName", type: "text", label: "שם משפחה", req: true },
+        { id: "phone", type: "tel", label: "טלפון", req: true },
+        { id: "imgUrl", type: "text", label: "תמונה", req: true },
+        { id: "imgAlt", type: "text", label: "imgAlt", req: true },
         { id: "state", type: "text", label: "מחוז" },
-        { id: "country", type: "text", label: "מדינה" },
-        { id: "city", type: "text", label: "עיר" },
-        { id: "street", type: "text", label: "רחוב" },
-        { id: "houseNumber", type: "number", label: "בית" },
-        { id: "zip", type: "number", label: "מיקוד" },
+        { id: "country", type: "text", label: "מדינה", req: true },
+        { id: "city", type: "text", label: "עיר", req: true },
+        { id: "street", type: "text", label: "רחוב", req: true },
+        { id: "houseNumber", type: "number", label: "בית", req: true },
+        { id: "zip", type: "number", label: "מיקוד", req: true },
     ]
 
     const editUserSchema = joi.object({
         firstName: joi.string().min(3).max(12).required(),
-        middleName: joi.string().min(3).max(12).required(),
+        middleName: joi.string().min(3).max(12),
         lastName: joi.string().min(3).max(20).required(),
         phone: joi.string().regex(/[0-9]{7,10}$/).messages({ 'string.pattern.base': "מספר טלפון לא תקין" }).min(7).max(20).required(),
         imgUrl: joi.string().min(8).required(),
@@ -105,7 +105,7 @@ export default function EditUser() {
                             .map(s => {
                                 return (
                                     <div className='inputField' key={s.id}>
-                                        <label>{s.label}</label>
+                                        <label><span>{s.req && "* "}</span>{s.label}</label>
                                         <input
                                             id={s.id}
                                             type={s.type}
