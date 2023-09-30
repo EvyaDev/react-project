@@ -1,6 +1,6 @@
 import React from 'react'
-import "././style/about.css"
 import { APP_NAME } from './App'
+import "././style/about.css"
 
 export default function About() {
     return (
