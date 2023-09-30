@@ -1,58 +1,53 @@
-# פרויקט React - ניהול כרטיסים
+# React project - ticket management
 
-![תמונת פרויקט](תמונת-פרויקט.jpg)
+## Introduction
 
-## מבוא
+This project is a React-based application that allows users to add, edit and manage cards. The main goal of the project is to demonstrate how to build an application using React, manage component states, and integrate functions into the web page.
 
-פרויקט זה הוא אפליקציה מבוססת React שמאפשרת למשתמשים להוסיף, לערוך ולנהל כרטיסים (Cards). המטרה העיקרית של הפרויקט היא להדגים כיצד לבנות אפליקציה באמצעות React, לנהל מצבי רכיבים, ולשלב פונקציות בדף האינטרנט.
+## Install and run
+To install and run the project on your system, follow these steps:
 
-## התקנה והרצה
-
-כדי להתקין ולהריץ את הפרויקט במערכת שלך, עקוב אחר השלבים הבאים:
-
-1. **הורדת הקובץ מ- GitHub**: 
-git clone https://github.com/EvyaDev/react-project.git
+1. **Download the file from GitHub**:
+> git clone https://github.com/EvyaDev/react-project.git
 
 
-2. **התקנת התלות הנדרשות**:
-cd react-project
-npm install
+2. **Installing the required dependencies**:
+>cd react-project
+> npm install
 
-3. **הרצת הפרויקט**:
-npm start
+3. **Running the project**:
+> npm start
 
 
-עם השלבים הללו, הפרויקט יתחיל לרוץ בסביבת הפיתוח שלך ותוכל לגשת אליו בכתובת ה-URL הבאה: [http://localhost:3000](http://localhost:3000)
+With these steps, the project will start running in your development environment and you can access it at the following URL: [http://localhost:3000](http://localhost:3000)
 
-## שימוש
+## Usage
 
-אפליקציה מאפשרת למשתמשים:
+Application allows users to:
 
-- הוספת כרטיס חדש.
-- צפייה, עריכה ומחיקת כרטיסים קיימים.
-- מיון וסינון של הכרטיסים לפי מאפיינים שונים.
+- Adding a new card according to permissions.
+- Viewing, editing and deleting existing cards.
+- Sorting and filtering the cards according to different characteristics.
 
-## טכנולוגיות שנעשה בהן שימוש
+## Technologies used
 
-- [React](https://he.reactjs.org/): מסגרת הפרויקט.
-- [React Router](https://reactrouter.com/): לניווט בין העמודים.
-- [Material-UI](https://material-ui.com/): לעיצוב ולמראה האפליקציה.
-- [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage): לשמירת המידע בדפדפן.
+- [React](https://he.reactjs.org/): the project framework.
+- [React Router](https://reactrouter.com/): for navigating between the pages.
+- [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage): for saving the information in the browser.
 
-## תרומות וסיוע
+## Donations and assistance
 
-אם יש לך הצעות לשדרוג או תרומות לפרויקט, אנחנו מזמינים אותך לפתוח Issue או Pull Request בגיטהאב.
+If you have suggestions for upgrades or contributions to the project, we invite you to open an Issue or Pull Request on GitHub.
 
-## רישיון
+## license
 
-פרויקט זה משוייך ל-[MIT License](LICENSE).
+This project is associated with the [MIT License](LICENSE).
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
-**הבהרות:**
+**Clarifications:**
 
-- הפרויקט הוא למטרות למידה והדגמה בלבד.
-- התמונות והלוגו הם למטרות דוגמה וניתן להחליף אותם בתוכן משלך.
-
+- The project is for learning and demonstration purposes only.
+- The images and logo are for example purposes and can be replaced with your own content.
