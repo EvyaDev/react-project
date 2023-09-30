@@ -12,8 +12,10 @@ To install and run the project on your system, follow these steps:
 
 
 2. **Installing the required dependencies**:
->cd react-project
-> npm install
+```
+npm install
+cd react-project
+```
 
 3. **Running the project**:
 > npm start
