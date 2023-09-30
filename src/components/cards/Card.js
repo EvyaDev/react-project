@@ -46,10 +46,10 @@ export default function Card({ cardData, isLiked, onlike }) {
             .then(() => {
                 onlike();
                 snackbar(isLogged ? " התווסף למועדפים!" : " התחבר כדי להוסיף למועדפים!")
-                setLoading(false)
                 setCardChanged(cardChanged + 1)
             })
             .catch(err => console.log(err))
+            .finally(() => setLoading(false))
     }
 
     //UNFAVORITE

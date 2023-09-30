@@ -36,6 +36,7 @@ export default function Clients() {
         })
             .then(() => {
                 setClients([...clients.filter(clients => clients.id !== itemId)])
+                snackbar("המשתמש נמחק בהצלחה!")
             })
             .catch(err => console.log(err));
     }
