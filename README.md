@@ -8,7 +8,9 @@ This project is a React-based application that allows users to add, edit and man
 To install and run the project on your system, follow these steps:
 
 1. **Download the file from GitHub**:
-```git clone https://github.com/EvyaDev/react-project.git```
+```
+git clone https://github.com/EvyaDev/react-project.git
+```
 
 
 2. **Installing the required dependencies**:
@@ -18,7 +20,9 @@ cd react-project
 ```
 
 3. **Running the project**:
-```npm start```
+```
+ npm start 
+```
 
 
 With these steps, the project will start running in your development environment and you can access it at the following URL: [http://localhost:3000](http://localhost:3000)
