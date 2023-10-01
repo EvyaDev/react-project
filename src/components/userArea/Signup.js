@@ -5,29 +5,35 @@ import { JOI_HEBREW } from "../../joi-hebrew"
 import { APP_NAME, LOGO, generalContext, token } from '../../App';
 import { LuAlertTriangle } from 'react-icons/lu';
 import "./style/user.css"
+import { avatarImage } from '../AppBar';
+
 export default function Signup() {
 
     const { snackbar } = useContext(generalContext);
     const [IsValid, setIsValid] = useState(false);
     const [errors, setErrors] = useState({});
-    const [formData, setFormData] = useState({ business: false });
+    const [formData, setFormData] = useState({
+        business: false,
+        state: "",
+        middleName: "",
+        imgUrl: avatarImage,
+        imgAlt: ""
+    });
     const Navigate = useNavigate();
 
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d.*\d.*\d.*\d)(?=.*[!@#$%^&*_-])/;
 
     const SignupSchema = joi.object({
         firstName: joi.string().min(3).max(12).required(),
-        middleName: joi.string().min(3).max(12).required(),
         lastName: joi.string().min(3).max(20).required(),
         phone: joi.string().regex(/[0-9]{7,10}$/).messages({ 'string.pattern.base': "מספר טלפון לא תקין" }).min(7).max(20).required(),
         email: joi.string().email({ minDomainSegments: 2, tlds: false }).required(),
         password: joi.string().pattern(passwordRegex).messages({
             'string.pattern.base': 'הסיסמה חייבת לכלול אות גדולה, אות קטנה 4 ספרות וסימן מיוחד',
         }).min(8).max(30).required(),
-        imgUrl: joi.string().min(8).required(),
-        imgAlt: joi.string().required(),
         country: joi.string().min(3).max(15).required(),
         city: joi.string().max(15).required(),
+        street: joi.string().min(3).max(20).required(),
         houseNumber: joi.string().alphanum().required(),
         zip: joi.string().alphanum().max(10).required(),
         business: joi.boolean(),
@@ -35,17 +41,17 @@ export default function Signup() {
 
     const structure = [
         { id: "firstName", type: "text", label: "שם פרטי", placeholder: "שם פרטי", require: true },
-        { id: "middleName", type: "text", label: "שם אמצעי", placeholder: "שם אמצעי", require: true },
+        { id: "middleName", type: "text", label: "שם אמצעי", placeholder: "שם אמצעי" },
         { id: "lastName", type: "text", label: "שם משפחה", placeholder: "שם משפחה", require: true },
         { id: "phone", type: "tel", label: "טלפון", placeholder: "טלפון", require: true },
         { id: "email", type: "text", label: "אימייל", placeholder: "אימייל", require: true },
         { id: "password", type: "text", label: "סיסמה", placeholder: "סיסמה", require: true },
-        { id: "imgUrl", type: "text", label: "תמונה", placeholder: "תמונה", require: true },
-        { id: "imgAlt", type: "text", label: "imgAlt", placeholder: "imgAlt", require: true },
+        { id: "imgUrl", type: "text", label: "תמונה", placeholder: "תמונה" },
+        { id: "imgAlt", type: "text", label: "imgAlt", placeholder: "imgAlt" },
         { id: "state", type: "text", label: "מחוז", placeholder: "מחוז" },
         { id: "country", type: "text", label: "מדינה", placeholder: "מדינה", require: true },
         { id: "city", type: "text", label: "עיר", placeholder: "עיר", require: true },
-        { id: "street", type: "text", label: "רחוב", placeholder: "רחוב" },
+        { id: "street", type: "text", label: "רחוב", placeholder: "רחוב", require: true },
         { id: "houseNumber", type: "number", label: "בית", placeholder: "בית", require: true },
         { id: "zip", type: "number", label: "מיקוד", placeholder: "מיקוד", require: true },
         { id: "business", type: "checkbox", label: " לקוח עסקי? ", require: false },
@@ -76,7 +82,6 @@ export default function Signup() {
         } else {
             setIsValid(true)
         }
-
         setErrors(errors)
     }
 
@@ -95,9 +100,6 @@ export default function Signup() {
                     snackbar("ההרשמה בוצעה בהצלחה!")
                     return res.json();
                 } else {
-                    res.text().then(x => {
-                        setErrors({ ...errors, auth: x })
-                    })
                     return res.text().then(x => {
                         throw new Error(x);
                     })
@@ -109,7 +111,7 @@ export default function Signup() {
             })
             .catch(err => {
                 console.log(err);
-                snackbar("שגיאה")
+                snackbar(err.message)
             })
     }
 
@@ -117,7 +119,6 @@ export default function Signup() {
         <div className='signup'>
             <form onSubmit={signup}>
                 <LOGO width={60} />
-                {/* <img className='logo' src={LOGO(20)}></img> */}
                 <h3>{APP_NAME}</h3>
                 <h1>הרשמה</h1>
 

@@ -5,8 +5,8 @@
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   height: 100%;
   width: 100%;
 }
@@ -21,14 +21,14 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding-top: 40px;
   border-right: solid 1px #999999;
 }
@@ -50,8 +50,8 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .AddCard .form form label,
@@ -73,7 +73,7 @@
 .EditCard .form form input,
 .EditCard .form form textarea {
   -ms-flex-item-align: end;
-      align-self: flex-end;
+  align-self: flex-end;
   border: 1px solid gray;
   border-radius: 10px;
   position: relative;
@@ -124,7 +124,7 @@
 .AddCard .form form .checkbox,
 .EditCard .form form .checkbox {
   -webkit-transform: scale(150%);
-          transform: scale(150%);
+  transform: scale(150%);
 }
 
 .AddCard .form button,
@@ -147,4 +147,3 @@
   text-align: right;
   font-size: 14px;
 }
-/*# sourceMappingURL=Add-EditCard.css.map */

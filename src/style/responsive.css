@@ -2,33 +2,40 @@
   nav .menuToggle {
     display: none;
   }
+
   nav .navigator ul {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
   }
+
   .Cards .cardsList {
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
+
   .AddCard .form,
   .EditCard .form {
     padding: 50px 60px;
   }
+
   .CardPage .frmae {
     min-height: 50vh;
   }
+
   .CardPage .frmae .textHeader {
     max-width: 70%;
   }
+
   .CardPage .content {
     padding: 30px 50px;
   }
+
   .Footer {
     display: none !important;
   }
@@ -40,23 +47,26 @@
     display: -ms-flexbox;
     display: flex;
   }
+
   nav .searchInput {
     display: none;
   }
+
   nav .navigator ul {
     display: none;
   }
+
   nav .navigator.showMenu ul {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     gap: 20px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
@@ -67,36 +77,43 @@
     top: 50px;
     left: 50%;
     -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
     padding: 80px 20px;
     -webkit-box-shadow: 0px 40px 70px -70px black;
-            box-shadow: 0px 40px 70px -70px black;
+    box-shadow: 0px 40px 70px -70px black;
   }
+
   nav .navigator.showMenu ul a::before {
     display: none;
   }
+
   .Cards .cardsList {
     -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
+    flex-wrap: nowrap;
     overflow: scroll;
     width: 100%;
   }
+
   .AddCard .display,
   .EditCard .display {
     display: none;
   }
+
   .AddCard .form,
   .EditCard .form {
     width: 100%;
     padding: 50px 20px;
   }
+
   .CardPage .frmae {
     min-height: 40vh;
     padding: 20px;
   }
+
   .CardPage .frmae .textHeader {
     max-width: 300px;
   }
+
   .CardPage .content {
     padding: 20px 5% 100px 5%;
   }
@@ -107,8 +124,8 @@
     min-height: 40vh;
     padding: 20px;
   }
+
   .CardPage .frmae .textHeader {
     max-width: 300px;
   }
 }
-/*# sourceMappingURL=responsive.css.map */

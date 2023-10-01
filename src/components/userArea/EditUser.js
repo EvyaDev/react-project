@@ -30,13 +30,13 @@ export default function EditUser() {
 
     const editUserSchema = joi.object({
         firstName: joi.string().min(3).max(12).required(),
-        middleName: joi.string().min(3).max(12),
         lastName: joi.string().min(3).max(20).required(),
         phone: joi.string().regex(/[0-9]{7,10}$/).messages({ 'string.pattern.base': "מספר טלפון לא תקין" }).min(7).max(20).required(),
         imgUrl: joi.string().min(8).required(),
         imgAlt: joi.string().required(),
         country: joi.string().min(3).max(15).required(),
         city: joi.string().max(15).required(),
+        street: joi.string().min(3).max(20).required(),
         houseNumber: joi.number().required(),
         zip: joi.number().required(),
     })
@@ -63,7 +63,6 @@ export default function EditUser() {
             for (const e of schema.error.details) {
                 errors[e.context.key] = e.message;
             };
-
             setIsValid(false)
 
         } else {

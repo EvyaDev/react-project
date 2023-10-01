@@ -6,7 +6,6 @@ import { darkContext } from '../App';
 
 export default function ToggleThemeMode() {
 
-    // const [darkMode, setDarkMode] = useState(false);
     const { darkMode, setDarkMode } = useContext(darkContext);
 
     useEffect(() => {

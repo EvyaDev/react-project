@@ -12,16 +12,16 @@ nav .userArea .profile-open {
   position: absolute;
   border-radius: 20px;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   border: 1px var(--mainColor) solid;
   width: clamp(220px, 70vw, 300px);
   -webkit-box-shadow: 0 0 50px -30px black;
-          box-shadow: 0 0 50px -30px black;
+  box-shadow: 0 0 50px -30px black;
 }
 
 nav .userArea .profile-open a {
@@ -29,12 +29,12 @@ nav .userArea .profile-open a {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 nav .userArea .profile-open a .permissionTag {
@@ -43,7 +43,7 @@ nav .userArea .profile-open a .permissionTag {
   border-radius: 5px;
   background-color: var(--mainColor);
   -webkit-box-shadow: 0 0 30px -5px var(--mainColor);
-          box-shadow: 0 0 30px -5px var(--mainColor);
+  box-shadow: 0 0 30px -5px var(--mainColor);
 }
 
 nav .userArea .profile-open ul {
@@ -54,8 +54,8 @@ nav .userArea .profile-open ul {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 nav .userArea .profile-open ul li {
@@ -74,8 +74,8 @@ nav .userArea .profile-open ul a {
   border-radius: 5px;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   text-decoration: none;
   -webkit-transition: .1s ease-in;
   transition: .1s ease-in;
@@ -91,7 +91,7 @@ nav .userArea .profile-open ul .logoutBtn {
 nav .userArea .profile-open ul .logoutBtn:hover {
   background-color: #b71717c9;
   -webkit-box-shadow: 0 0 30px -5px red;
-          box-shadow: 0 0 30px -5px red;
+  box-shadow: 0 0 30px -5px red;
   font-size: 120% !important;
   color: white;
 }
@@ -109,13 +109,13 @@ nav .userArea .profile-open .palette {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   gap: 10px;
   border-radius: 10px;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 nav .userArea .profile-open .palette p {
@@ -128,11 +128,11 @@ nav .userArea .profile-open .palette .colorPalette {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 nav .userArea .profile-open .palette .colorPalette .colorIcon {
@@ -141,8 +141,8 @@ nav .userArea .profile-open .palette .colorPalette .colorIcon {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   height: 14px;
   width: 14px;
   border-radius: 50%;
@@ -163,4 +163,3 @@ nav .userArea .profile-open .palette .colorPalette .colorIcon.yellow {
 nav .userArea .profile-open .palette .colorPalette .colorIcon.green {
   background-color: #7bcc7b;
 }
-/*# sourceMappingURL=AppBarProfile.css.map */
