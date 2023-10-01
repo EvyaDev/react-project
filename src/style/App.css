@@ -38,6 +38,10 @@
   font-size: clamp(13px, 2vw, 16px);
 }
 
+.App a {
+  text-decoration: none;
+}
+
 .Home>h2 {
   text-align: center;
 }

@@ -17,14 +17,16 @@ export default function CardsList() {
     //get all cards
     useEffect(() => {
         setLoading(true);
-        fetch(`https://api.shipap.co.il/business/cards?token=${token}`, {
+        const isAdmin = userRole === RoleTypes.ADMIN;
+        fetch(`https://api.shipap.co.il/${isAdmin ? "" : "business/"}cards?token=${token}`, {
             credentials: "include"
         })
+
             .then(res => res.json())
             .then(data => setCards(data))
             .catch(err => console.log(err))
             .finally(() => setLoading(false))
-
+        console.log(cards);
     }, [cards.length])
 
     //REMOVE CARD
@@ -78,8 +80,8 @@ export default function CardsList() {
                                         <td> <img alt={c.imgAlt} src={c.imgUrl}></img> </td>
                                         <td>
                                             <div className='actions'>
-                                                <Link to={`/editCard/${c.id}`}><FiEdit /></Link>
-                                                <HiMinusCircle onClick={() => remove(c.id)} />
+                                                <HiMinusCircle className='remove' onClick={() => remove(c.id)} />
+                                                {(userRole === RoleTypes.BUSINESS || c.clientId === 0) && <Link to={`/editCard/${c.id}`}><FiEdit /></Link>}
                                             </div>
                                         </td>
                                     </tr>

@@ -86,4 +86,13 @@
 
 .CardsList .tableFrame table tbody tr td .actions svg {
   font-size: 20px;
+  transition: 0.1s ease-in;
+}
+
+.CardsList .tableFrame table tbody tr td .actions svg:hover {
+  scale: 1.3;
+}
+
+.CardsList .tableFrame table tbody tr td .actions svg.remove {
+  color: red;
 }

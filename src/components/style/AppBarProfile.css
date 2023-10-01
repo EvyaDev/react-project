@@ -83,9 +83,14 @@ nav .userArea .profile-open ul a {
 
 nav .userArea .profile-open ul .logoutBtn {
   background-color: #b717177e;
-  display: block;
-  text-align: center;
   color: white !important;
+  border: none;
+  display: flex;
+  color: inherit;
+  padding: 5px 15px;
+  border-radius: 5px;
+  transition: .1s ease-in;
+  -webkit-transition: .1s ease-in;
 }
 
 nav .userArea .profile-open ul .logoutBtn:hover {

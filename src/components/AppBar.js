@@ -128,7 +128,7 @@ export default function AppBar() {
 
                     {profileOpen &&
                         <div onMouseLeave={close} onMouseOver={open} className="profile-open">
-                            <a>
+                            <a href="#">
                                 <div className="avatar">
                                     {isLogged ? `${user.fullName.slice(0, 1)}${user.lastName ? user.lastName.slice(0, 1) : ""}` : <img alt="avatar" className="img-avatar" src={avatarImage} />}
                                 </div>
@@ -158,7 +158,7 @@ export default function AppBar() {
                             {isLogged &&
                                 <ul>
                                     <li onClick={() => { Navigate("/logout"); close() }}>
-                                        <a className="logoutBtn"> התנתק </a>
+                                        <button className="logoutBtn"> התנתק </button>
                                     </li>
                                 </ul>
                             }
