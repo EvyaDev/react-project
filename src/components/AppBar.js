@@ -92,8 +92,10 @@ export default function AppBar() {
 
     return (
         <nav>
-            <Link to={"/"}><LOGO /></Link>
-            <p>{APP_NAME}</p>
+            <div className="logoArea">
+                <Link to={"/"}><LOGO /></Link>
+                <p>{APP_NAME}</p>
+            </div>
 
             <div className={menuOpen ? "navigator showMenu" : "navigator"}>
                 <ul onClick={() => setMenuOpen(true)}>
@@ -110,7 +112,6 @@ export default function AppBar() {
 
             <div className="leftSide">
                 <input className="searchInput" onChange={handleSearch} value={text} type="text" placeholder="חיפוש מתכון..."></input>
-
                 <div ref={myRef} className="menuToggle" onClick={toggleMenu} >
                     <RxHamburgerMenu />
                 </div>
