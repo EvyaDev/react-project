@@ -1,4 +1,4 @@
-# React project - caeds management
+# React project - cards management
 
 ## Introduction
 
